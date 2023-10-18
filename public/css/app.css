@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900;1000&display=swap');
+:root {
+    /** */
+    --prime: #03a9f4;
+    --acent: #80d7ff;
+    /** */
+    --black-blur: #1D1D1D15;
+    --white-blur: #FCFCFC40;
+    --black: #1D1D1D;
+    --white: #FCFCFC;
+    --light: #F5F5F5;
+    --shade: #D1D1D1;
+    --radius: .5rem;
+    --weight: 600;
+    --vh: 100vh;
+    --shadow: var(--black-blur, #0000) 0px 3px 12px, var(--black-blur, #0000) 0px 25px 20px -20px;
+    /** */
+    --color-sys-0: #94A3B8;
+    --color-sys-1: #78716C;
+    --color-sys-2: #1F2937;
+    /** */
+    --color-0: #3B82F6;
+    --color-1: #8B5CF6;
+    --color-2: #06B6D4;
+    --color-3: #22C55E;
+    --color-4: #EAB308;
+    --color-5: #EF4444;
+    --color-6: #14B8A6;
+    --color-7: #EC4899;
+    --color-8: #F97316;
+    --color-9: #F43F5E;
+}
+
+*,
+*::after,
+*::before {
+    font-family: Montserrat, sans-serif;
+}
+
+html[lang="ar"] *,
+html[lang="ar"] *::after,
+html[lang="ar"] *::before {
+    font-family: 'Cairo', sans-serif;
+}
+
+.x-switch-input:focus-within,
+.x-select-search:focus-within,
+.x-password-trigger:focus-within,
+.x-datatable-search:focus-within,
+.x-password-container:focus-within,
+.x-select-field-container:focus-within,
+.x-datepicker-display-year:focus-within,
+.x-datepicker-field-container:focus-within,
+.x-datatable-filter-field-container:focus-within {
+    outline-color: var(--prime) !important;
+}
+
+.x-select-selected,
+.x-datepicker-selected,
+.x-switch-input:checked,
+.x-select-field-multiple,
+.x-datatable-filter-selected,
+.x-datatable-pagination-selected {
+    background-color: var(--prime) !important;
+}
+
+.x-datatable-content {
+    background: transparent;
+    border: unset;
+    background-color: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.x-datatable-head-col:first-of-type,
+.x-datatable-body-col:first-of-type {
+    padding-inline-start: 1rem;
+}
+
+.x-datatable-head-col:last-of-type,
+.x-datatable-body-col:last-of-type {
+    padding-inline-end: 1rem;
+}
+
+.x-datatable-empty,
+.x-datatable-head-col {
+    font-weight: 600;
+}
+
+.x-datatable-search,
+.x-datatable-download,
+.x-datatable-filter-field-container {
+    border-radius: var(--radius);
+}
+
+.x-select-modal,
+.x-datepicker-modal,
+.x-datatable-filter-modal {
+    background-color: var(--black-blur);
+}
+
+.x-select-content,
+.x-datepicker-content,
+.x-datatable-filter-content {
+    box-shadow: var(--shadow);
+}
+
+.x-datatable-search,
+.tox-edit-area__iframe,
+.x-datatable-filter-field-container {
+    background: var(--white) !important;
+}
+
+.x-select-group {
+    font-weight: 800;
+    font-size: .85rem;
+    line-height: 1;
+    padding-inline-start: 1rem;
+}
+
+.x-select-group:first-of-type {
+    margin-top: .25rem;
+}
+
+.x-switch:has([disabled]) {
+    opacity: .6;
+    filter: brightness(.8);
+}
+
+::-webkit-search-cancel-button,
+::-webkit-inner-spin-button {
+    display: none;
+}
+
+.tox-tinymce {
+    background-color: var(--light) !important;
+    border-radius: 0 !important;
+    border: 0 !important;
+}
+
+.tox-editor-header {
+    background: var(--light) !important;
+    box-shadow: unset !important;
+    padding: 0 !important;
+    z-index: 0 !important;
+}
+
+.tox-edit-area__iframe {
+    border: 1px solid var(--shade) !important;
+    border-radius: 0.375rem !important;
+}
+
+.tox-tbtn--select.tox-tbtn--bespoke {
+    background: #e6e6e6 !important;
+}
+
+.tox-tbtn--select.tox-tbtn--bespoke:hover {
+    background: #cce2fa !important;
+}
+
+.tox-editor-header>div,
+.tox-editor-header [role="group"] {
+    background: transparent !important;
+}
+
+.tox-notifications-container,
+.tox-bottom-anchorbar,
+.tox-statusbar {
+    display: none !important;
+}
+
+.x-revert * {
+    all: revert;
+}
+
+.x-category .x-category {
+    display: none;
+}
+
+.x-category .x-category-open,
+.x-category li:hover>.x-category,
+.x-category .x-category-before::before,
+.x-category li:focus-within>.x-category,
+.x-category .x-category a:hover+.x-category::before,
+.x-category .x-category a:focus-within+.x-category::before {
+    display: block;
+}
+
+@media (min-width: 1024px) {
+    .lg\:overflow-unset {
+        overflow: unset;
+    }
+}
