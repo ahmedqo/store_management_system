@@ -1,10 +1,10 @@
 <aside class="w-full flex flex-col gap-2">
     <div id="filter"
-        class="!flex justify-between items-center gap-4 bg-x-light lg:bg-transparent rounded-x-core p-4 lg:p-0">
+        class="!flex justify-between items-center gap-4 bg-x-light lg:bg-transparent rounded-x-core px-4 py-2 lg:p-0">
         <h4 class="text-x-black text-lg lg:text-xl font-x-core">
             {{ ucwords(__('Categories')) }}
         </h4>
-        <button x-toggle targets="#categories, #filter" properties="hidden, bg-x-light, p-4"
+        <button x-toggle targets="#categories, #filter" properties="hidden, bg-x-light, px-4, py-2"
             class="w-5 h-5 flex lg:hidden items-center justify-center text-x-black outline-none hover:text-x-prime focus:text-x-prime">
             <svg class="block w-5 h-5 pointer-events-none" fill="currentcolor" viewBox="0 -960 960 960">
                 <path
@@ -12,7 +12,8 @@
             </svg>
         </button>
     </div>
-    <nav id="categories" class="!bg-x-light rounded-x-core !p-4 hidden lg:block">
+    <nav id="categories"
+        class="!bg-transparent rounded-x-core !p-4 hidden lg:block border-4 border-dashed border-x-black-blur">
         <ul class="x-category relative">
             @foreach ($categories as $base)
                 @if (!$base->Category)

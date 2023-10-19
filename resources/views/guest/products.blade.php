@@ -2,8 +2,8 @@
 @section('title', __('Products'))
 
 @section('header')
-    <div
-        class="w-full min-h-[8rem] aspect-[10/2] flex items-center justify-center text-x-white font-x-core text-2xl lg:text-6xl p-4 bg-cover bg-no-repeat relative z-[0] bg-center before:content-[''] before:inset-0 before:bg-x-black-blur before:absolute before:z-[-1]">
+    <div style="background-image: url({{ $img }}); text-shadow: 0 0 2px var(--black)"
+        class="w-full min-h-[8rem] aspect-[10/2] flex items-center justify-center text-x-white font-x-core text-2xl lg:text-6xl p-4 bg-cover bg-no-repeat relative z-[0] bg-center before:content-[''] before:inset-0 before:bg-x-black-blur before:absolute before:z-[-1] before:backdrop-blur-sm">
         {{ __('Products') }}
     </div>
 @endsection
@@ -21,10 +21,10 @@
                 @forelse($data as $row)
                     <div class="w-full flex flex-col gap-2">
                         <a href="{{ route('views.guest.product', $row->slug) }}"
-                            class="relative group overflow-hidden rounded-x-core shadow-x-core">
+                            class="relative group overflow-hidden aspect-[12/10] rounded-x-core shadow-x-core">
                             <img src="{{ Core::files(Core::PRODUCT)->get($row->Files->first()->name) }}"
                                 alt="{{ $row->slug }}_image_1"
-                                class="block w-full aspect-square object-contain bg-x-white transition-transform group-hover:scale-150 group-focus:scale-150" />
+                                class="block w-full h-full object-cover bg-x-white transition-transform group-hover:scale-150 group-focus:scale-150" />
                             <div
                                 class="bg-x-black-blur text-x-white opacity-0 group-hover:opacity-100 group-focus:opacity-100 pointer-events-none transition-opacity w-full h-full absolute inset-0 flex items-center justify-center backdrop-blur-sm">
                                 <svg fill="currentcolor" viewBox="0 -960 960 960"

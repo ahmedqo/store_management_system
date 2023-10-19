@@ -2,8 +2,8 @@
 @section('title', ucwords($data->name))
 
 @section('header')
-    <div
-        class="w-full min-h-[8rem] aspect-[10/2] flex items-center justify-center text-x-white font-x-core text-2xl lg:text-6xl p-4 bg-cover bg-no-repeat relative z-[0] bg-center before:content-[''] before:inset-0 before:bg-x-black-blur before:absolute before:z-[-1]">
+    <div style="text-shadow: 0 0 2px var(--black)"
+        class="w-full min-h-[8rem] aspect-[10/2] flex items-center justify-center text-x-white font-x-core text-2xl lg:text-6xl p-4 bg-cover bg-no-repeat relative z-[0] bg-center before:content-[''] before:inset-0 before:bg-x-black-blur before:absolute before:z-[-1] before:backdrop-blur-sm">
         {{ __('Product Details') }}
     </div>
 @endsection
@@ -16,7 +16,7 @@
         <div class="w-full lg:w-7/12">
             <div class="w-full flex flex-col gap-4 sticky top-4">
                 <div class="w-full relative">
-                    <div id="slide" class="w-full aspect-video rounded-x-core bg-x-white shadow-x-core p-2">
+                    <div id="slide" class="w-full aspect-video rounded-x-core bg-x-white shadow-x-core">
                         <ul class="w-full h-full">
                             @foreach ($data->Files as $file)
                                 <li class="w-full h-full flex items-center justify-center">
@@ -68,7 +68,7 @@
                                 class="block max-h-[3rem] max-w-[6rem] object-contain"
                                 alt="{{ $data->Brand->name }}_image">
                         </a>
-                        <h6 class="text-md font-x-core text-x-black">{{ ucwords($data->Brand->name) }}</h6>
+                        {{-- <h3 class="text-md font-x-core text-x-black">{{ ucwords($data->Brand->name) }}</h3> --}}
                     </div>
                 </div>
             </div>

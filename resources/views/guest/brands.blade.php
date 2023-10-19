@@ -2,8 +2,8 @@
 @section('title', __('Brands'))
 
 @section('header')
-    <div
-        class="w-full min-h-[8rem] aspect-[10/2] flex items-center justify-center text-x-white font-x-core text-2xl lg:text-6xl p-4 bg-cover bg-no-repeat relative z-[0] bg-center before:content-[''] before:inset-0 before:bg-x-black-blur before:absolute before:z-[-1]">
+    <div style="text-shadow: 0 0 2px var(--black)"
+        class="w-full min-h-[8rem] aspect-[10/2] flex items-center justify-center text-x-white font-x-core text-2xl lg:text-6xl p-4 bg-cover bg-no-repeat relative z-[0] bg-center before:content-[''] before:inset-0 before:bg-x-black-blur before:absolute before:z-[-1] before:backdrop-blur-sm">
         {{ __('Brands') }}
     </div>
 @endsection
@@ -11,7 +11,7 @@
 @section('content')
     <section class="w-full flex flex-col lg:flex-row lg:flex-wrap gap-4 lg:gap-6 p-4">
         @include('shared.guest.list', [
-            'items' => [[__('Home'), route('views.guest.home')], [__('Brands'), route('views.guest.categories')]],
+            'items' => [[__('Home'), route('views.guest.home')], [__('Brands'), route('views.guest.brands')]],
         ])
         <div class="w-full grid grid-rows-1 grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-6">
             @forelse($data as $row)
@@ -19,7 +19,7 @@
                     <a href="{{ route('views.guest.products', [
                         'brand' => $row->slug,
                     ]) }}"
-                        class="relative group overflow-hidden aspect-square rounded-x-core shadow-x-core bg-x-white p-4 flex items-center justify-center">
+                        class="relative group overflow-hidden aspect-[12/10] rounded-x-core shadow-x-core bg-x-white p-4 flex items-center justify-center">
                         <img src="{{ Core::files(Core::BRAND)->get($row->file) }}" alt="{{ $row->slug }}_image"
                             class="block max-w-full max-h-full object-contain transition-transform group-hover:scale-150 group-focus:scale-150" />
                         <div

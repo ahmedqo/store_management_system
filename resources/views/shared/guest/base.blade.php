@@ -10,7 +10,7 @@
     <title>@yield('title')</title>
 </head>
 
-<body>
+<body class="!overflow-hidden !h-screen">
     <section id="overlay"
         class="bg-x-prime bg-opacity-80 backdrop-blur-lg fixed inset-0 z-[100] flex items-center justify-center">
         <img title="logo-image" alt="logo-image" src="{{ asset('img/logo.png') }}?v={{ env('APP_VERSION') }}"

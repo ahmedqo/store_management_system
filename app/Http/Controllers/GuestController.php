@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Functions\Core;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
@@ -12,6 +13,7 @@ class GuestController extends Controller
     public function home_view()
     {
         $brands = Brand::orderBy('id', 'DESC')->limit(20)->get();
+        $products = Product::orderBy('id', 'DESC')->limit(8)->get();
         $categories = Category::orderBy('id', 'DESC')->limit(5)->get();
 
         $class = [
@@ -34,7 +36,7 @@ class GuestController extends Controller
             array_push($class['children'], 'aspect-video', 'aspect-video lg:aspect-none lg:row-span-2', 'col-span-2 lg:col-span-1 aspect-[32/9] lg:aspect-video', 'aspect-video', 'aspect-video');
         }
 
-        return view('guest.home', compact('categories', 'brands', 'class'));
+        return view('guest.home', compact('categories', 'brands', 'products', 'class'));
     }
 
     public function product_view(Request $Request, $slug)
@@ -75,13 +77,15 @@ class GuestController extends Controller
         $row = [
             [__('Home'), route('views.guest.home')]
         ];
+        $img = null;
         $tag = null;
         $id = null;
         if ($Request->category) {
             $Category = Category::where('slug', $Request->category)->first();
-            $id = $Category->id;
-            $tag = 'category';
             if ($Category) {
+                $img = Core::files(Core::CATEGORY)->get($Category->file);
+                $id = $Category->id;
+                $tag = 'category';
                 array_push($row, [__("Categories"), route('views.guest.categories')]);
                 array_push($row, [ucwords($Category->name), route('views.guest.products', [
                     'category' => $Category->slug
@@ -91,9 +95,10 @@ class GuestController extends Controller
 
         if ($Request->brand) {
             $Brand = Brand::where('slug', $Request->brand)->first();
-            $id = $Brand->id;
-            $tag = 'brand';
             if ($Brand) {
+                $img = Core::files(Core::BRAND)->get($Brand->file);
+                $id = $Brand->id;
+                $tag = 'brand';
                 array_push($row, [__("Brands"), route('views.guest.brands')]);
                 array_push($row, [ucwords($Brand->name), route('views.guest.products', [
                     'brand' => $Brand->slug
@@ -108,7 +113,7 @@ class GuestController extends Controller
         if ($tag && $id) $data = $data->where($tag, $id);
         $data = $data->orderBy('id', 'DESC')->get();
 
-        return view('guest.products', compact('data', 'categories', 'row'));
+        return view('guest.products', compact('data', 'categories', 'row', 'img'));
     }
 
     public function categories_view()

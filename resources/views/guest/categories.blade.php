@@ -2,8 +2,8 @@
 @section('title', __('Categories'))
 
 @section('header')
-    <div
-        class="w-full min-h-[8rem] aspect-[10/2] flex items-center justify-center text-x-white font-x-core text-2xl lg:text-6xl p-4 bg-cover bg-no-repeat relative z-[0] bg-center before:content-[''] before:inset-0 before:bg-x-black-blur before:absolute before:z-[-1]">
+    <div style="text-shadow: 0 0 2px var(--black)"
+        class="w-full min-h-[8rem] aspect-[10/2] flex items-center justify-center text-x-white font-x-core text-2xl lg:text-6xl p-4 bg-cover bg-no-repeat relative z-[0] bg-center before:content-[''] before:inset-0 before:bg-x-black-blur before:absolute before:z-[-1] before:backdrop-blur-sm">
         {{ __('Categories') }}
     </div>
 @endsection
@@ -22,7 +22,7 @@
                     <a href="{{ route('views.guest.products', [
                         'category' => $row->slug,
                     ]) }}"
-                        class="relative group overflow-hidden aspect-square rounded-x-core shadow-x-core bg-x-white flex items-center justify-center">
+                        class="relative group overflow-hidden aspect-[12/10] rounded-x-core shadow-x-core bg-x-white flex items-center justify-center">
                         <img src="{{ Core::files(Core::CATEGORY)->get($row->file) }}" alt="{{ $row->slug }}_image"
                             class="block w-full h-full object-cover transition-transform group-hover:scale-150 group-focus:scale-150" />
                         <div
