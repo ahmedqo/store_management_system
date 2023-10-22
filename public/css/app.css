@@ -65,7 +65,7 @@ html[lang="ar"] *::before {
     background-color: var(--prime) !important;
 }
 
-.x-datatable-content {
+table:not([default])+.x-datatable-container .x-datatable-content {
     background: transparent;
     border: unset;
     background-color: var(--white);
@@ -73,13 +73,13 @@ html[lang="ar"] *::before {
     box-shadow: var(--shadow);
 }
 
-.x-datatable-head-col:first-of-type,
-.x-datatable-body-col:first-of-type {
+table:not([default])+.x-datatable-container .x-datatable-head-col:first-of-type,
+table:not([default])+.x-datatable-container .x-datatable-body-col:first-of-type {
     padding-inline-start: 1rem;
 }
 
-.x-datatable-head-col:last-of-type,
-.x-datatable-body-col:last-of-type {
+table:not([default])+.x-datatable-container .x-datatable-head-col:last-of-type,
+table:not([default])+.x-datatable-container .x-datatable-body-col:last-of-type {
     padding-inline-end: 1rem;
 }
 
@@ -88,9 +88,9 @@ html[lang="ar"] *::before {
     font-weight: 600;
 }
 
-.x-datatable-search,
-.x-datatable-download,
-.x-datatable-filter-field-container {
+table:not([default])+.x-datatable-container .x-datatable-search,
+table:not([default])+.x-datatable-container .x-datatable-download,
+table:not([default])+.x-datatable-container .x-datatable-filter-field-container {
     border-radius: var(--radius);
 }
 
@@ -102,13 +102,14 @@ html[lang="ar"] *::before {
 
 .x-select-content,
 .x-datepicker-content,
-.x-datatable-filter-content {
+table:not([default])+.x-datatable-container .x-datatable-filter-content {
+    border: unset;
     box-shadow: var(--shadow);
 }
 
-.x-datatable-search,
 .tox-edit-area__iframe,
-.x-datatable-filter-field-container {
+table:not([default])+.x-datatable-container .x-datatable-search,
+table:not([default])+.x-datatable-container .x-datatable-filter-field-container {
     background: var(--white) !important;
 }
 

@@ -1,10 +1,10 @@
 @extends('shared.admin.base')
-@section('title', __('Products List'))
+@section('title', __('Quotations List'))
 
 @section('content')
     <div class="flex flex-col gap-4">
         <div class="w-full flex items-center justify-between gap-2">
-            <h1 class="font-x-core text-2xl">{{ __('Products List') }}</h1>
+            <h1 class="font-x-core text-2xl">{{ __('Quotations List') }}</h1>
             <div
                 class="lg:w-max fixed bottom-0 left-0 right-0 lg:relative lg:bottom-auto lg:left-auto lg:right-auto z-[5] lg:z-0 pointer-events-none">
                 <div class="container mx-auto lg:w-max p-4 lg:p-0">
@@ -18,7 +18,7 @@
                             </svg>
                             <span class="hidden lg:block">{{ __('Print') }}</span>
                         </button>
-                        <a href="{{ route('views.products.store') }}"
+                        <a href="{{ route('views.quotations.store') }}"
                             class="flex gap-2 items-center justify-center font-x-core text-sm rounded-sm bg-blue-400 text-x-white relative p-2 lg:px-4 h-[42px] aspect-square lg:aspect-auto outline-none hover:!text-x-black hover:bg-blue-300 focus-within:!text-x-black focus-within:bg-blue-300">
                             <svg class="block w-5 h-5 pointer-events-none" fill="currentcolor" viewBox="0 -960 960 960">
                                 <path
@@ -31,22 +31,21 @@
             </div>
         </div>
         <div class="w-full">
-            <table x-table search filter remove="5" download="products_list">
+            <table x-table search filter remove="10" download="requests_list">
                 <thead>
                     <tr>
                         <td>
                             <div class="w-max mx-auto">#</div>
                         </td>
-                        <td>
-                            <div class="w-max mx-auto">{{ __('Image') }}</div>
-                        </td>
-                        <td>{{ __('Name') }}</td>
                         <td>{{ __('Reference') }}</td>
-                        <td>{{ __('Brand') }}</td>
-                        <td>{{ __('Category') }}</td>
-                        <td>{{ __('Unit') }}</td>
-                        <td>{{ __('Price') }}</td>
-                        <td>{{ __('Status') }}</td>
+                        <td>{{ __('Name') }}</td>
+                        <td>{{ __('Email') }}</td>
+                        <td>{{ __('Phone') }}</td>
+                        <td>{{ __('Count') }}</td>
+                        <td>{{ __('Charges') }}</td>
+                        <td>{{ __('Total') }}</td>
+                        <td class="hidden">{{ __('Note') }}</td>
+                        <td>{{ __('Created at') }}</td>
                         <td>
                             <div class="w-max mx-auto">{{ __('Actions') }}</div>
                         </td>
@@ -58,23 +57,20 @@
                             <td>
                                 <div class="w-max mx-auto font-x-core text-sm">{{ $row->id }}</div>
                             </td>
-                            <td>
-                                <img alt="{{ $row->name . ' image' }}"
-                                    src="{{ Core::files(Core::PRODUCT)->get($row->Files->first()->name) }}"
-                                    class="block mx-auto rounded-md bg-gray-100 w-20 aspect-square object-contain" />
-                            </td>
-                            <td>{{ ucwords($row->name) }}</td>
                             <td>{{ strtoupper($row->reference) }}</td>
-                            <td>{{ ucwords($row->Brand->name) }}</td>
-                            <td>{{ ucwords($row->Category->name) }}</td>
-                            <td>{{ ucwords(__($row->unit)) }}</td>
-                            <td>{{ number_format($row->price) }} {{ ucwords(__(Core::CURRENCY)) }}</td>
-                            <td>{{ ucwords(__($row->status)) }}</td>
+                            <td>{{ ucwords($row->name) }}</td>
+                            <td>{{ $row->email }}</td>
+                            <td>{{ $row->phone }}</td>
+                            <td>{{ $row->Items->count() }} {{ __('Products') }}</td>
+                            <td>{{ number_format($row->charge) }} {{ $row->currency }}</td>
+                            <td>{{ number_format($row->Total()) }} {{ $row->currency }}</td>
+                            <td class="hidden">{{ $row->note ?? '___' }}</td>
+                            <td>{{ $row->created_at }}</td>
                             <td>
                                 @include('shared.admin.action', [
-                                    'patch' => route('views.products.patch', $row->id),
-                                    'scene' => route('views.guest.product', $row->slug),
-                                    'clear' => route('actions.products.clear', $row->id),
+                                    'scene' => route('views.quotations.scene', $row->id),
+                                    'patch' => route('views.quotations.patch', $row->id),
+                                    'clear' => route('actions.quotations.clear', $row->id),
                                 ])
                             </td>
                         </tr>
@@ -86,7 +82,7 @@
 
     <section id="page" class="w-full hidden">
         <div class="flex flex-col">
-            <h1 class="text-x-black font-x-core text-2xl p-4">{{ __('Products List') }}</h1>
+            <h1 class="text-x-black font-x-core text-2xl p-4">{{ __('Quotations List') }}</h1>
             <div class="border-x-shade border w-full">
                 <table class="w-full">
                     @if ($data->count())
@@ -95,16 +91,15 @@
                                 <td class="text-x-black text-sm font-x-core p-2 ps-4">
                                     <div class="w-max mx-auto">#</div>
                                 </td>
-                                <td class="text-x-black text-sm font-x-core p-2">
-                                    <div class="w-max mx-auto">{{ __('Image') }}</div>
-                                </td>
-                                <td class="text-x-black text-sm font-x-core p-2">{{ __('Name') }}</td>
                                 <td class="text-x-black text-sm font-x-core p-2">{{ __('Reference') }}</td>
-                                <td class="text-x-black text-sm font-x-core p-2">{{ __('Brand') }}</td>
-                                <td class="text-x-black text-sm font-x-core p-2">{{ __('Category') }}</td>
-                                <td class="text-x-black text-sm font-x-core p-2">{{ __('Unit') }}</td>
-                                <td class="text-x-black text-sm font-x-core p-2">{{ __('Price') }}</td>
-                                <td class="text-x-black text-sm font-x-core p-2 pe-4">{{ __('Status') }}</td>
+                                <td class="text-x-black text-sm font-x-core p-2">{{ __('Name') }}</td>
+                                <td class="text-x-black text-sm font-x-core p-2">{{ __('Email') }}</td>
+                                <td class="text-x-black text-sm font-x-core p-2">{{ __('Phone') }}</td>
+                                <td class="text-x-black text-sm font-x-core p-2">{{ __('Count') }}</td>
+                                <td class="text-x-black text-sm font-x-core p-2">{{ __('Charges') }}</td>
+                                <td class="text-x-black text-sm font-x-core p-2">{{ __('Total') }}</td>
+                                <td class="text-x-black text-sm font-x-core p-2">{{ __('Note') }}</td>
+                                <td class="text-x-black text-sm font-x-core p-2 pe-4">{{ __('Created at') }}</td>
                             </tr>
                         </thead>
                     @endif
@@ -114,20 +109,23 @@
                                 <td class="text-x-black text-base p-2 ps-4">
                                     <div class="w-max mx-auto font-x-core text-sm">{{ $row->id }}</div>
                                 </td>
-                                <td class="text-x-black text-base p-2">
-                                    <img alt="{{ $row->name . ' image' }}"
-                                        src="{{ Core::files(Core::PRODUCT)->get($row->Files->first()->name) }}"
-                                        class="block mx-auto rounded-md bg-gray-100 w-20 aspect-square object-contain" />
-                                </td>
-                                <td class="text-x-black text-base p-2">{{ ucwords($row->name) }}</td>
                                 <td class="text-x-black text-base p-2">{{ strtoupper($row->reference) }}</td>
-                                <td class="text-x-black text-base p-2">{{ ucwords($row->Brand->name) }}</td>
-                                <td class="text-x-black text-base p-2">{{ ucwords($row->Category->name) }}</td>
-                                <td class="text-x-black text-base p-2">{{ ucwords(__($row->unit)) }}</td>
+                                <td class="text-x-black text-base p-2">{{ ucwords($row->name) }}</td>
+                                <td class="text-x-black text-base p-2">{{ $row->email }}</td>
+                                <td class="text-x-black text-base p-2">{{ $row->phone }}</td>
                                 <td class="text-x-black text-base p-2">
-                                <td>{{ number_format($row->price) }} {{ ucwords(__(Core::CURRENCY)) }}</td>
+                                    {{ $row->Items->count() }} {{ __('Products') }}
                                 </td>
-                                <td class="text-x-black text-base p-2 pe-4">{{ ucwords(__($row->status)) }}</td>
+                                <td class="text-x-black text-base p-2">
+                                    {{ number_format($row->charge) }}
+                                    {{ $row->currency }}
+                                </td>
+                                <td class="text-x-black text-base p-2">
+                                    {{ number_format($row->Total()) }}
+                                    {{ $row->currency }}
+                                </td>
+                                <td class="text-x-black text-base p-2">{{ $row->note ?? '___' }}</td>
+                                <td class="text-x-black text-base p-2 pe-4">{{ $row->created_at }}</td>
                             </tr>
                         @empty
                             <tr>

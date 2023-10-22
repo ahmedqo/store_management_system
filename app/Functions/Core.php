@@ -3,7 +3,6 @@
 namespace App\Functions;
 
 use App\Models\ProductFile;
-use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 

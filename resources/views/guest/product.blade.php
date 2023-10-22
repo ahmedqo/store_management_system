@@ -4,7 +4,7 @@
 @section('header')
     <div style="text-shadow: 0 0 2px var(--black)"
         class="w-full min-h-[8rem] aspect-[10/2] flex items-center justify-center text-x-white font-x-core text-2xl lg:text-6xl p-4 bg-cover bg-no-repeat relative z-[0] bg-center before:content-[''] before:inset-0 before:bg-x-black-blur before:absolute before:z-[-1] before:backdrop-blur-sm">
-        {{ __('Product Details') }}
+        {{ ucwords(__('Product details')) }}
     </div>
 @endsection
 
@@ -91,9 +91,9 @@
                         </svg>
                     </button>
                 </div>
-                <button
-                    class="w-full rounded-x-core px-4 py-2 text-xl lg:text-2xl font-x-core text-white bg-x-prime hover:text-x-black focus:text-x-black hover:bg-x-acent focus:bg-x-acent outline-none">
-                    {{ __('Add To Cart') }}
+                <button id="addtocart"
+                    class="w-full rounded-x-core px-4 py-2 text-lg lg:text-xl font-x-core text-white bg-x-prime hover:text-x-black focus:text-x-black hover:bg-x-acent focus:bg-x-acent outline-none">
+                    {{ __(ucwords('Add to cart')) }}
                 </button>
             </form>
         </div>
@@ -121,8 +121,24 @@
             time: 5000,
             touch: true,
             infinite: true,
-        }).change(($) => {
-            console.log($.current);
+        });
+        document.querySelector("#addtocart").addEventListener("click", e => {
+            e.preventDefault();
+            const rows = JSON.parse(localStorage.{{ env('APP_CART') }});
+            const item = rows.find(e => e.id === {{ $data->id }});
+            if (item) {
+                item.qte += +document.querySelector('[name="qte"]').value
+            } else {
+                rows.push({
+                    img: "{{ Core::files(Core::PRODUCT)->get($data->Files[0]->name) }}",
+                    link: "{{ route('views.guest.product', $data->slug) }}",
+                    qte: +document.querySelector('[name="qte"]').value,
+                    title: "{{ ucwords($data->name) }}",
+                    id: {{ $data->id }},
+                });
+            }
+            localStorage.setItem("{{ env('APP_CART') }}", JSON.stringify(rows));
+            x.Toaster("{{ __('Added successfully') }}", "success");
         });
     </script>
 @endsection

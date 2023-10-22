@@ -3,12 +3,10 @@
         <a href="{{ route('views.guest.home') }}">
             <img alt="logo-image" src="{{ asset('img/logo.png') }}?v={{ env('APP_VERSION') }}" class="block w-12" />
         </a>
-        <form id="form" action="{{ route('views.guest.search', '%SLUG%') }}" class="flex-1 flex flex-col lg:mx-4"
-            method="POST">
-            @csrf
+        <form id="form" action="{{ route('views.guest.products') }}" class="flex-1 flex flex-col mx-4" method="GET">
             <div class="w-full relative text-x-shade focus-within:text-x-prime">
                 <input id="search" type="search" name="search" placeholder="{{ __('Search') }}"
-                    class="w-full bg-x-light text-x-black border-x-shade focus-within:outline-x-prime p-2 ps-8 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2" />
+                    class="w-full bg-x-light text-x-black focus-within:outline-x-prime p-2 ps-8 text-base rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2" />
                 <svg class="block w-5 h-5 pointer-events-none absolute top-1/2 -translate-y-1/2 left-2 rtl:left-auto rtl:right-2"
                     fill="currentcolor" viewBox="0 -960 960 960">
                     <path
@@ -16,13 +14,6 @@
                 </svg>
             </div>
         </form>
-        <button x-toggle targets="#navigation" properties="opacity-0, pointer-events-none, -translate-y-full"
-            class="lg:hidden ms-auto p-2 w-[42px] aspect-square flex items-center justify-center rounded-md text-x-black hover:bg-x-shade hover:bg-opacity-20 focus-within:bg-x-shade focus-within:bg-opacity-20 rtl:rotate-180 outline-none">
-            <svg class="block w-5 h-5 pointer-events-none" fill="currentcolor" viewBox="0 -960 960 960">
-                <path
-                    d="M129-215q-20.75 0-33.375-12.675Q83-240.351 83-261.175 83-280 95.625-293T129-306h458q19.75 0 32.375 13.175 12.625 13.176 12.625 32Q632-240 619.375-227.5 606.75-215 587-215H129Zm0-221q-20.75 0-33.375-13.175Q83-462.351 83-482.175 83-502 95.625-514.5 108.25-527 129-527h339q18.75 0 31.875 12.675Q513-501.649 513-481.825 513-462 499.875-449 486.75-436 468-436H129Zm0-218q-20.75 0-33.375-13.175Q83-680.351 83-700.175 83-720 95.625-733 108.25-746 129-746h458q19.75 0 32.375 13.175 12.625 13.176 12.625 33Q632-680 619.375-667 606.75-654 587-654H129Zm605 173 114 113q13 14 12.5 33T847-304q-15 14-33.5 14T782-304L637-450q-14-13-14-31t14-32l145-146q13-13 31.5-13t33.5 13q13 14 12.5 33T847-594L734-481Z" />
-            </svg>
-        </button>
         <ul id="navigation"
             class="flex mt-px lg:mt-0 lg:ms-auto w-full md:w-max z-50 absolute right-0 rtl:right-auto rtl:left-0 top-full flex-col p-5 gap-2 bg-x-white lg:bg-transparent lg:relative lg:flex-row lg:items-center lg:p-0 opacity-0 lg:opacity-100 pointer-events-none lg:pointer-events-auto -translate-y-full transition-all duration-300 lg:translate-y-0 lg:transition-none lg:z-0 shadow-x-drop lg:shadow-none rounded-b-x-core lg:rounded-none">
             <li>
@@ -50,13 +41,6 @@
                 </a>
             </li>
         </ul>
-        <button x-toggle targets="#languages" properties="opacity-0, pointer-events-none, -translate-y-full"
-            class="p-2 w-[42px] aspect-square flex items-center justify-center rounded-md text-x-black hover:bg-x-shade hover:bg-opacity-20 focus-within:bg-x-shade focus-within:bg-opacity-20 outline-none">
-            <svg class="block w-5 h-5 pointer-events-none" fill="currentcolor" viewBox="0 -960 960 960">
-                <path
-                    d="M610-196 568.513-90.019Q566-78 555.452-71q-10.548 7-23.606 7Q510-64 499.5-80.963 489-97.927 497-118.094L654.571-537.15Q658-549 668-556.5q10-7.5 22-7.5h31.552q11.821 0 21.672 7T758-538l164 419q6 20.462-5.6 37.73Q904.799-64 884.273-64q-14.692 0-26.733-7.76t-15.536-22.576L808.585-196H610Zm22-72h148l-73.054-202H705l-73 202ZM355.135-397l-179.34 178.842Q162.86-206 146.206-206.5q-16.654-.5-27.93-11Q107-229 108-246.689q1-17.69 11.654-28.321L303-458q-39.6-45.818-70.8-92.409Q201-597 179-646h90q16 34 38.329 64.567 22.328 30.566 48.274 63.433Q403-567 434.628-619.861 466.256-672.721 489-730H63.857q-17.753 0-29.305-12.289Q23-754.579 23-771.982q0-17.404 12.35-29.318 12.35-11.914 29.895-11.914h248.731v-41.893q0-17.529 11.748-29.211Q337.471-896 355.098-896t29.637 11.682q12.011 11.682 12.011 29.211v41.893h249.548q17.685 0 29.696 11.768Q688-789.679 688-771.895q0 17.509-12.282 29.702Q663.436-730 645.759-730h-74.975Q548-656 510-587.5T416-457l102 103-29.389 83.933L355.135-397Z" />
-            </svg>
-        </button>
         <ul id="languages"
             class="flex mt-px lg:mt-0 w-full md:w-max z-50 absolute right-0 rtl:right-auto rtl:left-0 top-full flex-col bg-x-white pointer-events-none -translate-y-full opacity-0 transition-all duration-300 rounded-b-x-core shadow-x-drop">
             <li class="w-full">
@@ -78,5 +62,28 @@
                 </a>
             </li>
         </ul>
+        <div class="w-max flex gap-px">
+            <button x-toggle targets="#navigation" properties="opacity-0, pointer-events-none, -translate-y-full"
+                class="lg:hidden ms-auto p-2 w-[42px] aspect-square flex items-center justify-center rounded-md text-x-black hover:bg-x-shade hover:bg-opacity-20 focus-within:bg-x-shade focus-within:bg-opacity-20 rtl:rotate-180 outline-none">
+                <svg class="block w-5 h-5 pointer-events-none" fill="currentcolor" viewBox="0 -960 960 960">
+                    <path
+                        d="M129-215q-20.75 0-33.375-12.675Q83-240.351 83-261.175 83-280 95.625-293T129-306h458q19.75 0 32.375 13.175 12.625 13.176 12.625 32Q632-240 619.375-227.5 606.75-215 587-215H129Zm0-221q-20.75 0-33.375-13.175Q83-462.351 83-482.175 83-502 95.625-514.5 108.25-527 129-527h339q18.75 0 31.875 12.675Q513-501.649 513-481.825 513-462 499.875-449 486.75-436 468-436H129Zm0-218q-20.75 0-33.375-13.175Q83-680.351 83-700.175 83-720 95.625-733 108.25-746 129-746h458q19.75 0 32.375 13.175 12.625 13.176 12.625 33Q632-680 619.375-667 606.75-654 587-654H129Zm605 173 114 113q13 14 12.5 33T847-304q-15 14-33.5 14T782-304L637-450q-14-13-14-31t14-32l145-146q13-13 31.5-13t33.5 13q13 14 12.5 33T847-594L734-481Z" />
+                </svg>
+            </button>
+            <a href="{{ route('views.guest.cart') }}"
+                class="p-2 w-[42px] aspect-square flex items-center justify-center rounded-md text-x-black hover:bg-x-shade hover:bg-opacity-20 focus-within:bg-x-shade focus-within:bg-opacity-20 outline-none">
+                <svg class="block w-5 h-5 pointer-events-none" fill="currentcolor" viewBox="0 -960 960 960">
+                    <path
+                        d="M288.832-72q-29.357 0-50.094-20.906Q218-113.81 218-143.168t20.906-50.094Q259.811-214 289.168-214t50.095 20.906Q360-172.189 360-142.832t-20.906 50.094Q318.189-72 288.832-72Zm397.42 0q-29.777 0-50.015-20.906Q616-113.81 616-143.168t20.635-50.094Q657.271-214 686.248-214q30.277 0 50.515 20.906Q757-172.189 757-142.832t-20.485 50.094Q716.029-72 686.252-72ZM214-809h554.349q34.412 0 53.531 32Q841-745 824-712L708.065-502.333q-12.122 20.428-31.299 33.881Q657.589-455 632.862-455H338l-50 96h441q15.45 0 27.225 11.477Q768-336.045 768-319.719t-11.775 28.022Q744.45-280 729-280H279q-49 0-70-33t1-73l62-112-146-311H84q-16.425 0-28.212-11.541Q44-832.081 44-848.228q0-16.147 11.788-27.96Q67.575-888 84-888h64q12.892 0 25.213 6.609Q185.533-874.783 189-863l25 54Z" />
+                </svg>
+            </a>
+            <button x-toggle targets="#languages" properties="opacity-0, pointer-events-none, -translate-y-full"
+                class="p-2 w-[42px] aspect-square flex items-center justify-center rounded-md text-x-black hover:bg-x-shade hover:bg-opacity-20 focus-within:bg-x-shade focus-within:bg-opacity-20 outline-none">
+                <svg class="block w-5 h-5 pointer-events-none" fill="currentcolor" viewBox="0 -960 960 960">
+                    <path
+                        d="M610-196 568.513-90.019Q566-78 555.452-71q-10.548 7-23.606 7Q510-64 499.5-80.963 489-97.927 497-118.094L654.571-537.15Q658-549 668-556.5q10-7.5 22-7.5h31.552q11.821 0 21.672 7T758-538l164 419q6 20.462-5.6 37.73Q904.799-64 884.273-64q-14.692 0-26.733-7.76t-15.536-22.576L808.585-196H610Zm22-72h148l-73.054-202H705l-73 202ZM355.135-397l-179.34 178.842Q162.86-206 146.206-206.5q-16.654-.5-27.93-11Q107-229 108-246.689q1-17.69 11.654-28.321L303-458q-39.6-45.818-70.8-92.409Q201-597 179-646h90q16 34 38.329 64.567 22.328 30.566 48.274 63.433Q403-567 434.628-619.861 466.256-672.721 489-730H63.857q-17.753 0-29.305-12.289Q23-754.579 23-771.982q0-17.404 12.35-29.318 12.35-11.914 29.895-11.914h248.731v-41.893q0-17.529 11.748-29.211Q337.471-896 355.098-896t29.637 11.682q12.011 11.682 12.011 29.211v41.893h249.548q17.685 0 29.696 11.768Q688-789.679 688-771.895q0 17.509-12.282 29.702Q663.436-730 645.759-730h-74.975Q548-656 510-587.5T416-457l102 103-29.389 83.933L355.135-397Z" />
+                </svg>
+            </button>
+        </div>
     </div>
 </nav>

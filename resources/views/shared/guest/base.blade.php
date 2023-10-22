@@ -29,6 +29,9 @@
         <script>
             const data = {!! json_encode(Session::all()) !!};
             x.Toaster(data.message, data.type);
+            if (data.clean) {
+                localStorage.removeItem("{{ env('APP_CART') }}");
+            }
         </script>
     @endif
     <script>
@@ -46,16 +49,10 @@
                 class: "0000",
             }, ]
         });
+        localStorage.{{ env('APP_CART') }} || localStorage.setItem("{{ env('APP_CART') }}", "[]");
         window.addEventListener("DOMContentLoaded", () => {
             document.querySelector("#overlay").remove();
             document.body.classList.remove("!overflow-hidden", "!h-screen");
-        });
-        const form = document.querySelector("#form"),
-            field = form.querySelector("#search");
-        form.addEventListener("submit", e => {
-            e.preventDefault();
-            form.action = form.action.replace(/%SLUG%/, field.value);
-            form.submit();
         });
     </script>
     @yield('scripts')
