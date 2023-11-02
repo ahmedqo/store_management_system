@@ -2115,6 +2115,14 @@ video {
   color: rgb(252 252 252 / var(--tw-text-opacity));
 }
 
+.text-x-black-blur {
+  color: #1D1D1D15;
+}
+
+.text-\[\#1D1D1D80\] {
+  color: #1D1D1D80;
+}
+
 .underline {
   text-decoration-line: underline;
 }
