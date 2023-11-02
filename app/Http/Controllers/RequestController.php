@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Functions\Core;
+use App\Functions\Mail as Mailer;
 use Illuminate\Http\Request;
 use App\Models\Request as _Request;
 use App\Models\RequestItem;
@@ -49,6 +49,16 @@ class RequestController extends Controller
                 'quantity' => $Request->quantity[$key],
             ]);
         }
+
+        Mailer::info($Request->email, [
+            'subject' => ucwords(__('Request quotation')),
+            'content' => __('We recived your request. We will send you the quotation via mail as soon as possible.'),
+        ]);
+
+        Mailer::info(env('MAIL_CONTACT_ADDRESS'), [
+            'subject' => ucwords(__('New quotation request')),
+            'content' => __('New quotation request available. Check it out.'),
+        ]);
 
         return Redirect::back()->with([
             'message' => __('Ordered successfully'),

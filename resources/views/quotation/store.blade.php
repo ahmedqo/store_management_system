@@ -186,11 +186,12 @@
             items.forEach(item => {
                 const data = {
                     idx: item.product.id,
-                    name: item.product.name,
+                    name: item.product.name_{{ Core::lang() }},
                     quantity: item.quantity,
                     unit: item.product.unit,
                     price: item.product.price,
                 }
+                console.log(data);
                 document.querySelector("#row_display").appendChild(QuotationRow(data));
             });
         @endif

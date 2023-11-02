@@ -11,3 +11,5 @@ Route::get('/products', [GuestController::class, 'products_view'])->name('views.
 Route::get('/categories', [GuestController::class, 'categories_view'])->name('views.guest.categories');
 Route::get('/products/{slug}', [GuestController::class, 'product_view'])->name('views.guest.product');
 Route::get('/quote/{ref}', [GuestController::class, 'quote_view'])->name('views.guest.quote');
+
+Route::post('/contact', [GuestController::class, 'contact_action'])->name('actions.guest.contact');

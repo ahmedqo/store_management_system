@@ -97,7 +97,7 @@
                                     <td>
                                         <div class="w-max mx-auto font-x-core text-sm">{{ $loop->index + 1 }}</div>
                                     </td>
-                                    <td>{{ $item->Product->details }}</td>
+                                    <td>{{ $item->Product->name }}</td>
                                     <td class="text-center w-[80px]">{{ $item->unit }}</td>
                                     <td class="text-center w-[80px]">{{ $item->quantity }}</td>
                                     <td class="text-center w-[80px]">{{ number_format($item->price) }}</td>
@@ -202,7 +202,7 @@
                                 <td class="text-x-black text-sm font-x-core p-2 ps-4">
                                     <div class="w-max mx-auto font-x-core text-sm">{{ $loop->index + 1 }}</div>
                                 </td>
-                                <td class="text-x-black text-sm font-x-core p-2 ps-4">{{ $item->Product->details }}
+                                <td class="text-x-black text-sm font-x-core p-2 ps-4">{{ $item->Product->name }}
                                 </td>
                                 <td class="text-x-black text-sm font-x-core p-2 text-center w-[100px]">
                                     {{ $item->unit }}
@@ -257,8 +257,8 @@
             <div class="w-8/12 flex flex-col gap-2">
                 <div class="w-[calc(100%-5px)] h-4 bg-x-prime skew-x-[-20deg] me-[5px]"></div>
                 <div class="flex gap-4 justify-around">
-                    <h1 class="text-x-black font-x-core">www.store.com</h1>
-                    <h1 class="text-x-black font-x-core">store@test.com</h1>
+                    <h1 class="text-x-black font-x-core">{{ request()->getHost() }}</h1>
+                    <h1 class="text-x-black font-x-core">{{ env('MAIL_FROM_ADDRESS') }}</h1>
                     <h1 class="text-x-black font-x-core">+XXX-XXXX-XXXX</h1>
                 </div>
             </div>

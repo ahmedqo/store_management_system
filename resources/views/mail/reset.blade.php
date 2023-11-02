@@ -2,16 +2,19 @@
     <tr>
         <td>
             <div style="padding: 64px 16px;">
+                <img src="{{ asset('img/logo.svg') }}?v={{ env('APP_VERSION') }}" alt="logo"
+                    style="display: block; width: 120px; margin: 0 auto 20px auto;" />
                 <section
                     style="
 						color: #1d1d1d;
-						border-radius: 16px;
-						width: 500px;
-						max-width: 100%;
+						border-radius: 8px;
+						width: 100%;
+						max-width: 500px;
 						padding: 32px;
 						margin: 0 auto;
 						border: 1px solid #d1d1d1;
-						box-shadow: 0 0 #0000, 0 0 #0000, 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+						box-sizing: border-box;
+						box-shadow: #1D1D1D15 0px 3px 12px, #1D1D1D15 0px 25px 20px -20px;
 					">
                     <h1
                         style="
@@ -32,8 +35,8 @@
 							text-decoration: none;
 							display: block;
 							color: #fcfcfc;
-							background-color: #2dd4bf;
-							border-radius: 16px;
+							background-color: #03A9F4;
+							border-radius: 8px;
 							width: max-content;
 							font-weight: 900;
 							font-family: Tahoma, Verdana, Segoe, sans-serif;

@@ -202,7 +202,7 @@
                 unit: item.unit,
                 price: item.price,
                 idx: item.product.id,
-                name: item.product.name,
+                name: item.product.name_{{ Core::lang() }},
                 quantity: item.quantity,
             }
             document.querySelector("#row_display").appendChild(QuotationRow(data, item.id));

@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Functions\Core;
+use App\Functions\{
+    Mail as Mailer,
+    Core
+};
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Quotation;
 use App\Models\Slide;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Redirect;
 
 class GuestController extends Controller
 {
@@ -135,5 +140,35 @@ class GuestController extends Controller
     {
         $data = Quotation::with('Items')->where('reference', $ref)->first();
         return view('guest.quote', compact('data'));
+    }
+
+    public function contact_action(Request $Request)
+    {
+        $validator = Validator::make($Request->all(), [
+            'name' => ['required', 'string'],
+            'email' => ['required', 'string'],
+            'phone' => ['required', 'string'],
+            'message' => ['required', 'string'],
+        ]);
+
+        if ($validator->fails()) {
+            return Redirect::back()->withInput()->with([
+                'message' => $validator->errors()->all(),
+                'type' => 'error'
+            ]);
+        }
+
+        Mailer::raw([
+            'name' => $Request->name,
+            'from' => $Request->email,
+            'to' => env('MAIL_CONTACT_ADDRESS'),
+            'subject' => ucwords(__('New contact mail')),
+            'content' => 'Phone: ' . $Request->phone . PHP_EOL . PHP_EOL . $Request->message,
+        ]);
+
+        return Redirect::back()->with([
+            'message' => __('Sent successfully'),
+            'type' => 'success'
+        ]);
     }
 }

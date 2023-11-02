@@ -2,8 +2,12 @@
 
 namespace App\Functions;
 
-use App\Jobs\MailJob;
+use App\Mail\{
+    Reset as ResetMail,
+    Info as InfoMail
+};
 use Illuminate\Support\{
+    Facades\Mail as Mailer,
     Facades\DB as DB,
     Str,
 };
@@ -29,10 +33,23 @@ class Mail
             'token' => $token,
         ]);
 
-        dispatch(new MailJob(Mail::FORGOT, [
-            'email' => $user->email,
-            'token' => $token,
-        ]));
+        $mail = new ResetMail(['token' => $token]);
+        Mailer::to($user->email)->send($mail);
+
         return true;
+    }
+
+    public static function raw($data)
+    {
+        Mailer::raw($data['content'], function ($message) use ($data) {
+            $message->from($data['from'], $data['name']);
+            $message->to($data['to'])->subject($data['subject']);
+        });
+    }
+
+    public static function info($email, $data)
+    {
+        $mail = new InfoMail($data);
+        Mailer::to($email)->send($mail);
     }
 }

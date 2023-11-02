@@ -115,7 +115,7 @@
                                 <td class="text-center">{{ __('Image') }}</td>
                                 <td>{{ __('Name') }}</td>
                                 <td class="text-center">{{ __('Reference') }}</td>
-                                <td>{{ __('Quantity') }}</td>
+                                <td class="text-center">{{ __('Quantity') }}</td>
                                 <td class="text-center">
                                     {{ ucwords(__('Price')) }}<br />({{ Core::CURRENCY }})
                                 </td>

@@ -247,7 +247,8 @@
                 <h2 class="uppercase font-x-core text-x-black text-4xl sm:text-5xl lg:text-[3.19rem] leading-[1] mb-6">
                     {{ __('contact us') }}
                 </h2>
-                <form action="" class="w-full flex flex-col gap-4">
+                <form action="{{ route('actions.guest.contact') }}" method="POST" class="w-full flex flex-col gap-4">
+                    @csrf
                     <div class="flex flex-col gap-px lg:flex-1">
                         <label for="name" class="text-x-black font-x-core text-sm">{{ __('Full Name') }}</label>
                         <input id="name" type="text" name="name" placeholder="{{ __('Full Name') }}"
