@@ -41,7 +41,7 @@ class GuestController extends Controller
 
         if ($categories->count() == 5) {
             $class['parent'] = 'grid-rows-1 grid-cols-2 lg:grid-cols-3 lg:grid-row-2';
-            array_push($class['children'], 'aspect-[12/9]', 'aspect-[12/9] lg:aspect-none lg:row-span-2', 'col-span-2 lg:col-span-1 aspect-[32/9] lg:aspect-[12/9]', 'aspect-[12/9]', 'aspect-[12/9]');
+            array_push($class['children'], 'aspect-[12/9]', 'aspect-[12/9] lg:aspect-none lg:row-span-2', 'col-span-2 lg:col-span-1 aspect-[12/5] lg:aspect-[12/9]', 'aspect-[12/9]', 'aspect-[12/9]');
         }
 
         return view('guest.home', compact('slides', 'categories', 'brands', 'products', 'class'));
