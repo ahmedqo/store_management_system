@@ -24,7 +24,7 @@
                     <a href="{{ route('views.guest.products', [
                         'category' => $row->slug,
                     ]) }}"
-                        class="relative group overflow-hidden aspect-[12/10] rounded-x-core bg-x-black-blur flex items-center justify-center border border-x-black-blur">
+                        class="relative group overflow-hidden aspect-[12/9] rounded-x-core bg-x-black-blur flex items-center justify-center border border-x-black-blur">
                         <img src="{{ Core::files(Core::CATEGORY)->get($row->file) }}" alt="{{ $row->slug }}_image"
                             class="block w-full h-full object-cover transition-transform group-hover:scale-150 group-focus:scale-150" />
                         <div

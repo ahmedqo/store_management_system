@@ -7,6 +7,7 @@ function Slider(els, opts = {}) {
         this.actions = {};
         this.wrap = typeof els.wrap === "string" ? document.querySelector(els.wrap) : els.wrap;
         this.list = this.wrap.querySelector("ul");
+        this.wrap.style.touchAction = "none";
         this.wrap.style.overflow = "hidden";
         this.list.style.display = "flex";
         this.wrap.style.direction = "ltr";

@@ -50,7 +50,7 @@
                                 <li data-aos="zoom-dowm" data-aos-delay="{{ $loop->index * 300 + 100 }}" class="p-3">
                                     <div class="w-full flex flex-col">
                                         <a href="{{ route('views.guest.product', $row->slug) }}"
-                                            class="relative group overflow-hidden aspect-[12/10] rounded-x-core bg-x-black-blur flex items-center justify-center border border-x-black-blur">
+                                            class="relative group overflow-hidden aspect-[12/9] rounded-x-core bg-x-black-blur flex items-center justify-center border border-x-black-blur">
                                             <img src="{{ Core::files(Core::PRODUCT)->get($row->Files->first()->name) }}"
                                                 alt="{{ $row->slug }}_image_1"
                                                 class="block w-full h-full object-cover transition-transform group-hover:scale-150 group-focus:scale-150" />
@@ -80,7 +80,7 @@
         <section class="w-full flex flex-col lg:flex-row gap-8 lg:gap-6">
             <div data-aos="fade-{{ Core::lang('ar') ? 'left' : 'right' }}" class="w-full lg:flex-[1] relative">
                 <div style="background-image: url({{ asset('img/about.jpg') }})"
-                    class="w-full h-full aspect-video lg:w-[calc(100%-1rem)] lg:aspect-auto lg:me-4 rounded-x-core bg-x-white overflow-hidden bg-no-repeat bg-cover bg-center border border-x-black-blur">
+                    class="w-full h-full aspect-[12/9] lg:w-[calc(100%-1rem)] lg:aspect-auto lg:me-4 rounded-x-core bg-x-white overflow-hidden bg-no-repeat bg-cover bg-center border border-x-black-blur">
                 </div>
                 <div style="background: radial-gradient(var(--acent), var(--prime))"
                     class="w-40 lg:w-8 rounded-x-core shadow-x-core h-8 lg:h-40 absolute -bottom-4 lg:bottom-auto lg:top-10 right-4 lg:right-0 rtl:right-auto rtl:left-4 rtl:lg:right-auto rtl:lg:left-0">
@@ -236,7 +236,7 @@
                 class="w-full lg:flex-[1] relative order-[-1] lg:order-[1]">
                 <div class="w-4 rtl:order-[1]"></div>
                 <div style="background-image: url({{ asset('img/shipping.jpg') }})"
-                    class="w-full h-full aspect-video lg:w-[calc(100%-1rem)] lg:aspect-auto lg:ms-4 rounded-x-core bg-x-white overflow-hidden bg-no-repeat bg-cover bg-center border border-x-black-blur">
+                    class="w-full h-full aspect-[12/9] lg:w-[calc(100%-1rem)] lg:aspect-auto lg:ms-4 rounded-x-core bg-x-white overflow-hidden bg-no-repeat bg-cover bg-center border border-x-black-blur">
                 </div>
                 <div style="background: radial-gradient(var(--acent), var(--prime))"
                     class="w-40 lg:w-8 rounded-x-core shadow-x-core h-8 lg:h-40 absolute -bottom-4 lg:bottom-10 right-4 rtl:right-auto rtl:left-4 lg:right-auto lg:left-0 rtl:lg:left-auto rtl:lg:right-0">

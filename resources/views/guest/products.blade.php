@@ -31,7 +31,7 @@
                 @forelse($data as $row)
                     <div class="w-full flex flex-col gap-2">
                         <a href="{{ route('views.guest.product', $row->slug) }}"
-                            class="relative group overflow-hidden aspect-[12/10] rounded-x-core bg-x-black-blur flex items-center justify-center border border-x-black-blur">
+                            class="relative group overflow-hidden aspect-[12/9] rounded-x-core bg-x-black-blur flex items-center justify-center border border-x-black-blur">
                             <img src="{{ Core::files(Core::PRODUCT)->get($row->Files->first()->name) }}"
                                 alt="{{ $row->slug }}_image_1"
                                 class="block w-full h-full object-cover transition-transform group-hover:scale-150 group-focus:scale-150" />
