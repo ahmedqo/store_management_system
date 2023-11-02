@@ -8,25 +8,25 @@
             <ul class="w-full flex flex-col gap-2">
                 <li>
                     <a href="{{ route('views.guest.brands') }}"
-                        class="uppercase text-x-black text-sm font-x-core hover:text-x-prime focus-within:text-x-prime outline-none">
+                        class="text-x-black text-sm font-x-core hover:text-x-prime focus-within:text-x-prime outline-none">
                         {{ __('Brands') }}
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('views.guest.categories') }}"
-                        class="uppercase text-x-black text-sm font-x-core hover:text-x-prime focus-within:text-x-prime outline-none">
+                        class="text-x-black text-sm font-x-core hover:text-x-prime focus-within:text-x-prime outline-none">
                         {{ __('Categories') }}
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('views.guest.products') }}"
-                        class="uppercase text-x-black text-sm font-x-core hover:text-x-prime focus-within:text-x-prime outline-none">
+                        class="text-x-black text-sm font-x-core hover:text-x-prime focus-within:text-x-prime outline-none">
                         {{ __('Products') }}
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('views.guest.cart') }}"
-                        class="uppercase text-x-black text-sm font-x-core hover:text-x-prime focus-within:text-x-prime outline-none">
+                        class="text-x-black text-sm font-x-core hover:text-x-prime focus-within:text-x-prime outline-none">
                         {{ __('Requests') }}
                     </a>
                 </li>
