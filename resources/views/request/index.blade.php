@@ -1,10 +1,10 @@
 @extends('shared.admin.base')
-@section('title', __('Requests List'))
+@section('title', ucwords(__('Requests List')))
 
 @section('content')
     <div class="flex flex-col gap-4">
         <div class="w-full flex items-center justify-between gap-2">
-            <h1 class="font-x-core text-2xl">{{ __('Requests List') }}</h1>
+            <h1 class="font-x-core text-2xl">{{ ucwords(__('Requests List')) }}</h1>
             <div
                 class="lg:w-max fixed bottom-0 left-0 right-0 lg:relative lg:bottom-auto lg:left-auto lg:right-auto z-[5] lg:z-0 pointer-events-none">
                 <div class="container mx-auto lg:w-max p-4 lg:p-0">
@@ -33,7 +33,9 @@
                         <td>{{ __('Email') }}</td>
                         <td>{{ __('Phone') }}</td>
                         <td class="hidden">{{ __('Message') }}</td>
-                        <td>{{ __('Count') }}</td>
+                        <td>
+                            <div class="w-max mx-auto">{{ __('Count') }}</div>
+                        </td>
                         <td>{{ __('Created at') }}</td>
                         <td>
                             <div class="w-max mx-auto">{{ __('Actions') }}</div>
@@ -49,8 +51,10 @@
                             <td>{{ ucwords($row->name) }}</td>
                             <td>{{ $row->email }}</td>
                             <td>{{ $row->phone }}</td>
-                            <td class="hidden">{{ $row->message ?? '___' }}</td>
-                            <td>{{ $row->Items->count() }} {{ __('Products') }}</td>
+                            <td class="hidden">{{ $row->message ?? '__' }}</td>
+                            <td>
+                                <div class="w-max mx-auto">{{ $row->Items->count() }} {{ __('Products') }}</div>
+                            </td>
                             <td>{{ $row->created_at }}</td>
                             <td>
                                 @include('shared.admin.action', [
@@ -65,9 +69,11 @@
     </div>
 
     <section id="page" class="w-full hidden">
+        <img src="{{ asset('img/logo-black.svg') }}" alt="logo"
+            class="block p-20 fixed w-full h-screen inset-0 object-contain object-center opacity-5 z-[-1]" />
         <div class="flex flex-col">
-            <h1 class="text-x-black font-x-core text-2xl p-4">{{ __('Requests List') }}</h1>
-            <div class="border-x-shade border w-full">
+            <h1 class="text-x-black font-x-core text-2xl mb-4 leading-[1]">{{ ucwords(__('Requests List')) }}</h1>
+            <div class="border-x-shade border w-full rounded-sm">
                 <table class="w-full">
                     @if ($data->count())
                         <thead>
@@ -79,7 +85,9 @@
                                 <td class="text-x-black text-sm font-x-core p-2">{{ __('Email') }}</td>
                                 <td class="text-x-black text-sm font-x-core p-2">{{ __('Phone') }}</td>
                                 <td class="text-x-black text-sm font-x-core p-2">{{ __('Message') }}</td>
-                                <td class="text-x-black text-sm font-x-core p-2">{{ __('Count') }}</td>
+                                <td class="text-x-black text-sm font-x-core p-2">
+                                    <div class="w-max mx-auto">{{ __('Count') }}</div>
+                                </td>
                                 <td class="text-x-black text-sm font-x-core p-2 pe-4">{{ __('Created at') }}</td>
                             </tr>
                         </thead>
@@ -93,9 +101,9 @@
                                 <td class="text-x-black text-base p-2">{{ ucwords($row->name) }}</td>
                                 <td class="text-x-black text-base p-2">{{ $row->email }}</td>
                                 <td class="text-x-black text-base p-2">{{ $row->phone }}</td>
-                                <td class="text-x-black text-base p-2">{{ $row->message ?? '___' }}</td>
+                                <td class="text-x-black text-base p-2">{{ $row->message ?? '__' }}</td>
                                 <td class="text-x-black text-base p-2">
-                                    {{ $row->Items->count() }} {{ __('Products') }}
+                                    <div class="w-max mx-auto">{{ $row->Items->count() }} {{ __('Products') }}</div>
                                 </td>
                                 <td class="text-x-black text-base p-2 pe-4">{{ $row->created_at }}</td>
                             </tr>
@@ -115,6 +123,8 @@
 
 @section('scripts')
     <script>
-        x.DataTable().Print("#page", "#print");
+        x.DataTable().Print("#page", {
+            trigger: "#print"
+        });
     </script>
 @endsection

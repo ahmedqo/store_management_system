@@ -2,9 +2,14 @@
 @section('title', ucwords($data->name))
 
 @section('header')
-    <div style="text-shadow: 0 0 2px var(--black)"
-        class="w-full min-h-[8rem] aspect-[10/2] flex items-center justify-center text-x-white font-x-core text-2xl lg:text-6xl p-4 bg-cover bg-no-repeat relative z-[0] bg-center before:content-[''] before:inset-0 before:bg-x-black-blur before:absolute before:z-[-1] before:backdrop-blur-sm">
-        {{ ucwords(__('Product details')) }}
+    <div class="w-full p-4 container mx-auto">
+        <div style="background: radial-gradient(var(--acent), var(--prime))"
+            class="w-full rounded-x-core overflow-hidden border border-x-black-blur">
+            <div style="text-shadow: 0px 3px 12px #1d1d1d50, #1d1d1d25 0px 25px 20px"
+                class="w-full min-h-[8rem] aspect-[10/2] flex items-center justify-center text-x-white font-x-core text-2xl lg:text-6xl p-4 bg-cover bg-no-repeat relative z-[0] bg-center before:content-[''] before:inset-0 before:bg-x-black-blur before:absolute before:z-[-1] before:backdrop-blur-sm">
+                {{ ucwords(__('Product details')) }}
+            </div>
+        </div>
     </div>
 @endsection
 
@@ -93,7 +98,7 @@
                 </div>
                 <button id="addtocart"
                     class="w-full rounded-x-core px-4 py-2 text-lg lg:text-xl font-x-core text-white bg-x-prime hover:text-x-black focus:text-x-black hover:bg-x-acent focus:bg-x-acent outline-none">
-                    {{ __(ucwords('Add to cart')) }}
+                    {{ ucwords(__('Request quotation')) }}
                 </button>
             </form>
         </div>

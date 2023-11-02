@@ -16,14 +16,28 @@ class Quotation extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'request',
         'name',
         'email',
         'phone',
         'reference',
         'charge',
         'currency',
-        'note'
+        'note_en',
+        'note_fr',
+        'note_it',
+        'note_ar',
     ];
+
+    public function getNoteAttribute()
+    {
+        return $this->{'note_' . Core::lang()};
+    }
+
+    public function Request()
+    {
+        return $this->belongsTo(Request::class, 'request');
+    }
 
     public function Items()
     {
@@ -36,6 +50,11 @@ class Quotation extends Model
             if ($item->status == Core::states()[0])
                 return $carry + ($item->price * $item->quantity);
             return $carry;
-        }, 0) + $this->charge;
+        }, 0);
+    }
+
+    public function Charge()
+    {
+        return $this->Total() * ($this->charge / 100);
     }
 }

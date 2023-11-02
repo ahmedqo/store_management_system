@@ -10,7 +10,7 @@
         <div class="flex flex-col gap-px">
             <label for="email" class="text-x-black font-x-core text-sm">{{ __('Email') }}</label>
             <input id="email" type="email" name="email" placeholder="{{ __('Email') }}"
-                class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2" />
+                class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime w-full p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2" />
         </div>
         <button
             class="w-full lg:w-max flex justify-center gap-2 items-center font-x-core text-sm rounded-md bg-x-prime text-x-white relative h-[42px] px-4 outline-none hover:!text-x-black hover:bg-x-acent focus-within:!text-x-black focus-within:bg-x-acent ms-auto">

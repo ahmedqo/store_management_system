@@ -1,10 +1,10 @@
 @extends('shared.admin.base')
-@section('title', __('Quotations List'))
+@section('title', ucwords(__('Quotations List')))
 
 @section('content')
     <div class="flex flex-col gap-4">
         <div class="w-full flex items-center justify-between gap-2">
-            <h1 class="font-x-core text-2xl">{{ __('Quotations List') }}</h1>
+            <h1 class="font-x-core text-2xl">{{ ucwords(__('Quotations List')) }}</h1>
             <div
                 class="lg:w-max fixed bottom-0 left-0 right-0 lg:relative lg:bottom-auto lg:left-auto lg:right-auto z-[5] lg:z-0 pointer-events-none">
                 <div class="container mx-auto lg:w-max p-4 lg:p-0">
@@ -41,9 +41,15 @@
                         <td>{{ __('Name') }}</td>
                         <td>{{ __('Email') }}</td>
                         <td>{{ __('Phone') }}</td>
-                        <td>{{ __('Count') }}</td>
-                        <td>{{ __('Charges') }}</td>
-                        <td>{{ __('Total') }}</td>
+                        <td>
+                            <div class="w-max mx-auto">{{ __('Count') }}</div>
+                        </td>
+                        <td>
+                            <div class="w-max mx-auto text-center">{{ __('Charges') }}</div>
+                        </td>
+                        <td>
+                            <div class="w-max mx-auto text-center">{{ __('Total') }}</div>
+                        </td>
                         <td class="hidden">{{ __('Note') }}</td>
                         <td>{{ __('Created at') }}</td>
                         <td>
@@ -61,10 +67,16 @@
                             <td>{{ ucwords($row->name) }}</td>
                             <td>{{ $row->email }}</td>
                             <td>{{ $row->phone }}</td>
-                            <td>{{ $row->Items->count() }} {{ __('Products') }}</td>
-                            <td>{{ number_format($row->charge) }} {{ $row->currency }}</td>
-                            <td>{{ number_format($row->Total()) }} {{ $row->currency }}</td>
-                            <td class="hidden">{{ $row->note ?? '___' }}</td>
+                            <td>
+                                <div class="w-max mx-auto">{{ $row->Items->count() }} {{ __('Products') }}</div>
+                            </td>
+                            <td>
+                                <div class="w-max mx-auto">{{ number_format($row->Charge()) }} {{ $row->currency }}</div>
+                            </td>
+                            <td>
+                                <div class="w-max mx-auto">{{ number_format($row->Total()) }} {{ $row->currency }}</div>
+                            </td>
+                            <td class="hidden">{{ $row->note ?? '__' }}</td>
                             <td>{{ $row->created_at }}</td>
                             <td>
                                 @include('shared.admin.action', [
@@ -81,9 +93,11 @@
     </div>
 
     <section id="page" class="w-full hidden">
+        <img src="{{ asset('img/logo-black.svg') }}" alt="logo"
+            class="block p-20 fixed w-full h-screen inset-0 object-contain object-center opacity-5 z-[-1]" />
         <div class="flex flex-col">
-            <h1 class="text-x-black font-x-core text-2xl p-4">{{ __('Quotations List') }}</h1>
-            <div class="border-x-shade border w-full">
+            <h1 class="text-x-black font-x-core text-2xl mb-4 leading-[1]">{{ ucwords(__('Quotations List')) }}</h1>
+            <div class="border-x-shade border w-full rounded-sm">
                 <table class="w-full">
                     @if ($data->count())
                         <thead>
@@ -95,9 +109,15 @@
                                 <td class="text-x-black text-sm font-x-core p-2">{{ __('Name') }}</td>
                                 <td class="text-x-black text-sm font-x-core p-2">{{ __('Email') }}</td>
                                 <td class="text-x-black text-sm font-x-core p-2">{{ __('Phone') }}</td>
-                                <td class="text-x-black text-sm font-x-core p-2">{{ __('Count') }}</td>
-                                <td class="text-x-black text-sm font-x-core p-2">{{ __('Charges') }}</td>
-                                <td class="text-x-black text-sm font-x-core p-2">{{ __('Total') }}</td>
+                                <td class="text-x-black text-sm font-x-core p-2">
+                                    <div class="w-max mx-auto">{{ __('Count') }}</div>
+                                </td>
+                                <td class="text-x-black text-sm font-x-core p-2">
+                                    <div class="w-max mx-auto">{{ __('Charges') }}</div>
+                                </td>
+                                <td class="text-x-black text-sm font-x-core p-2">
+                                    <div class="w-max mx-auto">{{ __('Total') }}</div>
+                                </td>
                                 <td class="text-x-black text-sm font-x-core p-2">{{ __('Note') }}</td>
                                 <td class="text-x-black text-sm font-x-core p-2 pe-4">{{ __('Created at') }}</td>
                             </tr>
@@ -114,17 +134,17 @@
                                 <td class="text-x-black text-base p-2">{{ $row->email }}</td>
                                 <td class="text-x-black text-base p-2">{{ $row->phone }}</td>
                                 <td class="text-x-black text-base p-2">
-                                    {{ $row->Items->count() }} {{ __('Products') }}
+                                    <div class="w-max mx-auto">{{ $row->Items->count() }} {{ __('Products') }}</div>
                                 </td>
                                 <td class="text-x-black text-base p-2">
-                                    {{ number_format($row->charge) }}
-                                    {{ $row->currency }}
+                                    <div class="w-max mx-auto">{{ number_format($row->Charge()) }} {{ $row->currency }}
+                                    </div>
                                 </td>
                                 <td class="text-x-black text-base p-2">
-                                    {{ number_format($row->Total()) }}
-                                    {{ $row->currency }}
+                                    <div class="w-max mx-auto">{{ number_format($row->Total()) }} {{ $row->currency }}
+                                    </div>
                                 </td>
-                                <td class="text-x-black text-base p-2">{{ $row->note ?? '___' }}</td>
+                                <td class="text-x-black text-base p-2">{{ $row->note ?? '__' }}</td>
                                 <td class="text-x-black text-base p-2 pe-4">{{ $row->created_at }}</td>
                             </tr>
                         @empty
@@ -143,6 +163,8 @@
 
 @section('scripts')
     <script>
-        x.DataTable().Print("#page", "#print");
+        x.DataTable().Print("#page", {
+            trigger: "#print"
+        });
     </script>
 @endsection

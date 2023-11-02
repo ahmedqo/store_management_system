@@ -1,10 +1,10 @@
 <aside class="w-full flex flex-col gap-2">
     <div id="filter"
-        class="!flex justify-between items-center gap-4 bg-x-light lg:bg-transparent rounded-x-core px-4 py-2 lg:p-0">
+        class="!flex justify-between items-center gap-4 bg-x-white lg:bg-transparent rounded-x-core px-4 py-2 lg:p-0">
         <h4 class="text-x-black text-lg lg:text-xl font-x-core">
             {{ ucwords(__('Categories')) }}
         </h4>
-        <button x-toggle targets="#categories, #filter" properties="hidden, bg-x-light, px-4, py-2"
+        <button x-toggle targets="#categories, #filter" properties="hidden, bg-x-white, px-4, py-2"
             class="w-5 h-5 flex lg:hidden items-center justify-center text-x-black outline-none hover:text-x-prime focus:text-x-prime">
             <svg class="block w-5 h-5 pointer-events-none" fill="currentcolor" viewBox="0 -960 960 960">
                 <path

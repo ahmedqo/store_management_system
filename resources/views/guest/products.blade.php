@@ -2,9 +2,14 @@
 @section('title', __('Products'))
 
 @section('header')
-    <div style="background-image: url({{ $img }}); text-shadow: 0 0 2px var(--black)"
-        class="w-full min-h-[8rem] aspect-[10/2] flex items-center justify-center text-x-white font-x-core text-2xl lg:text-6xl p-4 bg-cover bg-no-repeat relative z-[0] bg-center before:content-[''] before:inset-0 before:bg-x-black-blur before:absolute before:z-[-1] before:backdrop-blur-sm">
-        {{ __('Products') }}
+    <div class="w-full p-4 container mx-auto">
+        <div style="background: radial-gradient(var(--acent), var(--prime))"
+            class="w-full rounded-x-core overflow-hidden border border-x-black-blur">
+            <div style="text-shadow: 0px 3px 12px #1d1d1d50, #1d1d1d25 0px 25px 20px"
+                class="w-full min-h-[8rem] aspect-[10/2] flex items-center justify-center text-x-white font-x-core text-2xl lg:text-6xl p-4 bg-cover bg-no-repeat relative z-[0] bg-center before:content-[''] before:inset-0 before:bg-x-black-blur before:absolute before:z-[-1] before:backdrop-blur-sm">
+                {{ __('Products') }}
+            </div>
+        </div>
     </div>
 @endsection
 
@@ -18,13 +23,18 @@
                 'categories' => $categories,
             ])
             <div class="w-full lg:col-span-3 grid grid-rows-1 grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+                @if (request()->search)
+                    <h3 class="w-full col-span-2 lg:col-span-3 text-x-black font-x-core text-lg lg:text-xl -mb-2 lg:-mb-4">
+                        {{ __('Search') }}: {{ request()->search }}
+                    </h3>
+                @endif
                 @forelse($data as $row)
                     <div class="w-full flex flex-col gap-2">
                         <a href="{{ route('views.guest.product', $row->slug) }}"
-                            class="relative group overflow-hidden aspect-[12/10] rounded-x-core shadow-x-core">
+                            class="relative group overflow-hidden aspect-[12/10] rounded-x-core bg-x-black-blur flex items-center justify-center border border-x-black-blur">
                             <img src="{{ Core::files(Core::PRODUCT)->get($row->Files->first()->name) }}"
                                 alt="{{ $row->slug }}_image_1"
-                                class="block w-full h-full object-cover bg-x-white transition-transform group-hover:scale-150 group-focus:scale-150" />
+                                class="block w-full h-full object-cover transition-transform group-hover:scale-150 group-focus:scale-150" />
                             <div
                                 class="bg-x-black-blur text-x-white opacity-0 group-hover:opacity-100 group-focus:opacity-100 pointer-events-none transition-opacity w-full h-full absolute inset-0 flex items-center justify-center backdrop-blur-sm">
                                 <svg fill="currentcolor" viewBox="0 -960 960 960"
@@ -35,7 +45,8 @@
                                 </svg>
                             </div>
                         </a>
-                        <h4 class="text-x-black text-base lg:text-lg font-x-core text-center">
+                        <h4
+                            class="text-x-black text-base lg:text-lg font-x-core text-center shadow-x-core p-4 rounded-x-core bg-x-white w-11/12 mx-auto -mt-6 z-[1]">
                             {{ ucwords($row->name) }}
                         </h4>
                     </div>

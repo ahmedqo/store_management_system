@@ -13,7 +13,7 @@
 <body class="flex flex-col flex-wrap lg:flex-row bg-gray-100 !overflow-hidden !h-screen">
     <section id="overlay"
         class="bg-x-prime bg-opacity-80 backdrop-blur-lg fixed inset-0 z-[100] flex items-center justify-center">
-        <img title="logo-image" alt="logo-image" src="{{ asset('img/logo.png') }}?v={{ env('APP_VERSION') }}"
+        <img title="logo-image" alt="logo-image" src="{{ asset('img/logo.svg') }}?v={{ env('APP_VERSION') }}"
             class="block w-32 animate-bounce duration-150" />
     </section>
     @include('shared.admin.sidebar')
@@ -54,12 +54,12 @@
         x.Select.opts.DataText.Search = "{{ ucwords(__('Search')) }}";
         x.DatePicker.opts.FullDay = {{ Core::lang('ar') ? 'true' : '3' }};
         x.Print.opts.css = [
-            "{{ asset('css/index.css') }}?v={{ env('APP_VERSION') }}",
-            "{{ asset('css/app.css') }}?v={{ env('APP_VERSION') }}"
+            "<link rel='stylesheet' href='{{ asset('css/index.css') }}?v={{ env('APP_VERSION') }}' />",
+            "<link rel='stylesheet' href='{{ asset('css/app.css') }}?v={{ env('APP_VERSION') }}' />"
         ];
         x.Print.opts.dir = "{{ Core::lang('ar') ? 'rtl' : 'ltr' }}";
         x.Print.opts.lang = "{{ app()->getLocale() }}";
-        x.Print.opts.margin = "0mm 0mm 0mm 0mm";
+        x.Print.opts.margin = "10mm 10mm 10mm 10mm";
 
         x.Toggle();
         x.Toggle.disable({

@@ -1,10 +1,10 @@
 @extends('shared.admin.base')
-@section('title', __('Update Product') . ' #' . $data->id)
+@section('title', ucwords(__('Update Product')) . ' #' . $data->id)
 
 @section('content')
     <div class="flex flex-col gap-4">
         <div class="w-full flex items-center justify-between gap-2">
-            <h1 class="font-x-core text-2xl">{{ __('Update Product') }} #{{ $data->id }}</h1>
+            <h1 class="font-x-core text-2xl">{{ ucwords(__('Update Product')) }} #{{ $data->id }}</h1>
             <div
                 class="lg:w-max fixed bottom-0 left-0 right-0 lg:relative lg:bottom-auto lg:left-auto lg:right-auto z-[5] lg:z-0 pointer-events-none">
                 <div class="container mx-auto lg:w-max p-4 lg:p-0">
@@ -36,33 +36,72 @@
         </div>
         <div class="toremove bg-x-white rounded-x-core shadow-x-core p-4">
             <form id="form" action="{{ route('actions.products.patch', $data->id) }}" method="POST"
-                enctype="multipart/form-data" class="w-full flex flex-col gap-4">
+                enctype="multipart/form-data" class="w-full flex flex-col gap-8">
                 @csrf
                 @method('patch')
-                <div class="flex flex-col gap-px">
-                    <label for="name" class="text-x-black font-x-core text-sm">{{ __('Name') }}</label>
-                    <input id="name" type="text" name="name" placeholder="{{ __('Name') }}"
-                        value="{{ $data->name }}"
-                        class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2" />
-                </div>
-                <div class="w-full flex flex-col lg:flex-row gap-4">
-                    <div class="flex flex-col gap-px lg:flex-[1]">
-                        <label for="reference" class="text-x-black font-x-core text-sm">{{ __('Reference') }}</label>
-                        <input id="reference" type="text" name="reference" placeholder="{{ __('Reference') }}"
-                            value="{{ $data->reference }}"
-                            class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2" />
+                <div class="w-full grid grid-rows-1 grid-cols-1 lg:grid-cols-2 gap-4">
+                    <div class="flex flex-col gap-px">
+                        <label for="name_en" class="text-x-black font-x-core text-sm">
+                            {{ __('Name') }} ({{ __('English') }})
+                        </label>
+                        <input id="name_en" type="text" name="name_en"
+                            placeholder="{{ __('Name') }} ({{ __('English') }})" value="{{ $data->name_en }}"
+                            class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime w-full p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2" />
                     </div>
-                    <div class="flex flex-col gap-px lg:flex-[1]">
-                        <label for="price" class="text-x-black font-x-core text-sm">{{ __('Price') }}</label>
-                        <input id="price" type="number" name="price" placeholder="{{ __('Price') }}"
-                            value="{{ $data->price }}"
-                            class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2" />
+                    <div class="flex flex-col gap-px">
+                        <label for="name_ar" class="text-x-black font-x-core text-sm">
+                            {{ __('Name') }} ({{ __('Arabic') }})
+                        </label>
+                        <input id="name_ar" type="text" name="name_ar"
+                            placeholder="{{ __('Name') }} ({{ __('Arabic') }})" value="{{ $data->name_ar }}"
+                            class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime w-full p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2" />
+                    </div>
+                    <div class="flex flex-col gap-px">
+                        <label for="name_fr" class="text-x-black font-x-core text-sm">
+                            {{ __('Name') }} ({{ __('French') }})
+                        </label>
+                        <input id="name_fr" type="text" name="name_fr"
+                            placeholder="{{ __('Name') }} ({{ __('French') }})" value="{{ $data->name_fr }}"
+                            class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime w-full p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2" />
+                    </div>
+                    <div class="flex flex-col gap-px">
+                        <label for="name_it" class="text-x-black font-x-core text-sm">
+                            {{ __('Name') }} ({{ __('Italian') }})
+                        </label>
+                        <input id="name_it" type="text" name="name_it"
+                            placeholder="{{ __('Name') }} ({{ __('Italian') }})" value="{{ $data->name_it }}"
+                            class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime w-full p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2" />
                     </div>
                 </div>
-                <div class="flex flex-col gap-px">
-                    <label for="details" class="text-x-black font-x-core text-sm">{{ __('Details') }}</label>
-                    <textarea id="details" name="details" placeholder="{{ __('Details') }}" rows="3"
-                        class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2">{{ $data->details }}</textarea>
+                <div class="w-full grid grid-rows-1 grid-cols-1 lg:grid-cols-2 gap-4">
+                    <div class="flex flex-col gap-px">
+                        <label for="details_en" class="text-x-black font-x-core text-sm">
+                            {{ __('Details') }} ({{ __('English') }})
+                        </label>
+                        <textarea id="details_en" name="details_en" placeholder="{{ __('Details') }} ({{ __('English') }})" rows="3"
+                            class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime w-full p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2">{{ $data->details_en }}</textarea>
+                    </div>
+                    <div class="flex flex-col gap-px">
+                        <label for="details_ar" class="text-x-black font-x-core text-sm">
+                            {{ __('Details') }} ({{ __('Arabic') }})
+                        </label>
+                        <textarea id="details_ar" name="details_ar" placeholder="{{ __('Details') }} ({{ __('Arabic') }})" rows="3"
+                            class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime w-full p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2">{{ $data->details_ar }}</textarea>
+                    </div>
+                    <div class="flex flex-col gap-px">
+                        <label for="details_fr" class="text-x-black font-x-core text-sm">
+                            {{ __('Details') }} ({{ __('French') }})
+                        </label>
+                        <textarea id="details_fr" name="details_fr" placeholder="{{ __('Details') }} ({{ __('French') }})" rows="3"
+                            class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime w-full p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2">{{ $data->details_fr }}</textarea>
+                    </div>
+                    <div class="flex flex-col gap-px">
+                        <label for="details_it" class="text-x-black font-x-core text-sm">
+                            {{ __('Details') }} ({{ __('Italian') }})
+                        </label>
+                        <textarea id="details_it" name="details_it" placeholder="{{ __('Details') }} ({{ __('Italian') }})" rows="3"
+                            class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime w-full p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2">{{ $data->details_it }}</textarea>
+                    </div>
                 </div>
                 <div class="w-full flex flex-col gap-px">
                     <label for="images" class="text-x-black font-x-core text-sm">{{ __('Images') }}</label>
@@ -74,7 +113,8 @@
                                 class="w-full h-full object-contain pointer-events-none transition-transform group-hover:scale-150" />
                             <div
                                 class="bg-x-black text-x-white opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity w-full h-full absolute inset-0 bg-opacity-50 flex items-center justify-center">
-                                <svg fill="currentcolor" viewBox="0 96 960 960" class="block w-16 h-16 pointer-events-none">
+                                <svg fill="currentcolor" viewBox="0 96 960 960"
+                                    class="block w-16 h-16 pointer-events-none">
                                     <path
                                         d="m480 647 88 88q10.733 12 28.367 12 17.633 0 30.459-11.826Q638 724 638 706.25T627 677l-88-89 88-90q11-11.733 11-29.367 0-17.633-11.174-28.459Q615 429 597.367 428.5 579.733 428 569 440l-89 89-87-89q-10.5-12-28.75-11.5t-30.424 11.674Q322 452 322 469.133q0 17.134 12 28.867l88 90-88 88q-11 12.5-11 29.75t10.826 29.424Q346 747 363.75 747T393 735l87-88ZM253 957q-35.725 0-63.863-27.138Q161 902.725 161 866V314h-11q-19 0-31.5-12.5T106 268q0-19 12.5-32t31.5-13h182q0-20 13-33.5t33-13.5h204q20 0 33.5 13.3T629 223h180q20 0 33 13t13 32q0 21-13 33.5T809 314h-11v552q0 36.725-27.638 63.862Q742.725 957 706 957H253Z">
                                     </path>
@@ -83,61 +123,115 @@
                         </button>
                     @endforeach
                 </div>
-                <div class="w-full flex flex-col lg:flex-row gap-4">
-                    <div class="flex flex-col gap-px lg:flex-[1]">
-                        <label for="category" class="text-x-black font-x-core text-sm">{{ __('Category') }}</label>
-                        <select x-select {{ $categories->count() > 6 ? 'search' : '' }} id="category" name="category"
-                            placeholder="{{ __('Category') }}">
-                            @foreach ($categories as $category)
-                                <option value="{{ $category->id }}"
-                                    {{ $category->id == $data->category ? 'selected' : '' }}>
-                                    {{ ucwords($category->name) }}
-                                </option>
-                            @endforeach
-                        </select>
+                <div class="w-full flex flex-col gap-4">
+                    <div class="w-full flex flex-col lg:flex-row gap-4">
+                        <div class="flex flex-col gap-px lg:flex-[1]">
+                            <label for="reference" class="text-x-black font-x-core text-sm">{{ __('Reference') }}</label>
+                            <input id="reference" type="text" name="reference" placeholder="{{ __('Reference') }}"
+                                value="{{ $data->reference }}"
+                                class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime w-full p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2" />
+                        </div>
+                        <div class="flex flex-col gap-px lg:flex-[1]">
+                            <label for="price" class="text-x-black font-x-core text-sm">{{ __('Price') }}</label>
+                            <input id="price" type="number" name="price" placeholder="{{ __('Price') }}"
+                                value="{{ $data->price }}"
+                                class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime w-full p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2" />
+                        </div>
                     </div>
-                    <div class="flex flex-col gap-px lg:flex-[1]">
-                        <label for="brand" class="text-x-black font-x-core text-sm">{{ __('Brand') }}</label>
-                        <select x-select {{ $brands->count() > 6 ? 'search' : '' }} id="brand" name="brand"
-                            placeholder="{{ __('Brand') }}">
-                            @foreach ($brands as $brand)
-                                <option value="{{ $brand->id }}" {{ $brand->id == $data->brand ? 'selected' : '' }}>
-                                    {{ ucwords($brand->name) }}
-                                </option>
-                            @endforeach
-                        </select>
+                    <div class="w-full flex flex-col lg:flex-row gap-4">
+                        <div class="flex flex-col gap-px lg:flex-[1]">
+                            <label for="category" class="text-x-black font-x-core text-sm">{{ __('Category') }}</label>
+                            <select x-select {{ $categories->count() > 6 ? 'search' : '' }} id="category"
+                                name="category" placeholder="{{ __('Category') }}">
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}"
+                                        {{ $category->id == $data->category ? 'selected' : '' }}>
+                                        {{ ucwords($category->name) }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="flex flex-col gap-px lg:flex-[1]">
+                            <label for="brand" class="text-x-black font-x-core text-sm">{{ __('Brand') }}</label>
+                            <select x-select {{ $brands->count() > 6 ? 'search' : '' }} id="brand" name="brand"
+                                placeholder="{{ __('Brand') }}">
+                                @foreach ($brands as $brand)
+                                    <option value="{{ $brand->id }}"
+                                        {{ $brand->id == $data->brand ? 'selected' : '' }}>
+                                        {{ ucwords($brand->name) }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="w-full flex flex-col lg:flex-row gap-4">
+                        <div class="flex flex-col gap-px lg:flex-[1]">
+                            <label for="unit" class="text-x-black font-x-core text-sm">{{ __('Unit') }}</label>
+                            <select x-select search id="unit" name="unit" placeholder="{{ __('Unit') }}">
+                                @foreach (Core::units() as $label => $group)
+                                    <optgroup label="{{ ucwords(__($label)) }}">
+                                        @foreach ($group as $unit)
+                                            <option value="{{ $unit }}"
+                                                {{ $unit == $data->unit ? 'selected' : '' }}>
+                                                {{ ucwords(__($unit)) }}
+                                            </option>
+                                        @endforeach
+                                    </optgroup>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="flex flex-col gap-px lg:flex-[1]">
+                            <label for="status" class="text-x-black font-x-core text-sm">{{ __('Status') }}</label>
+                            <select x-select id="status" name="status" placeholder="{{ __('Status') }}">
+                                @foreach (Core::states() as $state)
+                                    <option value="{{ $state }}" {{ $state == $data->status ? 'selected' : '' }}>
+                                        {{ ucwords(__($state)) }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                 </div>
-                <div class="w-full flex flex-col lg:flex-row gap-4">
-                    <div class="flex flex-col gap-px lg:flex-[1]">
-                        <label for="unit" class="text-x-black font-x-core text-sm">{{ __('Unit') }}</label>
-                        <select x-select search id="unit" name="unit" placeholder="{{ __('Unit') }}">
-                            @foreach (Core::units() as $label => $group)
-                                <optgroup label="{{ ucwords(__($label)) }}">
-                                    @foreach ($group as $unit)
-                                        <option value="{{ $unit }}" {{ $unit == $data->unit ? 'selected' : '' }}>
-                                            {{ ucwords(__($unit)) }}
-                                        </option>
-                                    @endforeach
-                                </optgroup>
-                            @endforeach
-                        </select>
+                <div class="w-full grid grid-rows-1 grid-cols-1 lg:grid-cols-2 gap-4">
+                    <div class="flex flex-col gap-px">
+                        <label for="description_en" class="text-x-black font-x-core text-sm">
+                            {{ __('Description') }} ({{ __('English') }})
+                        </label>
+                        <div class="border-x-shade border rounded-md overflow-hidden">
+                            <textarea id="description_en" name="description_en" placeholder="{{ __('Description') }} ({{ __('English') }})"
+                                rows="3"
+                                class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime w-full p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2">{{ $data->description_en }}</textarea>
+                        </div>
                     </div>
-                    <div class="flex flex-col gap-px lg:flex-[1]">
-                        <label for="status" class="text-x-black font-x-core text-sm">{{ __('Status') }}</label>
-                        <select x-select id="status" name="status" placeholder="{{ __('Status') }}">
-                            @foreach (Core::states() as $state)
-                                <option value="{{ $state }}" {{ $state == $data->status ? 'selected' : '' }}>
-                                    {{ ucwords(__($state)) }}
-                                </option>
-                            @endforeach
-                        </select>
+                    <div class="flex flex-col gap-px">
+                        <label for="description_ar" class="text-x-black font-x-core text-sm">
+                            {{ __('Description') }} ({{ __('Arabic') }})
+                        </label>
+                        <div class="border-x-shade border rounded-md overflow-hidden">
+                            <textarea id="description_ar" name="description_ar" placeholder="{{ __('Description') }} ({{ __('Arabic') }})"
+                                rows="3"
+                                class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime w-full p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2">{{ $data->description_ar }}</textarea>
+                        </div>
                     </div>
-                </div>
-                <div class="flex flex-col gap-px">
-                    <label for="description" class="text-x-black font-x-core text-sm">{{ __('Description') }}</label>
-                    <div class="border-x-shade border rounded-md overflow-hidden">
-                        <textarea id="description" name="description" placeholder="{{ __('Description') }}" rows="3">{{ $data->description }}</textarea>
+                    <div class="flex flex-col gap-px">
+                        <label for="description_fr" class="text-x-black font-x-core text-sm">
+                            {{ __('Description') }} ({{ __('French') }})
+                        </label>
+                        <div class="border-x-shade border rounded-md overflow-hidden">
+                            <textarea id="description_fr" name="description_fr" placeholder="{{ __('Description') }} ({{ __('French') }})"
+                                rows="3"
+                                class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime w-full p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2">{{ $data->description_fr }}</textarea>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-px">
+                        <label for="description_it" class="text-x-black font-x-core text-sm">
+                            {{ __('Description') }} ({{ __('Italian') }})
+                        </label>
+                        <div class="border-x-shade border rounded-md overflow-hidden">
+                            <textarea id="description_it" name="description_it" placeholder="{{ __('Description') }} ({{ __('Italian') }})"
+                                rows="3"
+                                class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime w-full p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2">{{ $data->description_it }}</textarea>
+                        </div>
                     </div>
                 </div>
             </form>
@@ -150,11 +244,14 @@
         referrerpolicy="origin"></script>
     <script>
         x.Uploader().Select();
-        tinymce.init({
-            selector: "#description",
-            language: "{{ app()->getLocale() }}",
-            plugins: "anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount advlist  preview code fullscreen insertdatetime", // print paste",
-            toolbar: "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat",
+        ["#description_en", "#description_ar", "#description_fr", "#description_it"].forEach(target => {
+            tinymce.init({
+                height: 200,
+                selector: target,
+                language: "{{ app()->getLocale() }}",
+                plugins: "anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount advlist  preview code fullscreen insertdatetime", // print paste",
+                toolbar: "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat",
+            });
         });
 
         const files = document.querySelectorAll(".image_display"),

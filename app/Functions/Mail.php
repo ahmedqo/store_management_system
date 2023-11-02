@@ -2,17 +2,18 @@
 
 namespace App\Functions;
 
+use App\Jobs\MailJob;
 use Illuminate\Support\{
-    Facades\Mail as Mailer,
     Facades\DB as DB,
     Str,
 };
 use App\Models\User;
-use App\Mail\Reset as ResetMail;
 
 
 class Mail
 {
+    public const FORGOT = "FORGOT";
+
     public static function forgot($email)
     {
         $user = User::where('email', $email)->first();
@@ -28,9 +29,10 @@ class Mail
             'token' => $token,
         ]);
 
-        $mail = new ResetMail(['token' => $token]);
-
-        Mailer::to($user->email)->send($mail);
+        dispatch(new MailJob(Mail::FORGOT, [
+            'email' => $user->email,
+            'token' => $token,
+        ]));
         return true;
     }
 }

@@ -9,7 +9,7 @@ module.exports = {
     theme: {
         extend: {
             borderRadius: {
-                "x-core": "0.5rem",
+                "x-core": ".5rem",
             },
             fontWeight: {
                 "x-core": "600",

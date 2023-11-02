@@ -3,6 +3,8 @@
 namespace App\Functions;
 
 use App\Models\ProductFile;
+use App\Models\ProductViews;
+use App\Models\Slide;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
@@ -12,10 +14,12 @@ class Core
     public const CATEGORY = "CATEGORY";
     public const PRODUCT = "PRODUCT";
     public const BRAND = "BRAND";
+    public const SLIDE = "SLIDE";
 
     public const CATEGORY_PATH = "categories";
     public const PRODUCT_PATH = "products";
     public const BRAND_PATH = "brands";
+    public const SLIDE_PATH = "slides";
 
     public static function lang($lang = null)
     {
@@ -86,22 +90,31 @@ class Core
     public static function files($type)
     {
         $path = "public/";
+        $model = null;
 
         switch ($type) {
             case Core::CATEGORY:
                 $path .= Core::CATEGORY_PATH;
+                $model = Category::class;
                 break;
             case Core::PRODUCT:
                 $path .= Core::PRODUCT_PATH;
+                $model = ProductFile::class;
                 break;
             case Core::BRAND:
                 $path .= Core::BRAND_PATH;
+                $model = Brand::class;
+                break;
+            case Core::SLIDE:
+                $path .= Core::SLIDE_PATH;
+                $model = Slide::class;
                 break;
         }
 
-        return new class($path, $type)
+        return new class($path, $model)
         {
             private $path;
+            private $model;
 
             private function clear($path)
             {
@@ -120,9 +133,10 @@ class Core
                 return [$name, $type, $size];
             }
 
-            public function __construct($path)
+            public function __construct($path, $model)
             {
                 $this->path = $path;
+                $this->model = $model;
             }
 
             public function get($data)
@@ -133,7 +147,7 @@ class Core
             public function del($data)
             {
                 if (is_array($data)) {
-                    $files = ProductFile::where($data[0], $data[1])->get();
+                    $files = $this->model::where($data[0], $data[1])->get();
                     foreach ($files as $file) {
                         $this->clear($file->name);
                         $file->delete();
@@ -148,12 +162,15 @@ class Core
                 if (is_array($data)) {
                     foreach ($files as $file) {
                         list($name, $type, $size) = $this->save($file);
-                        ProductFile::create([
-                            $data[0] => $data[1],
+                        $arr = [
                             'name' => $name,
                             'type' => $type,
                             'size' => $size
-                        ]);
+                        ];
+
+                        if (count($data) == 2) $arr[$data[0]] = $data[1];
+
+                        $this->model::create($arr);
                     }
                 } else {
                     list($name, $type, $size) = $this->save($files);
@@ -161,5 +178,20 @@ class Core
                 }
             }
         };
+    }
+
+    public static function views($product)
+    {
+        $Current = ProductViews::where('remote', request()->ip())->where('product', $product)->first();
+        if ($Current) {
+            $Current->update([
+                'count' => $Current->count + 1
+            ]);
+        } else {
+            ProductViews::create([
+                'product' => $product,
+                'remote' => request()->ip(),
+            ]);
+        }
     }
 }

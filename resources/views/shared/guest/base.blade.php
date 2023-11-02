@@ -10,19 +10,20 @@
     <title>@yield('title')</title>
 </head>
 
-<body class="!overflow-hidden !h-screen">
+<body class="bg-x-light !overflow-hidden !h-screen">
     <section id="overlay"
         class="bg-x-prime bg-opacity-80 backdrop-blur-lg fixed inset-0 z-[100] flex items-center justify-center">
-        <img title="logo-image" alt="logo-image" src="{{ asset('img/logo.png') }}?v={{ env('APP_VERSION') }}"
+        <img title="logo-image" alt="logo-image" src="{{ asset('img/logo.svg') }}?v={{ env('APP_VERSION') }}"
             class="block w-32 animate-bounce duration-150" />
     </section>
     <header>
         @include('shared.guest.nav')
         @yield('header')
     </header>
-    <main class="w-full container mx-auto">
+    <main class="w-full container mx-auto {{ request()->routeIs('views.guest.home') ? '' : 'my-10' }}">
         @yield('content')
     </main>
+    @include('shared.guest.footer')
     <script src="{{ asset('js/x.elements.js') }}?v={{ env('APP_VERSION') }}"></script>
     <script src="{{ asset('js/index.js') }}?v={{ env('APP_VERSION') }}"></script>
     @if (Session::has('message'))
@@ -42,7 +43,10 @@
                 class: "opacity-0",
             }, {
                 selector: "#navigation",
-                class: "opacity-0",
+                class: "-translate-x-full",
+            }, {
+                selector: "#search",
+                class: "-translate-y-full",
             }, ],
             lg: [{
                 selector: "#navigation",
@@ -53,6 +57,30 @@
         window.addEventListener("DOMContentLoaded", () => {
             document.querySelector("#overlay").remove();
             document.body.classList.remove("!overflow-hidden", "!h-screen");
+        });
+        const nav = document.querySelector("#navigation");
+        const ser = document.querySelector("#search");
+        nav.addEventListener("click", (e) => {
+            if (e.target === nav && !nav.classList.contains("opacity-0")) {
+                nav.classList.add("opacity-0");
+                nav.classList.add("-translate-x-full");
+                nav.classList.add("pointer-events-none");
+                nav.classList.add("rtl:translate-x-full");
+            }
+        });
+        nav.children[0].addEventListener("click", (e) => {
+            e.stopPropagation();
+        });
+
+        ser.addEventListener("click", (e) => {
+            if (e.target === ser && !ser.classList.contains("opacity-0")) {
+                ser.classList.add("opacity-0");
+                ser.classList.add("-translate-y-full");
+                ser.classList.add("pointer-events-none");
+            }
+        });
+        ser.children[0].addEventListener("click", (e) => {
+            e.stopPropagation();
         });
     </script>
     @yield('scripts')

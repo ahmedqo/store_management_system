@@ -1,5 +1,5 @@
 <aside id="menu" style="height: var(--vh)"
-    class="w-full lg:w-[240px] h-screen fixed lg:sticky top-0 -left-full lg:left-0 rtl:left-auto rtl:-right-full lg:rtl:right-0 z-50 lg:z-0 transition-all duration-300 pointer-events-none lg:pointer-events-auto">
+    class="w-full lg:w-[240px] h-screen fixed lg:sticky top-0 -left-full lg:left-0 rtl:left-auto rtl:-right-full lg:rtl:right-0 z-50 lg:z-0 transition-all duration-150 pointer-events-none lg:pointer-events-auto">
     <div class="bg-x-black-blur w-full h-full backdrop-blur-sm relative">
         <button x-toggle targets="#menu"
             properties="left-0, -left-full, rtl:right-0, rtl:-right-full, rtl:left-auto, pointer-events-none, lg:w-[240px], lg:w-0"
@@ -12,9 +12,9 @@
     </div>
     <nav
         class="w-[240px] lg:w-full h-full flex flex-col bg-x-white shadow-x-core absolute top-0 left-0 rtl:right-0 rtl:left-auto overflow-hidden">
-        <div class="flex flex-col h-full gap-4 m-4">
+        <div class="flex flex-col h-full gap-10 m-4">
             <header class="w-full flex items-center justify-center overflow-hidden">
-                <h1 class="text-x-black text-2xl font-bold leading-[1] min-w-max">{{ __('STORE') }}</h1>
+                <img alt="logo-image" src="{{ asset('img/logo.svg') }}?v={{ env('APP_VERSION') }}" class="block w-40" />
             </header>
             <ul
                 class="flex flex-col gap-4 flex-1 overflow-y-auto overflow-x-hidden border-e lg:border-none border-x-white">
@@ -107,6 +107,21 @@
                                         d="M68-130q-20.1 0-33.05-12.45Q22-154.9 22-174.708V-246q0-42.011 21.188-75.36 21.187-33.348 59.856-50.662Q178-404 238.469-419 298.938-434 363-434q66.062 0 126.031 15Q549-404 624-372q38.812 16.018 60.406 49.452Q706-289.113 706-246v71.708Q706-155 693.275-142.5T660-130H68Zm679 0q11-5 20.5-17.5T777-177v-67q0-65-32.5-108T659-432q60 10 113 24.5t88.88 31.939q34.958 18.329 56.539 52.945Q939-288 939-241v66.787q0 19.505-13.225 31.859Q912.55-130 893-130H747ZM364-494q-71.55 0-115.275-43.725Q205-581.45 205-652.5q0-71.05 43.725-115.275Q292.45-812 363.5-812q70.05 0 115.275 44.113Q524-723.775 524-653q0 71.55-45.112 115.275Q433.775-494 364-494Zm386-159q0 70.55-44.602 114.775Q660.796-494 591.035-494 578-494 567.5-495.5T543-502q26-27.412 38.5-65.107 12.5-37.696 12.5-85.599 0-46.903-12.5-83.598Q569-773 543-804q10.75-3.75 23.5-5.875T591-812q69.775 0 114.387 44.613Q750-722.775 750-653Z" />
                                 </svg>
                                 <span class="text-sm font-medium">{{ __('Users') }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <ul class="w-full flex flex-col">
+                        <li class="w-full min-w-max">
+                            <a href="{{ route('views.core.patch') }}"
+                                class="w-full flex gap-2 items-center p-1.5 outline-none rounded-sm text-x-black hover:bg-x-black-blur focus-within:bg-x-black-blur {{ request()->routeIs('views.core.patch') ? '!bg-x-black-blur' : '' }}">
+                                <svg class="block w-5 h-5 pointer-events-none !text-[var(--color-7)]"
+                                    fill="currentcolor" viewBox="0 -960 960 960">
+                                    <path
+                                        d="M291-405v21q0 13.033 7.983 21.017Q306.967-355 320-355t21.517-7.983Q350-370.967 350-384v-101q0-13.033-8.483-21.517Q333.033-515 320-515t-21.017 8.483Q291-498.033 291-485v20h-31q-13.033 0-21.017 8.483Q231-448.033 231-435q0 12.533 8.733 21.267Q248.467-405 261-405h30Zm149 0h260q13.033 0 21.517-8.733Q730-422.467 730-435t-8.483-21.267Q713.033-465 700-465H440q-12.733 0-21.367 8.483Q410-448.033 410-435q0 12.533 8.733 21.267Q427.467-405 440-405Zm230-181h30q13.033 0 21.517-9.233Q730-604.467 730-616.791q0-11.324-8.483-20.766Q713.033-647 700-647h-30v-20q0-11.733-8.483-20.867Q653.033-697 640-697t-21.017 9.133Q611-678.733 611-667v100q0 12.733 7.983 21.867Q626.967-536 640-536t21.517-9.133Q670-554.267 670-567v-19Zm-409 0h260q12.3 0 21.15-9.233 8.85-9.234 8.85-21.558 0-11.324-8.85-20.766Q533.3-647 521-647H260q-13.033 0-21.017 9.193Q231-628.615 231-616.791q0 12.324 8.733 21.558Q248.467-586 261-586ZM149-178q-37.45 0-64.225-26.775Q58-231.55 58-269v-501q0-37.863 26.775-64.931Q111.55-862 149-862h662q37.863 0 64.931 27.069Q903-807.863 903-770v501q0 37.45-27.069 64.225Q848.863-178 811-178H641v33q0 21-13.763 33.5Q613.475-99 595-99H366q-19.6 0-32.8-12.5Q320-124 320-145v-33H149Z" />
+                                </svg>
+                                <span class="text-sm font-medium">{{ __('System') }}</span>
                             </a>
                         </li>
                     </ul>

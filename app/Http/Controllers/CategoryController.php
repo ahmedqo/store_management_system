@@ -34,7 +34,10 @@ class CategoryController extends Controller
     public function store_action(Request $Request)
     {
         $validator = Validator::make($Request->all(), [
-            'name' => ['required', 'string', 'unique:categories'],
+            'name_en' => ['required', 'string', 'unique:categories'],
+            'name_fr' => ['required', 'string', 'unique:categories'],
+            'name_it' => ['required', 'string', 'unique:categories'],
+            'name_ar' => ['required', 'string', 'unique:categories'],
             'image' => ['required', new FileRule]
         ]);
 
@@ -47,7 +50,7 @@ class CategoryController extends Controller
 
         $file = Core::files(Core::CATEGORY)->set($Request->file('image'));
         Category::create($Request->merge([
-            'slug' => Core::slug($Request->name),
+            'slug' => Core::slug($Request->name_en),
             'file' => $file
         ])->all());
 
@@ -60,7 +63,10 @@ class CategoryController extends Controller
     public function patch_action(Request $Request, $id)
     {
         $validator = Validator::make($Request->all(), [
-            'name' => ['required', 'string', 'unique:categories,name,' . $id],
+            'name_en' => ['required', 'string', 'unique:categories,name_en,' . $id],
+            'name_fr' => ['required', 'string', 'unique:categories,name_fr,' . $id],
+            'name_it' => ['required', 'string', 'unique:categories,name_it,' . $id],
+            'name_ar' => ['required', 'string', 'unique:categories,name_ar,' . $id],
         ]);
 
         if ($validator->fails()) {
@@ -74,7 +80,7 @@ class CategoryController extends Controller
 
         if ($Category->name != $Request->name) {
             $Request->merge([
-                'slug' => Core::slug($Request->name),
+                'slug' => Core::slug($Request->name_en),
             ]);
         }
 

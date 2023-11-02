@@ -15,7 +15,7 @@ class ProductController extends Controller
 {
     public function index_view()
     {
-        $data = Product::orderBy('id', 'DESC')->get();
+        $data = Product::with('Files')->orderBy('id', 'DESC')->get();
         return view('product.index', compact('data'));
     }
 
@@ -28,7 +28,7 @@ class ProductController extends Controller
 
     public function patch_view($id)
     {
-        $data = Product::findorfail($id);
+        $data = Product::with('Files')->findorfail($id);
         $brands = Brand::orderBy('id', 'DESC')->get();
         $categories = Category::orderBy('id', 'DESC')->get();
         return view('product.patch', compact('data', 'categories', 'brands'));
@@ -37,10 +37,16 @@ class ProductController extends Controller
     public function store_action(Request $Request)
     {
         $validator = Validator::make($Request->all(), [
-            'name' => ['required', 'string', 'unique:products'],
+            'name_en' => ['required', 'string', 'unique:products'],
+            'name_fr' => ['required', 'string', 'unique:products'],
+            'name_it' => ['required', 'string', 'unique:products'],
+            'name_ar' => ['required', 'string', 'unique:products'],
             'images' => ['required', new FileRule],
             'category' => ['required', 'integer'],
-            'details' => ['required', 'string'],
+            'details_en' => ['required', 'string'],
+            'details_fr' => ['required', 'string'],
+            'details_it' => ['required', 'string'],
+            'details_ar' => ['required', 'string'],
             'status' => ['required', 'string'],
             'brand' => ['required', 'integer'],
             'price' => ['required', 'numeric'],
@@ -55,7 +61,7 @@ class ProductController extends Controller
         }
 
         $Product = Product::create($Request->merge([
-            'slug' => Core::slug($Request->name),
+            'slug' => Core::slug($Request->name_en),
         ])->all());
 
         Core::files(Core::PRODUCT)->set($Request->file('images'), ['product', $Product->id]);
@@ -69,9 +75,15 @@ class ProductController extends Controller
     public function patch_action(Request $Request, $id)
     {
         $validator = Validator::make($Request->all(), [
-            'name' => ['required', 'string', 'unique:products,name,' . $id],
+            'name_en' => ['required', 'string', 'unique:products,name_en,' . $id],
+            'name_fr' => ['required', 'string', 'unique:products,name_fr,' . $id],
+            'name_it' => ['required', 'string', 'unique:products,name_it,' . $id],
+            'name_ar' => ['required', 'string', 'unique:products,name_ar,' . $id],
             'category' => ['required', 'integer'],
-            'details' => ['required', 'string'],
+            'details_en' => ['required', 'string'],
+            'details_fr' => ['required', 'string'],
+            'details_it' => ['required', 'string'],
+            'details_ar' => ['required', 'string'],
             'status' => ['required', 'string'],
             'brand' => ['required', 'integer'],
             'price' => ['required', 'numeric'],
@@ -106,7 +118,7 @@ class ProductController extends Controller
 
         if ($Product->name != $Request->name) {
             $Request->merge([
-                'slug' => Core::slug($Request->name),
+                'slug' => Core::slug($Request->name_en),
             ]);
         }
 

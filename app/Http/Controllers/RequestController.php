@@ -13,13 +13,13 @@ class RequestController extends Controller
 {
     public function index_view()
     {
-        $data = _Request::orderBy('id', 'DESC')->get();
+        $data = _Request::with('Items')->orderBy('id', 'DESC')->get();
         return view('request.index', compact('data'));
     }
 
     public function scene_view(Request $Request, $id)
     {
-        $data = _Request::findorfail($id);
+        $data = _Request::with('Items')->findorfail($id);
         return view('request.scene', compact('data'));
     }
 
@@ -51,7 +51,7 @@ class RequestController extends Controller
         }
 
         return Redirect::back()->with([
-            'message' => __('Created successfully'),
+            'message' => __('Ordered successfully'),
             'type' => 'success',
             'clean' => true,
         ]);

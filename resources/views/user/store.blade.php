@@ -1,10 +1,10 @@
 @extends('shared.admin.base')
-@section('title', __('Create User'))
+@section('title', ucwords(__('Create User')))
 
 @section('content')
     <div class="flex flex-col gap-4">
         <div class="w-full flex items-center justify-between gap-2">
-            <h1 class="font-x-core text-2xl">{{ __('Create User') }}</h1>
+            <h1 class="font-x-core text-2xl">{{ ucwords(__('Create User')) }}</h1>
             <div
                 class="lg:w-max fixed bottom-0 left-0 right-0 lg:relative lg:bottom-auto lg:left-auto lg:right-auto z-[5] lg:z-0 pointer-events-none">
                 <div class="container mx-auto lg:w-max p-4 lg:p-0">
@@ -24,64 +24,68 @@
         </div>
         <div class="toremove bg-x-white rounded-x-core shadow-x-core p-4">
             <form id="form" action="{{ route('actions.users.store') }}" method="POST"
-                class="w-full grid grid-rows-1 grid-cols-1 lg:grid-cols-6 gap-4">
+                class="w-full flex flex-col gap-8">
                 @csrf
-                <div class="flex flex-col gap-px lg:col-span-2">
-                    <label for="first_name" class="text-x-black font-x-core text-sm">{{ __('First Name') }}</label>
-                    <input id="first_name" type="text" name="first_name" placeholder="{{ __('First Name') }}"
-                        value="{{ old('first_name') }}"
-                        class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2" />
+                <div class="w-full grid grid-rows-1 grid-cols-1 lg:grid-cols-3 gap-4">
+                    <div class="flex flex-col gap-px">
+                        <label for="first_name" class="text-x-black font-x-core text-sm">{{ __('First Name') }}</label>
+                        <input id="first_name" type="text" name="first_name" placeholder="{{ __('First Name') }}"
+                            value="{{ old('first_name') }}"
+                            class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime w-full p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2" />
+                    </div>
+                    <div class="flex flex-col gap-px">
+                        <label for="last_name" class="text-x-black font-x-core text-sm">{{ __('Last Name') }}</label>
+                        <input id="last_name" type="text" name="last_name" placeholder="{{ __('Last Name') }}"
+                            value="{{ old('last_name') }}"
+                            class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime w-full p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2" />
+                    </div>
+                    <div class="flex flex-col gap-px">
+                        <label for="gender" class="text-x-black font-x-core text-sm">{{ __('Gender') }}</label>
+                        <select x-select id="gender" name="gender" placeholder="{{ __('Gender') }}">
+                            @foreach (Core::gender() as $gender)
+                                <option value="{{ $gender }}" {{ $gender == old('gender') ? 'selected' : '' }}>
+                                    {{ ucwords(__($gender)) }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="flex flex-col gap-px">
+                        <label for="birth_date" class="text-x-black font-x-core text-sm">{{ __('Birth Date') }}</label>
+                        <input x-date id="birth_date" type="text" name="birth_date" placeholder="{{ __('Birth Date') }}"
+                            value="{{ old('birth_date') }}" />
+                    </div>
+                    <div class="flex flex-col gap-px">
+                        <label for="nationality" class="text-x-black font-x-core text-sm">{{ __('Nationality') }}</label>
+                        <input id="nationality" type="text" name="nationality" placeholder="{{ __('Nationality') }}"
+                            value="{{ old('nationality') }}"
+                            class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime w-full p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2" />
+                    </div>
+                    <div class="flex flex-col gap-px">
+                        <label for="identity" class="text-x-black font-x-core text-sm">{{ __('Identity') }}</label>
+                        <input id="identity" type="text" name="identity" placeholder="{{ __('Identity') }}"
+                            value="{{ old('identity') }}"
+                            class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime w-full p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2" />
+                    </div>
                 </div>
-                <div class="flex flex-col gap-px lg:col-span-2">
-                    <label for="last_name" class="text-x-black font-x-core text-sm">{{ __('Last Name') }}</label>
-                    <input id="last_name" type="text" name="last_name" placeholder="{{ __('Last Name') }}"
-                        value="{{ old('last_name') }}"
-                        class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2" />
-                </div>
-                <div class="flex flex-col gap-px lg:col-span-2">
-                    <label for="gender" class="text-x-black font-x-core text-sm">{{ __('Gender') }}</label>
-                    <select x-select id="gender" name="gender" placeholder="{{ __('Gender') }}">
-                        @foreach (Core::gender() as $gender)
-                            <option value="{{ $gender }}" {{ $gender == old('gender') ? 'selected' : '' }}>
-                                {{ ucwords(__($gender)) }}
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="flex flex-col gap-px lg:col-span-2">
-                    <label for="birth_date" class="text-x-black font-x-core text-sm">{{ __('Birth Date') }}</label>
-                    <input x-date id="birth_date" type="text" name="birth_date" placeholder="{{ __('Birth Date') }}"
-                        value="{{ old('birth_date') }}" />
-                </div>
-                <div class="flex flex-col gap-px lg:col-span-2">
-                    <label for="nationality" class="text-x-black font-x-core text-sm">{{ __('Nationality') }}</label>
-                    <input id="nationality" type="text" name="nationality" placeholder="{{ __('Nationality') }}"
-                        value="{{ old('nationality') }}"
-                        class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2" />
-                </div>
-                <div class="flex flex-col gap-px lg:col-span-2">
-                    <label for="identity" class="text-x-black font-x-core text-sm">{{ __('Identity') }}</label>
-                    <input id="identity" type="text" name="identity" placeholder="{{ __('Identity') }}"
-                        value="{{ old('identity') }}"
-                        class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2" />
-                </div>
-                <div class="flex flex-col gap-px lg:col-span-3">
-                    <label for="email" class="text-x-black font-x-core text-sm">{{ __('Email') }}</label>
-                    <input id="email" type="email" name="email" placeholder="{{ __('Email') }}"
-                        value="{{ old('email') }}"
-                        class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2" />
-                </div>
-                <div class="flex flex-col gap-px lg:col-span-3">
-                    <label for="phone" class="text-x-black font-x-core text-sm">{{ __('Phone') }}</label>
-                    <input id="phone" type="tel" name="phone" placeholder="{{ __('Phone') }}"
-                        value="{{ old('phone') }}"
-                        class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2" />
-                </div>
-                <div class="flex flex-col gap-px lg:col-span-6">
-                    <label for="address" class="text-x-black font-x-core text-sm">{{ __('Address') }}</label>
-                    <input id="address" type="text" name="address" placeholder="{{ __('Address') }}"
-                        value="{{ old('address') }}"
-                        class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2" />
+                <div class="w-full grid grid-rows-1 grid-cols-1 lg:grid-cols-2 gap-4">
+                    <div class="flex flex-col gap-px">
+                        <label for="email" class="text-x-black font-x-core text-sm">{{ __('Email') }}</label>
+                        <input id="email" type="email" name="email" placeholder="{{ __('Email') }}"
+                            value="{{ old('email') }}"
+                            class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime w-full p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2" />
+                    </div>
+                    <div class="flex flex-col gap-px">
+                        <label for="phone" class="text-x-black font-x-core text-sm">{{ __('Phone') }}</label>
+                        <input id="phone" type="tel" name="phone" placeholder="{{ __('Phone') }}"
+                            value="{{ old('phone') }}"
+                            class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime w-full p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2" />
+                    </div>
+                    <div class="flex flex-col gap-px lg:col-span-2">
+                        <label for="address" class="text-x-black font-x-core text-sm">{{ __('Address') }}</label>
+                        <input id="address" type="text" name="address" placeholder="{{ __('Address') }}"
+                            value="{{ old('address') }}"
+                            class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime w-full p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2" />
+                    </div>
                 </div>
             </form>
         </div>

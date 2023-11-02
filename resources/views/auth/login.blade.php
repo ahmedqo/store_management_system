@@ -7,7 +7,7 @@
         <div class="flex flex-col gap-px">
             <label for="email" class="text-x-black font-x-core text-sm">{{ __('Email') }}</label>
             <input id="email" type="email" name="email" placeholder="{{ __('Email') }}" value="{{ old('email') }}"
-                class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2" />
+                class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime w-full p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2" />
         </div>
         <div class="flex flex-col gap-px">
             <label for="password" class="text-x-black font-x-core text-sm">{{ __('Password') }}</label>

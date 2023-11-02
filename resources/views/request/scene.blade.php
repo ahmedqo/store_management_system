@@ -1,10 +1,10 @@
 @extends('shared.admin.base')
-@section('title', __('Request Summary') . ' #' . $data->id)
+@section('title', ucwords(__('Request Summary')) . ' #' . $data->id)
 
 @section('content')
     <div class="flex flex-col gap-4">
         <div class="w-full flex items-center justify-between gap-2">
-            <h1 class="font-x-core text-2xl">{{ __('Request Summary') }} #{{ $data->id }}</h1>
+            <h1 class="font-x-core text-2xl">{{ ucwords(__('Request Summary')) }} #{{ $data->id }}</h1>
             <div
                 class="lg:w-max fixed bottom-0 left-0 right-0 lg:relative lg:bottom-auto lg:left-auto lg:right-auto z-[5] lg:z-0 pointer-events-none">
                 <div class="container mx-auto lg:w-max p-4 lg:p-0">
@@ -23,17 +23,17 @@
             </div>
         </div>
         <div class="toremove bg-x-white rounded-x-core shadow-x-core p-4">
-            <div class="w-full grid grid-rows-1 grid-cols-1 lg:grid-cols-2 gap-4">
+            <div class="w-full grid grid-rows-1 grid-cols-1 lg:grid-cols-3 gap-4">
+                <div class="flex flex-col gap-px lg:col-span-3">
+                    <label class="text-x-black font-x-core text-sm">{{ __('Created at') }}</label>
+                    <div class="w-full bg-x-light text-x-black border-x-shade p-2 text-base border rounded-md">
+                        {{ $data->created_at->diffForHumans() }}</div>
+                </div>
                 <div class="flex flex-col gap-px">
                     <label class="text-x-black font-x-core text-sm">{{ __('Name') }}</label>
                     <div class="w-full bg-x-light text-x-black border-x-shade p-2 text-base border rounded-md">
                         {{ ucwords($data->name) }}
                     </div>
-                </div>
-                <div class="flex flex-col gap-px">
-                    <label class="text-x-black font-x-core text-sm">{{ __('Created at') }}</label>
-                    <div class="w-full bg-x-light text-x-black border-x-shade p-2 text-base border rounded-md">
-                        {{ $data->created_at->diffForHumans() }}</div>
                 </div>
                 <div class="flex flex-col gap-px">
                     <label class="text-x-black font-x-core text-sm">{{ __('Email') }}</label>
@@ -47,27 +47,46 @@
                         {{ $data->phone }}
                     </div>
                 </div>
-                <div class="w-full lg:col-span-2">
-                    <table default x-table search>
+                <div class="flex flex-col gap-px lg:col-span-3">
+                    <label class="text-x-black font-x-core text-sm">{{ __('Products') }}</label>
+                    <table default x-table>
                         <thead>
                             <tr>
-                                <td>{{ __('Product') }}</td>
-                                <td>{{ __('Quantity') }}</td>
+                                <td>
+                                    <div class="w-max mx-auto">#</div>
+                                </td>
+                                <td class="w-20">
+                                    <div class="w-max mx-auto">{{ __('Image') }}</div>
+                                </td>
+                                <td>{{ __('Name') }}</td>
+                                <td>
+                                    <div class="w-max mx-auto">{{ __('Quantity') }}</div>
+                                </td>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($data->Items as $item)
                                 <tr>
+                                    <td>
+                                        <div class="w-max mx-auto font-x-core text-sm">{{ $loop->index + 1 }}</div>
+                                    </td>
+                                    <td class="w-20">
+                                        <img alt="{{ $item->Product->name . ' image' }}"
+                                            src="{{ Core::files(Core::PRODUCT)->get($item->Product->Files->first()->name) }}"
+                                            class="block mx-auto rounded-md bg-x-white border border-x-black-blur w-20 aspect-square object-contain" />
+                                    </td>
                                     <td>{{ $item->Product->name }}</td>
-                                    <td>{{ $item->quantity }}</td>
+                                    <td>
+                                        <div class="w-max mx-auto">{{ $item->quantity }}</div>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
                 @if ($data->message)
-                    <div class="flex flex-col gap-px lg:col-span-2">
-                        <label class="text-x-black font-x-core text-sm">{{ __('Note') }}</label>
+                    <div class="flex flex-col gap-px lg:col-span-3">
+                        <label class="text-x-black font-x-core text-sm">{{ __('Message') }}</label>
                         <div class="w-full bg-x-light text-x-black border-x-shade p-2 text-base border rounded-md">
                             {{ $data->message }}
                         </div>

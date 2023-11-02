@@ -1,10 +1,10 @@
 @extends('shared.admin.base')
-@section('title', __('Users List'))
+@section('title', ucwords(__('Users List')))
 
 @section('content')
     <div class="flex flex-col gap-4">
         <div class="w-full flex items-center justify-between gap-2">
-            <h1 class="font-x-core text-2xl">{{ __('Users List') }}</h1>
+            <h1 class="font-x-core text-2xl">{{ ucwords(__('Users List')) }}</h1>
             <div
                 class="lg:w-max fixed bottom-0 left-0 right-0 lg:relative lg:bottom-auto lg:left-auto lg:right-auto z-[5] lg:z-0 pointer-events-none">
                 <div class="container mx-auto lg:w-max p-4 lg:p-0">
@@ -65,14 +65,14 @@
                                 <div class="w-max mx-auto font-x-core text-sm">{{ $row->id }}</div>
                             </td>
                             <td>{{ strtoupper($row->last_name) }} {{ ucfirst($row->first_name) }}</td>
-                            <td>{{ ucwords(__($row->gender) ?? '___') }}</td>
-                            <td class="hidden">{{ $row->birth_date ?? '___' }}</td>
-                            <td class="hidden">{{ $row->nationality ?? '___' }}</td>
-                            <td class="hidden">{{ $row->identity ?? '___' }}</td>
-                            <td>{{ $row->phone ?? '___' }}</td>
-                            <td>{{ $row->email ?? '___' }}</td>
+                            <td>{{ ucwords(__($row->gender) ?? '__') }}</td>
+                            <td class="hidden">{{ $row->birth_date ?? '__' }}</td>
+                            <td class="hidden">{{ $row->nationality ?? '__' }}</td>
+                            <td class="hidden">{{ $row->identity ?? '__' }}</td>
+                            <td>{{ $row->phone ?? '__' }}</td>
+                            <td>{{ $row->email ?? '__' }}</td>
                             <td class="hidden">
-                                {{ $row->address ?? '___' }}
+                                {{ $row->address ?? '__' }}
                             </td>
                             <td>
                                 @include('shared.admin.action', [
@@ -88,79 +88,57 @@
     </div>
 
     <section id="page" class="w-full hidden">
+        <img src="{{ asset('img/logo-black.svg') }}" alt="logo"
+            class="block p-20 fixed w-full h-screen inset-0 object-contain object-center opacity-5 z-[-1]" />
         <div class="flex flex-col">
-            <h1 class="text-x-black font-x-core text-2xl p-4">{{ __('Users List') }}</h1>
-            <div class="flex flex-col gap-4">
-                @foreach ($data as $row)
-                    @if ($loop->index > 0)
-                        <div class="border-x-shade border-t"></div>
+            <h1 class="text-x-black font-x-core text-2xl mb-4 leading-[1]">{{ ucwords(__('Users List')) }}</h1>
+            <div class="border-x-shade border w-full rounded-sm">
+                <table class="w-full">
+                    @if ($data->count())
+                        <thead>
+                            <tr>
+                                <td class="text-x-black text-sm font-x-core p-2 ps-4">
+                                    <div class="w-max mx-auto">#</div>
+                                </td>
+                                <td class="text-x-black text-sm font-x-core p-2">{{ __('Full Name') }}</td>
+                                <td class="text-x-black text-sm font-x-core p-2">{{ __('Gender') }}</td>
+                                <td class="text-x-black text-sm font-x-core p-2">{{ __('Birth Date') }}</td>
+                                <td class="text-x-black text-sm font-x-core p-2">{{ __('Nationality') }}</td>
+                                <td class="text-x-black text-sm font-x-core p-2">{{ __('Identity') }}</td>
+                                <td class="text-x-black text-sm font-x-core p-2">{{ __('Email') }}</td>
+                                <td class="text-x-black text-sm font-x-core p-2">{{ __('Phone') }}</td>
+                                <td class="text-x-black text-sm font-x-core p-2">{{ __('Address') }}</td>
+                                <td class="text-x-black text-sm font-x-core p-2 pe-4">{{ __('Created at') }}</td>
+                            </tr>
+                        </thead>
                     @endif
-                    <div class="w-full grid grid-rows-1 grid-cols-6 gap-4 px-4">
-                        <div class="flex flex-col gap-px">
-                            <label class="text-x-black font-x-core text-sm">#</label>
-                            <div
-                                class="min-h-[42px] text-x-black text-base w-full p-2 rounded-md bg-x-white border border-x-shade">
-                                {{ $row->id }}
-                            </div>
-                        </div>
-                        <div class="flex flex-col gap-px col-span-5">
-                            <label class="text-x-black font-x-core text-sm">{{ __('Full Name') }}</label>
-                            <div
-                                class="min-h-[42px] text-x-black text-base w-full p-2 rounded-md bg-x-white border border-x-shade">
-                                {{ strtoupper($row->last_name) }} {{ ucfirst($row->first_name) }}
-                            </div>
-                        </div>
-                        <div class="flex flex-col gap-px col-span-3">
-                            <label class="text-x-black font-x-core text-sm">{{ __('Gender') }}</label>
-                            <div
-                                class="min-h-[42px] text-x-black text-base w-full p-2 rounded-md bg-x-white border border-x-shade">
-                                {{ ucwords(__($row->gender) ?? '___') }}
-                            </div>
-                        </div>
-                        <div class="flex flex-col gap-px col-span-3">
-                            <label class="text-x-black font-x-core text-sm">{{ __('Birth Date') }}</label>
-                            <div
-                                class="min-h-[42px] text-x-black text-base w-full p-2 rounded-md bg-x-white border border-x-shade">
-                                {{ $row->birth_date ?? '___' }}
-                            </div>
-                        </div>
-                        <div class="flex flex-col gap-px col-span-3">
-                            <label class="text-x-black font-x-core text-sm">{{ __('Nationality') }}</label>
-                            <div
-                                class="min-h-[42px] text-x-black text-base w-full p-2 rounded-md bg-x-white border border-x-shade">
-                                {{ $row->nationality ?? '___' }}
-                            </div>
-                        </div>
-                        <div class="flex flex-col gap-px col-span-3">
-                            <label class="text-x-black font-x-core text-sm">{{ __('Identity') }}</label>
-                            <div
-                                class="min-h-[42px] text-x-black text-base w-full p-2 rounded-md bg-x-white border border-x-shade">
-                                {{ $row->identity ?? '___' }}
-                            </div>
-                        </div>
-                        <div class="flex flex-col gap-px col-span-3">
-                            <label class="text-x-black font-x-core text-sm">{{ __('Email') }}</label>
-                            <div
-                                class="min-h-[42px] text-x-black text-base w-full p-2 rounded-md bg-x-white border border-x-shade">
-                                {{ $row->email ?? '___' }}
-                            </div>
-                        </div>
-                        <div class="flex flex-col gap-px col-span-3">
-                            <label class="text-x-black font-x-core text-sm">{{ __('Phone') }}</label>
-                            <div
-                                class="min-h-[42px] text-x-black text-base w-full p-2 rounded-md bg-x-white border border-x-shade">
-                                {{ $row->phone ?? '___' }}
-                            </div>
-                        </div>
-                        <div class="flex flex-col gap-px col-span-6">
-                            <label class="text-x-black font-x-core text-sm">{{ __('Address') }}</label>
-                            <div
-                                class="min-h-[42px] text-x-black text-base w-full p-2 rounded-md bg-x-white border border-x-shade">
-                                {{ $row->address ?? '___' }}
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
+                    <tbody>
+                        @forelse ($data as $row)
+                            <tr class="border-x-shade border-t">
+                                <td class="text-x-black text-base p-2 ps-4">
+                                    <div class="w-max mx-auto font-x-core text-sm">{{ $row->id }}</div>
+                                </td>
+                                <td class="text-x-black text-base p-2">
+                                    {{ strtoupper($row->last_name) }} {{ ucfirst($row->first_name) }}
+                                </td>
+                                <td class="text-x-black text-base p-2">{{ ucwords(__($row->gender) ?? '__') }}</td>
+                                <td class="text-x-black text-base p-2">{{ $row->birth_date ?? '__' }}</td>
+                                <td class="text-x-black text-base p-2">{{ $row->nationality ?? '__' }}</td>
+                                <td class="text-x-black text-base p-2">{{ $row->identity ?? '__' }}</td>
+                                <td class="text-x-black text-base p-2">{{ $row->email ?? '__' }}</td>
+                                <td class="text-x-black text-base p-2">{{ $row->phone ?? '__' }}</td>
+                                <td class="text-x-black text-base p-2">{{ $row->address ?? '__' }}</td>
+                                <td class="text-x-black text-base p-2 pe-4">{{ $row->created_at }}</td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td class="text-x-black px-4 py-2 text-xl font-x-core uppercase text-center">
+                                    {{ __('No data found') }}
+                                </td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
             </div>
         </div>
     </section>
@@ -168,6 +146,8 @@
 
 @section('scripts')
     <script>
-        x.DataTable().Print("#page", "#print");
+        x.DataTable().Print("#page", {
+            trigger: "#print"
+        });
     </script>
 @endsection

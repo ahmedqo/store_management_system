@@ -1,10 +1,10 @@
 @extends('shared.admin.base')
-@section('title', __('Change Password'))
+@section('title', ucwords(__('Update Password')))
 
 @section('content')
     <div class="flex flex-col gap-4">
         <div class="w-full flex items-center justify-between gap-2">
-            <h1 class="font-x-core text-2xl">{{ __('Update Password') }}</h1>
+            <h1 class="font-x-core text-2xl">{{ ucwords(__('Update Password')) }}</h1>
             <div
                 class="lg:w-max fixed bottom-0 left-0 right-0 lg:relative lg:bottom-auto lg:left-auto lg:right-auto z-[5] lg:z-0 pointer-events-none">
                 <div class="container mx-auto lg:w-max p-4 lg:p-0">
@@ -24,20 +24,20 @@
         </div>
         <div class="toremove bg-x-white rounded-x-core shadow-x-core p-4">
             <form id="form" action="{{ route('actions.password.patch') }}" method="POST"
-                class="w-full grid grid-rows-1 grid-cols-1 lg:grid-cols-6 gap-4">
+                class="w-full grid grid-rows-1 grid-cols-1 lg:grid-cols-2 gap-4">
                 @csrf
                 @method('patch')
-                <div class="flex flex-col gap-px lg:col-span-6">
+                <div class="flex flex-col gap-px lg:col-span-2">
                     <label for="old_password" class="text-x-black font-x-core text-sm">{{ __('Old Password') }}</label>
                     <input x-password id="old_password" type="password" name="old_password"
                         placeholder="{{ __('Old Password') }}" value="{{ old('old_password') }}" />
                 </div>
-                <div class="flex flex-col gap-px lg:col-span-3">
+                <div class="flex flex-col gap-px">
                     <label for="new_password" class="text-x-black font-x-core text-sm">{{ __('New Password') }}</label>
                     <input x-password id="new_password" type="password" name="new_password"
                         placeholder="{{ __('New Password') }}" value="{{ old('new_password') }}" />
                 </div>
-                <div class="flex flex-col gap-px lg:col-span-3">
+                <div class="flex flex-col gap-px">
                     <label for="confirm_password"
                         class="text-x-black font-x-core text-sm">{{ __('Confirm Password') }}</label>
                     <input x-password id="confirm_password" type="password" name="confirm_password"

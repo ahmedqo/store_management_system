@@ -17,9 +17,15 @@ class CreateCategoriesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('category')->nullable();
             $table->string('slug')->unique();
-            $table->string('name')->unique();
+            $table->string('name_en')->unique();
+            $table->string('name_fr')->unique();
+            $table->string('name_it')->unique();
+            $table->string('name_ar')->unique();
             $table->string('file');
-            $table->string('description')->nullable();
+            $table->string('description_en')->nullable();
+            $table->string('description_fr')->nullable();
+            $table->string('description_it')->nullable();
+            $table->string('description_ar')->nullable();
             $table->timestamps();
 
             $table->foreign('category')->references('id')->on('categories')->onUpdate('cascade')->onDelete('set null');

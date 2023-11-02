@@ -6,6 +6,8 @@ use App\Functions\Core;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Quotation;
+use App\Models\Slide;
 use Illuminate\Http\Request;
 
 class GuestController extends Controller
@@ -13,8 +15,9 @@ class GuestController extends Controller
     public function home_view()
     {
         $brands = Brand::orderBy('id', 'DESC')->limit(20)->get();
-        $products = Product::orderBy('id', 'DESC')->limit(8)->get();
+        $products = Product::with('Files')->orderBy('id', 'DESC')->limit(8)->get();
         $categories = Category::orderBy('id', 'DESC')->limit(5)->get();
+        $slides = Slide::orderBy('id', 'DESC')->get();
 
         $class = [
             'parent' => '',
@@ -36,38 +39,18 @@ class GuestController extends Controller
             array_push($class['children'], 'aspect-video', 'aspect-video lg:aspect-none lg:row-span-2', 'col-span-2 lg:col-span-1 aspect-[32/9] lg:aspect-video', 'aspect-video', 'aspect-video');
         }
 
-        return view('guest.home', compact('categories', 'brands', 'products', 'class'));
+        return view('guest.home', compact('slides', 'categories', 'brands', 'products', 'class'));
     }
 
     public function product_view(Request $Request, $slug)
     {
-        $row = [];
-        if ($Request->category) {
-            $Category = Category::where('slug', $Request->category)->first();
-            if ($Category) {
-                array_push($row, [__("Categories"), route('views.guest.categories')]);
-                array_push($row, [ucwords($Category->name), route('views.guest.products', [
-                    'category' => $Category->slug
-                ])]);
-            }
-        }
-
-        if ($Request->brand && count($row) == 0) {
-            $Brand = Brand::where('slug', $Request->brand)->first();
-            if ($Brand) {
-                array_push($row, [__("Brands"), route('views.guest.brands')]);
-                array_push($row, [ucwords($Brand->name), route('views.guest.products', [
-                    'brand' =>  $Brand->slug
-                ])]);
-            }
-        }
-
-        if (count($row) == 0) {
-            array_push($row, [__("Products"), route('views.guest.products')]);
-        }
-
-        $data = Product::where('slug', $slug)->first();
-        $row = array_merge([[__('Home'), route('views.guest.home')]], $row, [[ucwords($data->name), route('views.guest.product', $data->slug)]]);
+        $data = Product::with('Files')->where('slug', $slug)->first();
+        Core::views($data->id);
+        $row = [
+            [__('Home'), route('views.guest.home')],
+            [__("Products"), route('views.guest.products')],
+            [ucwords($data->name), route('views.guest.product', $data->slug)]
+        ];
 
         return view('guest.product', compact('data', 'row'));
     }
@@ -77,8 +60,14 @@ class GuestController extends Controller
         $row = [
             [__('Home'), route('views.guest.home')]
         ];
-        $data = Product::query();
+        $data = Product::with('Files');
         $img = null;
+
+        if ($Request->search) {
+            $data = $data->search($Request->search);
+            array_push($row, [__("Search")]);
+        }
+
         if ($Request->category) {
             $Category = Category::where('slug', $Request->category)->first();
             if ($Category) {
@@ -113,13 +102,38 @@ class GuestController extends Controller
 
     public function categories_view()
     {
+        $row = [
+            [__('Home'), route('views.guest.home')],
+            [__('Categories'), route('views.guest.categories')],
+        ];
         $data = Category::orderBy('id', 'DESC')->get();
-        return view('guest.categories', compact('data'));
+
+        return view('guest.categories', compact('data', 'row'));
     }
 
     public function brands_view()
     {
+        $row = [
+            [__('Home'), route('views.guest.home')],
+            [__('Brands'), route('views.guest.brands')]
+        ];
         $data = Brand::orderBy('id', 'DESC')->get();
-        return view('guest.brands', compact('data'));
+
+        return view('guest.brands', compact('data', 'row'));
+    }
+
+    public function cart_view()
+    {
+        $row = [
+            [__('Home'), route('views.guest.home')],
+            [__('Request'), route('views.guest.cart')]
+        ];
+        return view('guest.cart', compact('row'));
+    }
+
+    public function quote_view(Request $Request, $ref)
+    {
+        $data = Quotation::with('Items')->where('reference', $ref)->first();
+        return view('guest.quote', compact('data'));
     }
 }

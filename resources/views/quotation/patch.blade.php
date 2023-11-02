@@ -1,10 +1,10 @@
 @extends('shared.admin.base')
-@section('title', __('Update Quotation') . ' #' . $data->id)
+@section('title', ucwords(__('Update Quotation')) . ' #' . $data->id)
 
 @section('content')
     <div class="flex flex-col gap-4">
         <div class="w-full flex items-center justify-between gap-2">
-            <h1 class="font-x-core text-2xl">{{ __('Update Quotation') }} #{{ $data->id }}</h1>
+            <h1 class="font-x-core text-2xl">{{ ucwords(__('Update Quotation')) }} #{{ $data->id }}</h1>
             <div
                 class="lg:w-max fixed bottom-0 left-0 right-0 lg:relative lg:bottom-auto lg:left-auto lg:right-auto z-[5] lg:z-0 pointer-events-none">
                 <div class="container mx-auto lg:w-max p-4 lg:p-0">
@@ -36,46 +36,49 @@
         </div>
         <div class="toremove bg-x-white rounded-x-core shadow-x-core p-4">
             <form id="form" action="{{ route('actions.quotations.patch', $data->id) }}" method="POST"
-                class="w-full grid grid-rows-1 grid-cols-1 lg:grid-cols-6 gap-4">
+                class="w-full flex flex-col gap-8">
                 @csrf
                 @method('patch')
-                <div class="flex flex-col gap-px lg:col-span-2">
-                    <label for="name" class="text-x-black font-x-core text-sm">{{ __('Name') }}</label>
-                    <input id="name" type="text" name="name" placeholder="{{ __('Name') }}"
-                        value="{{ $data->name }}"
-                        class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2" />
+                <input type="hidden" name="request" value="{{ $data->request }}" />
+                <div class="w-full grid grid-rows-1 grid-cols-1 lg:grid-cols-3 gap-4">
+                    <div class="flex flex-col gap-px">
+                        <label for="name" class="text-x-black font-x-core text-sm">{{ __('Name') }}</label>
+                        <input id="name" type="text" name="name" placeholder="{{ __('Name') }}"
+                            value="{{ $data->name }}"
+                            class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime w-full p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2" />
+                    </div>
+                    <div class="flex flex-col gap-px">
+                        <label for="email" class="text-x-black font-x-core text-sm">{{ __('Email') }}</label>
+                        <input id="email" type="email" name="email" placeholder="{{ __('Email') }}"
+                            value="{{ $data->email }}"
+                            class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime w-full p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2" />
+                    </div>
+                    <div class="flex flex-col gap-px">
+                        <label for="phone" class="text-x-black font-x-core text-sm">{{ __('Phone') }}</label>
+                        <input id="phone" type="tel" name="phone" placeholder="{{ __('Phone') }}"
+                            value="{{ $data->phone }}"
+                            class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime w-full p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2" />
+                    </div>
+                    <div class="flex flex-col gap-px">
+                        <label for="reference" class="text-x-black font-x-core text-sm">{{ __('Reference') }}</label>
+                        <input id="reference" type="tel" name="reference" placeholder="{{ __('Reference') }}"
+                            value="{{ $data->reference }}"
+                            class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime w-full p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2" />
+                    </div>
+                    <div class="flex flex-col gap-px">
+                        <label for="charge" class="text-x-black font-x-core text-sm">{{ __('Charges') }}</label>
+                        <input id="charge" type="number" name="charge" placeholder="{{ __('Charges') }}"
+                            value="{{ $data->charge }}"
+                            class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime w-full p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2" />
+                    </div>
+                    <div class="flex flex-col gap-px">
+                        <label for="currency" class="text-x-black font-x-core text-sm">{{ __('Currency') }}</label>
+                        <input id="currency" type="tel" name="currency" placeholder="{{ __('Currency') }}"
+                            value="{{ Core::CURRENCY }}"
+                            class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime w-full p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2" />
+                    </div>
                 </div>
-                <div class="flex flex-col gap-px lg:col-span-2">
-                    <label for="email" class="text-x-black font-x-core text-sm">{{ __('Email') }}</label>
-                    <input id="email" type="email" name="email" placeholder="{{ __('Email') }}"
-                        value="{{ $data->email }}"
-                        class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2" />
-                </div>
-                <div class="flex flex-col gap-px lg:col-span-2">
-                    <label for="phone" class="text-x-black font-x-core text-sm">{{ __('Phone') }}</label>
-                    <input id="phone" type="tel" name="phone" placeholder="{{ __('Phone') }}"
-                        value="{{ $data->phone }}"
-                        class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2" />
-                </div>
-                <div class="flex flex-col gap-px lg:col-span-2">
-                    <label for="reference" class="text-x-black font-x-core text-sm">{{ __('Reference') }}</label>
-                    <input id="reference" type="tel" name="reference" placeholder="{{ __('Reference') }}"
-                        value="{{ $data->reference }}"
-                        class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2" />
-                </div>
-                <div class="flex flex-col gap-px lg:col-span-2">
-                    <label for="charge" class="text-x-black font-x-core text-sm">{{ __('Charges') }}</label>
-                    <input id="charge" type="number" name="charge" placeholder="{{ __('Charges') }}"
-                        value="{{ $data->charge }}"
-                        class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2" />
-                </div>
-                <div class="flex flex-col gap-px lg:col-span-2">
-                    <label for="currency" class="text-x-black font-x-core text-sm">{{ __('Currency') }}</label>
-                    <input id="currency" type="tel" name="currency" placeholder="{{ __('Currency') }}"
-                        value="{{ Core::CURRENCY }}"
-                        class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2" />
-                </div>
-                <div class="flex flex-col gap-px lg:col-span-6">
+                <div class="flex flex-col gap-px">
                     <label for="type" class="text-x-black font-x-core text-sm">{{ __('Products') }}</label>
                     <select x-select search id="products" placeholder="{{ __('Products') }}">
                         @foreach ($products as $product)
@@ -90,8 +93,10 @@
                         <table class="w-max min-w-full">
                             <thead>
                                 <tr>
-                                    <td class="text-x-black text-sm font-x-core p-2">{{ __('SL') }}</td>
-                                    <td class="text-x-black text-sm font-x-core p-2">{{ __('Description') }}</td>
+                                    <td class="text-x-black text-sm font-x-core p-2">
+                                        <div class="w-max mx-auto">#</div>
+                                    </td>
+                                    <td class="text-x-black text-sm font-x-core p-2">{{ __('Name') }}</td>
                                     <td class="text-x-black text-sm font-x-core p-2 text-center">{{ __('Unit') }}</td>
                                     <td class="text-x-black text-sm font-x-core p-2 text-center">{{ __('Quantity') }}</td>
                                     <td class="text-x-black text-sm font-x-core p-2 text-center">
@@ -116,7 +121,7 @@
                                         {{ __('Charges') }}
                                     </td>
                                     <td id="charges" class="text-x-black text-base font-x-core p-2 text-center">
-                                        {{ number_format($data->charge) }}
+                                        {{ number_format($data->Charge()) }}
                                     </td>
                                 </tr>
                                 <tr class="border-x-shade border-t">
@@ -129,10 +134,35 @@
                         </table>
                     </div>
                 </div>
-                <div class="flex flex-col gap-px lg:col-span-6">
-                    <label for="note" class="text-x-black font-x-core text-sm">{{ __('Note') }}</label>
-                    <textarea id="note" name="note" placeholder="{{ __('Note') }}"
-                        class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2 min-h-[140px]">{{ $data->note }}</textarea>
+                <div class="w-full grid grid-rows-1 grid-cols-1 lg:grid-cols-2 gap-4">
+                    <div class="flex flex-col gap-px">
+                        <label for="note_en" class="text-x-black font-x-core text-sm">
+                            {{ __('Note') }} ({{ __('English') }})
+                        </label>
+                        <textarea id="note_en" name="note_en" placeholder="{{ __('Note') }} ({{ __('English') }})" rows="3"
+                            class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime w-full p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2">{{ $data->note_en }}</textarea>
+                    </div>
+                    <div class="flex flex-col gap-px">
+                        <label for="note_ar" class="text-x-black font-x-core text-sm">
+                            {{ __('Note') }} ({{ __('Arabic') }})
+                        </label>
+                        <textarea id="note_ar" name="note_ar" placeholder="{{ __('Note') }} ({{ __('Arabic') }})" rows="3"
+                            class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime w-full p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2">{{ $data->note_ar }}</textarea>
+                    </div>
+                    <div class="flex flex-col gap-px">
+                        <label for="note_fr" class="text-x-black font-x-core text-sm">
+                            {{ __('Note') }} ({{ __('French') }})
+                        </label>
+                        <textarea id="note_fr" name="note_fr" placeholder="{{ __('Note') }} ({{ __('French') }})" rows="3"
+                            class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime w-full p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2">{{ $data->note_fr }}</textarea>
+                    </div>
+                    <div class="flex flex-col gap-px">
+                        <label for="note_it" class="text-x-black font-x-core text-sm">
+                            {{ __('Note') }} ({{ __('Italian') }})
+                        </label>
+                        <textarea id="note_it" name="note_it" placeholder="{{ __('Note') }} ({{ __('Italian') }})" rows="3"
+                            class="bg-x-light text-x-black border-x-shade focus-within:outline-x-prime w-full p-2 text-base border rounded-md focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2">{{ $data->note_it }}</textarea>
+                    </div>
                 </div>
             </form>
         </div>
@@ -149,7 +179,9 @@
         });
 
         document.querySelector("#charge").addEventListener("input", e => {
-            document.querySelector("#charges").innerHTML = format(+e.target.value || 0);
+            const charge = (+e.target.value || 0) / 100;
+            const total = +document.querySelector("#subtotal").innerHTML.replace(/,/g, "");
+            document.querySelector("#charges").innerHTML = format(total * charge);
             QuotationRow.Total();
         });
 

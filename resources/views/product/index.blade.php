@@ -1,10 +1,10 @@
 @extends('shared.admin.base')
-@section('title', __('Products List'))
+@section('title', ucwords(__('Products List')))
 
 @section('content')
     <div class="flex flex-col gap-4">
         <div class="w-full flex items-center justify-between gap-2">
-            <h1 class="font-x-core text-2xl">{{ __('Products List') }}</h1>
+            <h1 class="font-x-core text-2xl">{{ ucwords(__('Products List')) }}</h1>
             <div
                 class="lg:w-max fixed bottom-0 left-0 right-0 lg:relative lg:bottom-auto lg:left-auto lg:right-auto z-[5] lg:z-0 pointer-events-none">
                 <div class="container mx-auto lg:w-max p-4 lg:p-0">
@@ -41,12 +41,20 @@
                             <div class="w-max mx-auto">{{ __('Image') }}</div>
                         </td>
                         <td>{{ __('Name') }}</td>
-                        <td>{{ __('Reference') }}</td>
+                        <td>
+                            <div class="w-max mx-auto">{{ __('Reference') }}</div>
+                        </td>
                         <td>{{ __('Brand') }}</td>
                         <td>{{ __('Category') }}</td>
                         <td>{{ __('Unit') }}</td>
-                        <td>{{ __('Price') }}</td>
-                        <td>{{ __('Status') }}</td>
+                        <td>
+                            <div class="w-max mx-auto text-center">
+                                {{ __('Price') }}<br />({{ ucwords(__(Core::CURRENCY)) }})
+                            </div>
+                        </td>
+                        <td>
+                            <div class="w-max mx-auto">{{ __('Status') }}</div>
+                        </td>
                         <td>
                             <div class="w-max mx-auto">{{ __('Actions') }}</div>
                         </td>
@@ -61,15 +69,22 @@
                             <td>
                                 <img alt="{{ $row->name . ' image' }}"
                                     src="{{ Core::files(Core::PRODUCT)->get($row->Files->first()->name) }}"
-                                    class="block mx-auto rounded-md bg-gray-100 w-20 aspect-square object-contain" />
+                                    class="block mx-auto rounded-md bg-x-light border border-x-black-blur w-20 aspect-square object-contain" />
                             </td>
                             <td>{{ ucwords($row->name) }}</td>
-                            <td>{{ strtoupper($row->reference) }}</td>
+                            <td>
+                                <div class="w-max mx-auto">{{ strtoupper($row->reference) }}</div>
+                            </td>
                             <td>{{ ucwords($row->Brand->name) }}</td>
                             <td>{{ ucwords($row->Category->name) }}</td>
                             <td>{{ ucwords(__($row->unit)) }}</td>
-                            <td>{{ number_format($row->price) }} {{ ucwords(__(Core::CURRENCY)) }}</td>
-                            <td>{{ ucwords(__($row->status)) }}</td>
+                            <td>
+                                <div class="w-max mx-auto">
+                                    {{ number_format($row->price) }}</div>
+                            </td>
+                            <td>
+                                <div class="w-max mx-auto">{{ ucwords(__($row->status)) }}</div>
+                            </td>
                             <td>
                                 @include('shared.admin.action', [
                                     'patch' => route('views.products.patch', $row->id),
@@ -85,9 +100,11 @@
     </div>
 
     <section id="page" class="w-full hidden">
+        <img src="{{ asset('img/logo-black.svg') }}" alt="logo"
+            class="block p-20 fixed w-full h-screen inset-0 object-contain object-center opacity-5 z-[-1]" />
         <div class="flex flex-col">
-            <h1 class="text-x-black font-x-core text-2xl p-4">{{ __('Products List') }}</h1>
-            <div class="border-x-shade border w-full">
+            <h1 class="text-x-black font-x-core text-2xl mb-4 leading-[1]">{{ ucwords(__('Products List')) }}</h1>
+            <div class="border-x-shade border w-full rounded-sm">
                 <table class="w-full">
                     @if ($data->count())
                         <thead>
@@ -99,12 +116,19 @@
                                     <div class="w-max mx-auto">{{ __('Image') }}</div>
                                 </td>
                                 <td class="text-x-black text-sm font-x-core p-2">{{ __('Name') }}</td>
-                                <td class="text-x-black text-sm font-x-core p-2">{{ __('Reference') }}</td>
+                                <td class="text-x-black text-sm font-x-core p-2">
+                                    <div class="w-max mx-auto">{{ __('Reference') }}</div>
+                                </td>
                                 <td class="text-x-black text-sm font-x-core p-2">{{ __('Brand') }}</td>
                                 <td class="text-x-black text-sm font-x-core p-2">{{ __('Category') }}</td>
                                 <td class="text-x-black text-sm font-x-core p-2">{{ __('Unit') }}</td>
-                                <td class="text-x-black text-sm font-x-core p-2">{{ __('Price') }}</td>
-                                <td class="text-x-black text-sm font-x-core p-2 pe-4">{{ __('Status') }}</td>
+                                <td class="text-x-black text-sm font-x-core p-2">
+                                    <div class="w-max mx-auto text-center">
+                                        {{ __('Price') }}<br />({{ ucwords(__(Core::CURRENCY)) }})</div>
+                                </td>
+                                <td class="text-x-black text-sm font-x-core p-2 pe-4">
+                                    <div class="w-max mx-auto">{{ __('Status') }}</div>
+                                </td>
                             </tr>
                         </thead>
                     @endif
@@ -117,17 +141,23 @@
                                 <td class="text-x-black text-base p-2">
                                     <img alt="{{ $row->name . ' image' }}"
                                         src="{{ Core::files(Core::PRODUCT)->get($row->Files->first()->name) }}"
-                                        class="block mx-auto rounded-md bg-gray-100 w-20 aspect-square object-contain" />
+                                        class="block mx-auto rounded-md bg-x-light border border-x-black-blur w-20 aspect-square object-contain" />
                                 </td>
                                 <td class="text-x-black text-base p-2">{{ ucwords($row->name) }}</td>
-                                <td class="text-x-black text-base p-2">{{ strtoupper($row->reference) }}</td>
+                                <td class="text-x-black text-base p-2">
+                                    <div class="w-max mx-auto">{{ strtoupper($row->reference) }}</div>
+                                </td>
                                 <td class="text-x-black text-base p-2">{{ ucwords($row->Brand->name) }}</td>
                                 <td class="text-x-black text-base p-2">{{ ucwords($row->Category->name) }}</td>
                                 <td class="text-x-black text-base p-2">{{ ucwords(__($row->unit)) }}</td>
                                 <td class="text-x-black text-base p-2">
-                                <td>{{ number_format($row->price) }} {{ ucwords(__(Core::CURRENCY)) }}</td>
+                                    <div class="w-max mx-auto">
+                                        {{ number_format($row->price) }}
+                                    </div>
                                 </td>
-                                <td class="text-x-black text-base p-2 pe-4">{{ ucwords(__($row->status)) }}</td>
+                                <td class="text-x-black text-base p-2 pe-4">
+                                    <div class="w-max mx-auto">{{ ucwords(__($row->status)) }}</div>
+                                </td>
                             </tr>
                         @empty
                             <tr>
@@ -145,6 +175,8 @@
 
 @section('scripts')
     <script>
-        x.DataTable().Print("#page", "#print");
+        x.DataTable().Print("#page", {
+            trigger: "#print"
+        });
     </script>
 @endsection
