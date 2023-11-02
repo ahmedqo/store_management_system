@@ -106,13 +106,13 @@
             {{-- <div
                 class="
                     grid-rows-1 grid-cols-2 grid-rows-2
-                    aspect-video lg:aspect-[32/9]  aspect-video lg:aspect-none lg:row-span-2  aspect-[32/9] col-span-2 lg:col-span-1
+                    aspect-[12/9] lg:aspect-[32/9]  aspect-[12/9] lg:aspect-none lg:row-span-2  aspect-[32/9] col-span-2 lg:col-span-1
 
                     grid-cols-2 lg:grid-cols-5
-                    aspect-video lg:aspect-square lg:col-span-2  aspect-video lg:aspect-[32/9] lg:col-span-3  aspect-video lg:aspect-[32/9] lg:col-span-3  aspect-video lg:aspect-square lg:col-span-2
+                    aspect-[12/9] lg:aspect-square lg:col-span-2  aspect-[12/9] lg:aspect-[32/9] lg:col-span-3  aspect-[12/9] lg:aspect-[32/9] lg:col-span-3  aspect-[12/9] lg:aspect-square lg:col-span-2
                     
                     grid-cols-2 lg:grid-cols-3 lg:grid-row-2
-                    aspect-video  aspect-video lg:aspect-none lg:row-span-2  col-span-2 lg:col-span-1 aspect-[32/9] lg:aspect-video  aspect-video  aspect-video
+                    aspect-[12/9]  aspect-[12/9] lg:aspect-none lg:row-span-2  col-span-2 lg:col-span-1 aspect-[32/9] lg:aspect-[12/9]  aspect-[12/9]  aspect-[12/9]
                 ">
             </div> --}}
             <section class="w-full grid gap-4 lg:gap-6 {{ $class['parent'] }}">
