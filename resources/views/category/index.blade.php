@@ -31,7 +31,7 @@
             </div>
         </div>
         <div class="w-full">
-            <table x-table search filter remove="5" download="categories_list">
+            <table x-table search filter remove="1, 5" download="categories_list">
                 <thead>
                     <tr>
                         <td>
