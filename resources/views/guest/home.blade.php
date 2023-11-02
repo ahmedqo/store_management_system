@@ -106,7 +106,7 @@
             {{-- <div
                 class="
                     grid-rows-1 grid-cols-2 grid-rows-2
-                    aspect-[12/5] aspect-[12/9] lg:aspect-[32/9]  aspect-[12/9] lg:aspect-none lg:row-span-2  aspect-[32/9] col-span-2 lg:col-span-1
+                    aspect-[11/4.0165] aspect-[12/9] lg:aspect-[32/9]  aspect-[12/9] lg:aspect-none lg:row-span-2  aspect-[32/9] col-span-2 lg:col-span-1
 
                     grid-cols-2 lg:grid-cols-5
                     aspect-[12/9] lg:aspect-square lg:col-span-2  aspect-[12/9] lg:aspect-[32/9] lg:col-span-3  aspect-[12/9] lg:aspect-[32/9] lg:col-span-3  aspect-[12/9] lg:aspect-square lg:col-span-2

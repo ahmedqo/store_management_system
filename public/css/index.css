@@ -946,6 +946,10 @@ video {
   aspect-ratio: 12/5;
 }
 
+.aspect-\[11\/4\.0165\] {
+  aspect-ratio: 11/4.0165;
+}
+
 .\!h-screen {
   height: 100vh !important;
 }
