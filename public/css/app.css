@@ -172,6 +172,8 @@ table:not([default])+.x-datatable-container .x-datatable-filter-field-container 
 
 .x-revert * {
     all: revert;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .x-category .x-category {
