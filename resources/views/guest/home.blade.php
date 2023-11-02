@@ -2,10 +2,10 @@
 @section('title', __('Home'))
 
 @section('header')
-    <div class="w-full p-4 container mx-auto flex flex-col lg:flex-row relative items-center">
-        <div
-            class="w-11/12 lg:w-[42%] lg:block -mt-28 sm:-mt-36 lg:mt-0 lg:absolute lg:left-4 rtl:lg:left-auto rtl:lg:right-4 lg:top-1/2 lg:-translate-y-1/2">
-            <h1 class="uppercase font-x-core text-x-black text-4xl sm:text-5xl lg:text-[3.19rem] leading-[1] mb-4">
+    <div class="w-full p-4 container mx-auto flex flex-col lg:flex-row relative items-center overflow-hidden">
+        <div data-aos="zoom-in-down" data-aos-delay="500"
+            class="w-11/12 lg:w-[42%] lg:block -mt-28 sm:-mt-36 lg:mt-0 lg:absolute lg:left-4 rtl:lg:left-auto rtl:lg:right-4 !lg:top-1/2 lg:-translate-y-1/2 z-[1]">
+            <h1 class="uppercase font-x-core text-x-black text-3xl sm:text-4xl lg:text-[3.19rem] !leading-[1] mb-4">
                 {{ __('italian elegance for africa') }}
             </h1>
             <div style="background: radial-gradient(var(--acent), var(--prime))"
@@ -19,8 +19,8 @@
                 </a>
             </div>
         </div>
-        <div
-            class="w-full lg:w-[70%] lg:block aspect-video md:aspect-[16/12] xl:aspect-video overflow-hidden rounded-x-core bg-x-white bg-opacity-30 lg:ms-auto order-[-1] bg-center bg-no-repeat bg-cover border border-x-black-blur">
+        <div data-aos="fade-{{ Core::lang('ar') ? 'right' : 'left' }}"
+            class="w-full lg:w-[70%] lg:block aspect-[12/9] md:aspect-[16/12] xl:aspect-video overflow-hidden rounded-x-core bg-x-white bg-opacity-30 lg:ms-auto order-[-1] bg-center bg-no-repeat bg-cover border border-x-black-blur">
             <div id="slide" class="w-full h-full">
                 <ul class="w-full h-full">
                     @foreach ($slides->reverse() as $row)
@@ -36,10 +36,10 @@
 @endsection
 
 @section('content')
-    <div class="w-full flex flex-col gap-6 lg:gap-10 p-4">
+    <div class="w-full flex flex-col gap-6 lg:gap-10 p-4 overflow-hidden">
         @if ($products->count())
             <section class="w-full flex flex-col gap-4 lg:gap-6">
-                <div class="w-full flex flex-col items-center">
+                <div data-aos="zoom-up" class="w-full flex flex-col items-center">
                     <h3 class="text-md lg:text-lg text-x-prime font-x-core">{{ ucwords(__('Quick pick')) }}</h3>
                     <h3 class="text-2xl lg:text-4xl text-x-black font-x-core">{{ ucwords(__('Latest goods')) }}</h3>
                 </div>
@@ -47,7 +47,7 @@
                     <div id="products" class="w-full">
                         <ul class="w-full h-full">
                             @foreach ($products as $row)
-                                <li class="p-3">
+                                <li data-aos="zoom-dowm" data-aos-delay="{{ $loop->index * 300 + 100 }}" class="p-3">
                                     <div class="w-full flex flex-col">
                                         <a href="{{ route('views.guest.product', $row->slug) }}"
                                             class="relative group overflow-hidden aspect-[12/10] rounded-x-core bg-x-black-blur flex items-center justify-center border border-x-black-blur">
@@ -77,23 +77,26 @@
             </section>
         @endif
 
-        <section class="w-full flex flex-col lg:flex-row gap-4 lg:gap-6">
-            <div class="w-full lg:flex-[1] relative">
+        <section class="w-full flex flex-col lg:flex-row gap-8 lg:gap-6">
+            <div data-aos="fade-{{ Core::lang('ar') ? 'left' : 'right' }}" class="w-full lg:flex-[1] relative">
                 <div style="background-image: url({{ asset('img/about.jpg') }})"
                     class="w-full h-full aspect-video lg:w-[calc(100%-1rem)] lg:aspect-auto lg:me-4 rounded-x-core bg-x-white overflow-hidden bg-no-repeat bg-cover bg-center border border-x-black-blur">
                 </div>
                 <div style="background: radial-gradient(var(--acent), var(--prime))"
-                    class="w-40 lg:w-8 rounded-x-core shadow-x-core h-8 lg:h-40 absolute -bottom-4 lg:bottom-auto lg:top-10 right-10 lg:right-0 rtl:right-auto rtl:left-4 rtl:lg:right-auto rtl:lg:left-0">
+                    class="w-40 lg:w-8 rounded-x-core shadow-x-core h-8 lg:h-40 absolute -bottom-4 lg:bottom-auto lg:top-10 right-4 lg:right-0 rtl:right-auto rtl:left-4 rtl:lg:right-auto rtl:lg:left-0">
                 </div>
             </div>
             <div class="w-full lg:flex-[1] flex flex-col gap-4 lg:my-4">
-                <h2 class="uppercase font-x-core text-x-black text-4xl sm:text-5xl lg:text-[3.19rem] leading-[1] mb-6">
+                <h2 data-aos="fade-{{ Core::lang('ar') ? 'right' : 'left' }}" data-aos-delay="100"
+                    class="uppercase font-x-core text-x-black text-4xl sm:text-5xl lg:text-[3.19rem] leading-[1] mb-6">
                     {{ __('who are we') }}
                 </h2>
-                <p class="text-base font-medium text-x-black text-justify">
+                <p data-aos="fade-{{ Core::lang('ar') ? 'right' : 'left' }}" data-aos-delay="300"
+                    class="text-base font-medium text-x-black text-justify">
                     {{ __('At ITALMENARA, we are passionate about bringing the essence of Italian craftsmanship to the African continent. Our journey began with a vision to offer premium doors, windows, and more that embody the time-honored tradition of Italian artistry. With a deep appreciation for quality, style, and enduring beauty, we meticulously curate and import the finest products directly from Italy.') }}
                 </p>
-                <p class="text-base font-medium text-x-black text-justify">
+                <p data-aos="fade-{{ Core::lang('ar') ? 'right' : 'left' }}" data-aos-delay="500"
+                    class="text-base font-medium text-x-black text-justify">
                     {{ __('Our commitment is to provide you with access to a world of Italian elegance right here in Africa. We understand that your spaces, whether residential or commercial, deserve nothing but the best. That\'s why we offer a carefully selected collection that marries form and function, transforming your surroundings into expressions of sophistication.') }}
                 </p>
             </div>
@@ -102,7 +105,7 @@
         @if ($categories->count() > 2)
             {{-- <div
                 class="
-                    grid-cols-2 grid-rows-2
+                    grid-rows-1 grid-cols-2 grid-rows-2
                     aspect-video lg:aspect-[32/9]  aspect-video lg:aspect-none lg:row-span-2  aspect-[32/9] col-span-2 lg:col-span-1
 
                     grid-cols-2 lg:grid-cols-5
@@ -114,9 +117,11 @@
             </div> --}}
             <section class="w-full grid gap-4 lg:gap-6 {{ $class['parent'] }}">
                 @foreach ($categories as $row)
-                    <a href="{{ route('views.guest.products', [
-                        'category' => $row->slug,
-                    ]) }}"
+                    <a data-aos="flip-{{ Core::lang('ar') ? 'left' : 'right' }}"
+                        data-aos-delay="{{ $loop->index * 300 + 100 }}"
+                        href="{{ route('views.guest.products', [
+                            'category' => $row->slug,
+                        ]) }}"
                         class="relative w-full h-full group overflow-hidden rounded-x-core bg-x-white flex items-center justify-center border border-x-black-blur {{ $class['children'][$loop->index] }}">
                         <img src="{{ Core::files(Core::CATEGORY)->get($row->file) }}" alt="{{ $row->slug }}_image"
                             class="block w-full h-full object-cover scale-110 transition-transform group-hover:scale-150 group-focus:scale-150" />
@@ -133,7 +138,7 @@
         @endif
 
         <section class="w-full flex flex-col lg:flex-row gap-4 lg:gap-6">
-            <div class="w-full lg:flex-1 flex gap-8 flex-wrap">
+            <div data-aos="zoom-out-up" data-aos-delay="0" class="w-full lg:flex-1 flex gap-8 flex-wrap">
                 <svg class="w-12 h-12 mt-2 text-x-prime pointer-events-none" fill="currentColor" viewBox="0 -960 960 960">
                     <path
                         d="M480.124-517Q516-517 542-542.708t26-62Q568-641 541.876-667t-62-26Q444-693 418-667.084t-26 62.5Q392-568 418.124-542.5t62 25.5ZM435-181v-118q-56-12-98.5-48.5T275-435q-91 2-155.5-59.63Q55-556.259 55-648v-44q0-38.213 26.894-65.106Q108.787-784 147-784h105v-28q0-22.75 18.212-40.875Q288.425-871 312-871h337q22.575 0 41.287 18.125Q709-834.75 709-812v28h105q36.75 0 63.875 26.894Q905-730.213 905-692v44q0 91.741-64.5 153.37Q776-433 685-435q-19 51-61.5 87.5T526-299v118h92q20.2 0 33.1 13.375 12.9 13.376 12.9 32.116 0 20.141-12.9 32.825Q638.2-90 617.633-90H342.367q-20.142 0-32.755-12.86Q297-115.719 297-135.36 297-155 309.612-168q12.613-13 32.388-13h93ZM252-526v-166H147v44q0 46 30 79.5t75 42.5Zm228.235 142q55.265 0 96.015-41.208Q617-466.417 617-522v-257H343v257q0 55.583 40.985 96.792Q424.971-384 480.235-384ZM709-526q44-9 74.5-42.5T814-648v-44H709v166Zm-229-56Z" />
@@ -148,7 +153,7 @@
                     </p>
                 </div>
             </div>
-            <div class="w-full lg:flex-1 flex gap-8 flex-wrap">
+            <div data-aos="zoom-out-up" data-aos-delay="200" class="w-full lg:flex-1 flex gap-8 flex-wrap">
                 <svg class="w-12 h-12 mt-2 text-x-prime pointer-events-none" fill="currentColor" viewBox="0 -960 960 960">
                     <path
                         d="M265-230 84-410q-14-14-14-33t14-33q13-12 32-12t33 12l148 149 65 65-31 32q-15 14-34.5 13.5T265-230Zm164-24L248-435q-14-14-13-33t15-34q12-11 31.5-11t32.5 11l148 150 351-349q11-13 30-13.5t34 12.5q13 13 13.5 32.5T877-636L495-254q-13 13-33 13t-33-13Zm35-156-63-65 228-228q13-13 32-13t33 13q12 14 12 33t-12 31L464-410Z" />
@@ -163,7 +168,7 @@
                     </p>
                 </div>
             </div>
-            <div class="w-full lg:flex-1 flex gap-8 flex-wrap">
+            <div data-aos="zoom-out-up" data-aos-delay="400" class="w-full lg:flex-1 flex gap-8 flex-wrap">
                 <svg class="w-12 h-12 mt-2 text-x-prime pointer-events-none" fill="currentColor" viewBox="0 -960 960 960">
                     <path
                         d="m437-439-69-73q-10.25-12-25.125-11.5T317-514q-12 12.511-12 27.256Q305-472 317-461l88 86q12.364 15 32.182 15T470-375l174-172q10-9 10-24.5T643-598q-11-8-25-8t-23 10L437-439ZM316-68l-60-103-119-25q-19-3-29.5-17.125T100-245l14-115.704L38-451q-10-12.39-10-29.195T38-510l76-88.297L100-714q-3-17.75 7.5-31.875T137-764l119.31-24.197L316-892q8.88-14.562 25.92-20.281Q358.96-918 376-911l104 49 105-49q16-5 33.056-.818Q635.111-907.636 644-893l60.69 104.803L823-764q19 4 29.5 18.125T860-714l-14 115.703L922-510q10 13.39 10 30.195T922-451l-76 90.296L860-245q3 17.75-7.5 31.875T823-196l-118 25-61 104q-8.889 14.636-25.944 18.818Q601-44 585-49L480-98 376-49q-17 5-34.056.318Q324.889-53.364 316-68Zm60.736-83 103.121-43.564L586-151l65-96 112-29-11-116.191 77-87.894L752-570l11-116-112-27-66.659-96-104.159 43.458L374-809l-64.718 96.241L198-686.448 208-570l-77 90 77 88-10 118.462 111.099 26.307L376.736-151ZM480-480Z" />
@@ -180,19 +185,22 @@
             </div>
         </section>
 
-        <section class="w-full flex flex-col lg:flex-row gap-4 lg:gap-6">
+        <section class="w-full flex flex-col lg:flex-row gap-8 lg:gap-6">
             <div class="w-full lg:flex-[1] flex flex-col gap-4 lg:my-4">
-                <h2 class="uppercase font-x-core text-x-black text-4xl sm:text-5xl lg:text-[3.19rem] leading-[1] mb-6">
+                <h2 data-aos="fade-{{ Core::lang('ar') ? 'left' : 'right' }}" data-aos-delay="100"
+                    class="uppercase font-x-core text-x-black text-4xl sm:text-5xl lg:text-[3.19rem] leading-[1] mb-6">
                     {{ __('shipping') }}
                 </h2>
-                <p class="text-base font-medium text-x-black text-justify">
+                <p data-aos="fade-{{ Core::lang('ar') ? 'left' : 'right' }}" data-aos-delay="300"
+                    class="text-base font-medium text-x-black text-justify">
                     {{ __('We take pride in our commitment to providing exceptional service to our customers. To ensure a seamless experience, we\'ve partnered with a specialized global delivery network that caters to your every need.') }}
                 </p>
-                <p class="text-base font-medium text-x-black text-justify">
+                <p data-aos="fade-{{ Core::lang('ar') ? 'left' : 'right' }}" data-aos-delay="500"
+                    class="text-base font-medium text-x-black text-justify">
                     {{ __('Whether you\'re across town or around the world, our trusted delivery partner ensures that your chosen products are delivered to your doorstep promptly and securely.') }}
                 </p>
                 <div class="w-max gap-4 lg:gap-6 flex mt-6">
-                    <div class="w-max flex flex-col gap-2 items-center">
+                    <div data-aos="fade-up" data-aos-delay="700" class="w-max flex flex-col gap-2 items-center">
                         <svg class="w-12 h-12 text-x-prime pointer-events-none" fill="currentColor"
                             viewBox="0 -960 960 960">
                             <path
@@ -202,7 +210,7 @@
                             {{ __('Fast Delivery') }}
                         </h5>
                     </div>
-                    <div class="w-max flex flex-col gap-2 items-center">
+                    <div data-aos="fade-up" data-aos-delay="900" class="w-max flex flex-col gap-2 items-center">
                         <svg class="w-12 h-12 text-x-prime pointer-events-none" fill="currentColor"
                             viewBox="0 -960 960 960">
                             <path
@@ -212,7 +220,7 @@
                             {{ __('Wide Coverage') }}
                         </h5>
                     </div>
-                    <div class="w-max flex flex-col gap-2 items-center">
+                    <div data-aos="fade-up" data-aos-delay="1100" class="w-max flex flex-col gap-2 items-center">
                         <svg class="w-12 h-12 text-x-prime pointer-events-none" fill="currentColor"
                             viewBox="0 -960 960 960">
                             <path
@@ -224,26 +232,27 @@
                     </div>
                 </div>
             </div>
-            <div class="w-full lg:flex-[1] relative order-[-1] lg:order-[1]">
+            <div data-aos="fade-{{ Core::lang('ar') ? 'right' : 'left' }}"
+                class="w-full lg:flex-[1] relative order-[-1] lg:order-[1]">
                 <div class="w-4 rtl:order-[1]"></div>
                 <div style="background-image: url({{ asset('img/shipping.jpg') }})"
                     class="w-full h-full aspect-video lg:w-[calc(100%-1rem)] lg:aspect-auto lg:ms-4 rounded-x-core bg-x-white overflow-hidden bg-no-repeat bg-cover bg-center border border-x-black-blur">
                 </div>
                 <div style="background: radial-gradient(var(--acent), var(--prime))"
-                    class="w-40 lg:w-8 rounded-x-core shadow-x-core h-8 lg:h-40 absolute -bottom-4 lg:bottom-10 right-10 rtl:right-auto rtl:left-10 lg:right-auto lg:left-0 rtl:lg:left-auto rtl:lg:right-0">
+                    class="w-40 lg:w-8 rounded-x-core shadow-x-core h-8 lg:h-40 absolute -bottom-4 lg:bottom-10 right-4 rtl:right-auto rtl:left-4 lg:right-auto lg:left-0 rtl:lg:left-auto rtl:lg:right-0">
                 </div>
             </div>
         </section>
 
-        <section class="w-full flex flex-col lg:p-6 lg:flex-row lg:gap-6 relative">
+        <section data-aos="zoom-down" class="w-full flex flex-col lg:p-6 lg:flex-row lg:gap-6 relative">
             <div
-                class="aspect-video lg:aspect-auto lg:absolute lg:inset-0 bg-x-white rounded-x-core overflow-hidden flex justify-center items-center border border-x-black-blur">
+                class="aspect-[12/9] lg:aspect-auto lg:absolute lg:inset-0 bg-x-white rounded-x-core overflow-hidden flex justify-center items-center border border-x-black-blur">
                 <iframe class="w-[200%] h-[200%] lg:absolute lg:ms-[50%]"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3478.45375954224!2d47.9513965!3d29.3276948!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3fcf9b216abd6ac9%3A0x511d2a83565207b7!2sThe%20Cut%20Studio!5e0!3m2!1sen!2sma!4v1695572558474!5m2!1sen!2sma"
                     loading="lazy"></iframe>
             </div>
-            <div
-                class="w-11/12 mx-auto -mt-8 lg:mt-0 lg:flex-[1] p-4 lg:p-6 flex flex-col gap-4 bg-x-white shadow-md rounded-x-core lg:z-[1]">
+            <div data-aos="fade-up" data-aos-delay="500"
+                class="w-11/12 mx-auto -mt-8 lg:mt-0 lg:flex-[1] p-4 lg:p-6 flex flex-col gap-4 bg-x-white shadow-md rounded-x-core z-[1]">
                 <h2 class="uppercase font-x-core text-x-black text-4xl sm:text-5xl lg:text-[3.19rem] leading-[1] mb-6">
                     {{ __('contact us') }}
                 </h2>
@@ -284,7 +293,12 @@
 @endsection
 
 @section('scripts')
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        AOS.init({
+            once: true,
+            offset: 0,
+        });
         Slider({
             wrap: "#slide",
         }, {

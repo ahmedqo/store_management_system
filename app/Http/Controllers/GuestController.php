@@ -35,12 +35,12 @@ class GuestController extends Controller
         }
 
         if ($categories->count() == 4) {
-            $class['parent'] = 'grid-cols-2 lg:grid-cols-5';
+            $class['parent'] = 'grid-rows-1 grid-cols-2 lg:grid-cols-5';
             array_push($class['children'], 'aspect-video lg:col-span-2', 'aspect-video lg:aspect-[32/9] lg:col-span-3', 'aspect-video lg:aspect-[32/9] lg:col-span-3', 'aspect-video lg:col-span-2');
         }
 
         if ($categories->count() == 5) {
-            $class['parent'] = 'grid-cols-2 lg:grid-cols-3 lg:grid-row-2';
+            $class['parent'] = 'grid-rows-1 grid-cols-2 lg:grid-cols-3 lg:grid-row-2';
             array_push($class['children'], 'aspect-video', 'aspect-video lg:aspect-none lg:row-span-2', 'col-span-2 lg:col-span-1 aspect-[32/9] lg:aspect-video', 'aspect-video', 'aspect-video');
         }
 
