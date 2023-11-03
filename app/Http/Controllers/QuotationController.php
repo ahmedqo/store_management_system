@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Functions\Core;
+use App\Functions\Mail as Mailer;
 use App\Models\Product;
 use App\Models\Quotation;
 use Illuminate\Http\Request;
@@ -76,6 +77,12 @@ class QuotationController extends Controller
                 'status' => Core::states()[0],
             ]);
         }
+
+        Mailer::info($Request->email, [
+            'subject' => ucwords(__('Request quotation')),
+            'content' => __('You can view and print your quotation by clicking the link below'),
+            'ref' => $Current->reference
+        ]);
 
         return Redirect::route('views.quotations.store')->with([
             'message' => __('Created successfully'),

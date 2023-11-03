@@ -69,7 +69,7 @@
                                 <td class="text-x-black text-sm font-x-core p-2 ps-4">
                                     <div class="w-max mx-auto font-x-core text-sm">{{ $loop->index + 1 }}</div>
                                 </td>
-                                <td class="text-x-black text-sm font-x-core p-2 ps-4">{{ $item->Product->details }}
+                                <td class="text-x-black text-sm font-x-core p-2 ps-4">{{ $item->Product->name }}
                                 </td>
                                 <td class="text-x-black text-sm font-x-core p-2 text-center w-[100px]">
                                     {{ $item->unit }}
