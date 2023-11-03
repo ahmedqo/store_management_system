@@ -263,7 +263,7 @@ function Counter(selector) {
     });
 }
 
-function CreateRows(data, target) {
+function CreateRows(data, target, lang) {
     const _target = document.querySelector(target);
     JSON.parse(localStorage[data]).forEach((row) => {
         _target.innerHTML += `
@@ -282,7 +282,7 @@ function CreateRows(data, target) {
                 </a>
                 <div class="w-0 flex-1 gap-2 flex flex-col justify-center">
                     <h2 class="text-md font-semibold lg:text-xl text-x-black w-full truncate">
-                        ${row.title}
+                        ${row["title_" + lang]}
                     </h2>
                     <div class="w-full flex gap-2 items-center">
                         <div class="counter flex flex-wrap w-max gap-1 items-center">

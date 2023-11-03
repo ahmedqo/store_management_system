@@ -71,7 +71,7 @@
                 </h5>
             `;
         } else {
-            CreateRows("{{ env('APP_CART') }}", "#cartrows");
+            CreateRows("{{ env('APP_CART') }}", "#cartrows", "{{ Core::lang() }}");
         }
         RemoveRows("{{ env('APP_CART') }}");
         Counter(".counter");

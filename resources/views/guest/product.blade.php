@@ -138,7 +138,10 @@
                     img: "{{ Core::files(Core::PRODUCT)->get($data->Files[0]->name) }}",
                     link: "{{ route('views.guest.product', $data->slug) }}",
                     qte: +document.querySelector('[name="qte"]').value,
-                    title: "{{ ucwords($data->name) }}",
+                    title_en: "{{ ucwords($data->name_en) }}",
+                    title_fr: "{{ ucwords($data->name_fr) }}",
+                    title_it: "{{ ucwords($data->name_it) }}",
+                    title_ar: "{{ ucwords($data->name_ar) }}",
                     id: {{ $data->id }},
                 });
             }

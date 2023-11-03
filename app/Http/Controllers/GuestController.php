@@ -163,7 +163,7 @@ class GuestController extends Controller
             'from' => $Request->email,
             'to' => env('MAIL_CONTACT_ADDRESS'),
             'subject' => ucwords(__('New contact mail')),
-            'content' => 'Phone: ' . $Request->phone . PHP_EOL . PHP_EOL . $Request->message,
+            'content' => __('Name') . ': ' . $Request->name . PHP_EOL . __('Phone') . ': ' . $Request->phone . PHP_EOL . PHP_EOL . $Request->message,
         ]);
 
         return Redirect::back()->with([
