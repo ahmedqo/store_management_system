@@ -1,7 +1,7 @@
 <li>
     <div x-toggle targets="#category_{{ $base->id }}" properties="hidden"
         class="flex items-center justify-between gap-2 text-x-black rounded-md hover:px-3 hover:py-1 focus-within:px-3 focus-within:py-1 hover:bg-x-black-blur focus-within:bg-x-black-blur">
-        <a class="text-lg font-x-core {{ $base->Categories->count() ? 'w-max' : 'w-full' }}"
+        <a class="text-lg font-x-core outline-none {{ $base->Categories->count() ? 'w-max' : 'w-full' }}"
             href="{{ route('views.guest.products', [
                 'category' => $base->slug,
             ]) }}">{{ ucwords($base->name) }}</a>
