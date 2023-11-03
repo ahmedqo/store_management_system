@@ -934,6 +934,10 @@ video {
   aspect-ratio: 32/9;
 }
 
+.aspect-\[4\/1\] {
+  aspect-ratio: 4/1;
+}
+
 .aspect-square {
   aspect-ratio: 1 / 1;
 }
@@ -3503,12 +3507,12 @@ video {
     border-style: none;
   }
 
-  .lg\:bg-transparent {
-    background-color: transparent;
-  }
-
   .lg\:\!bg-transparent {
     background-color: transparent !important;
+  }
+
+  .lg\:bg-transparent {
+    background-color: transparent;
   }
 
   .lg\:p-0 {
