@@ -12,11 +12,11 @@
 
 <body>
     <main id="page" class="hidden w-full container mx-auto">
-        <header class="fixed top-0 left-0 right-0 w-full flex flex-wrap gap-4 items-end">
+        <header class="fixed top-0 left-0 right-0 w-full flex flex-wrap gap-4 items-stretch">
             <div class="flex-1 flex flex-col gap-2">
                 <img alt="logo-image" src="{{ asset('img/logo.svg') }}?v={{ env('APP_VERSION') }}"
-                    class="block w-28 flex-1 object-contain object-center" />
-                <div class="w-[calc(100%-5px)] h-4 bg-x-prime skew-x-[-20deg] ms-[5px]"></div>
+                    class="block w-28 object-contain object-center" />
+                <div class="w-[calc(100%-5px)] h-4 bg-x-prime skew-x-[-20deg] ms-[5px] mt-auto"></div>
             </div>
             <div class="w-max flex flex-col gap-2">
                 <div class="w-max flex flex-col mx-4">
@@ -33,7 +33,7 @@
                         {{ ucwords($data->name) }}
                     </h1>
                 </div>
-                <div class="flex gap-2 skew-x-[-20deg]">
+                <div class="flex gap-2 skew-x-[-20deg] mt-auto">
                     <div class="w-[2rem] h-10 bg-x-acent"></div>
                     <div class="flex-1 h-10 bg-x-acent me-[8px]"></div>
                 </div>
@@ -124,8 +124,8 @@
             <div class="w-8/12 flex flex-col gap-2">
                 <div class="w-[calc(100%-5px)] h-4 bg-x-prime skew-x-[-20deg] me-[5px]"></div>
                 <div class="flex gap-4 justify-around">
-                    <h1 class="text-x-black font-x-core">www.store.com</h1>
-                    <h1 class="text-x-black font-x-core">store@test.com</h1>
+                    <h1 class="text-x-black font-x-core">{{ request()->getHost() }}</h1>
+                    <h1 class="text-x-black font-x-core">{{ env('MAIL_FROM_ADDRESS') }}</h1>
                     <h1 class="text-x-black font-x-core">+XXX-XXXX-XXXX</h1>
                 </div>
             </div>
