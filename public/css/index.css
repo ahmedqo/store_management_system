@@ -2617,6 +2617,11 @@ video {
   padding-right: 0.5rem;
 }
 
+.focus-within\:px-3:focus-within {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
 .focus-within\:py-1:focus-within {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
@@ -2785,6 +2790,11 @@ video {
 .hover\:px-2:hover {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
+}
+
+.hover\:px-3:hover {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
 }
 
 .hover\:py-1:hover {

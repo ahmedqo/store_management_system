@@ -14,7 +14,7 @@
     </div>
     <nav id="categories"
         class="!bg-transparent rounded-x-core !p-4 hidden lg:block border-4 border-dashed border-x-black-blur">
-        <ul class="x-category relative">
+        <ul class="x-category relative flex flex-col gap-1">
             @foreach ($categories as $base)
                 @if (!$base->Category)
                     @include('shared.guest.items', [
