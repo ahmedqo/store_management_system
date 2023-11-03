@@ -191,7 +191,6 @@
                     unit: item.product.unit,
                     price: item.product.price,
                 }
-                console.log(data);
                 document.querySelector("#row_display").appendChild(QuotationRow(data));
             });
         @endif
