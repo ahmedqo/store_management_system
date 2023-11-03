@@ -79,7 +79,7 @@
 
         <section class="w-full flex flex-col lg:flex-row gap-8 lg:gap-6">
             <div data-aos="fade-{{ Core::lang('ar') ? 'left' : 'right' }}" class="w-full lg:flex-[1] relative">
-                <div style="background-image: url({{ asset('img/hero-1.png') }})"
+                <div style="background-image: url({{ asset('img/hero-1.webp') }})"
                     class="w-full h-full aspect-[12/9] lg:w-[calc(100%-1rem)] lg:aspect-auto lg:me-4 rounded-x-core bg-x-white overflow-hidden bg-no-repeat bg-cover bg-center border border-x-black-blur">
                 </div>
                 <div style="background: radial-gradient(var(--acent), var(--prime))"
@@ -235,7 +235,7 @@
             <div data-aos="fade-{{ Core::lang('ar') ? 'right' : 'left' }}"
                 class="w-full lg:flex-[1] relative order-[-1] lg:order-[1]">
                 <div class="w-4 rtl:order-[1]"></div>
-                <div style="background-image: url({{ asset('img/hero-2.png') }})"
+                <div style="background-image: url({{ asset('img/hero-2.webp') }})"
                     class="w-full h-full aspect-[12/9] lg:w-[calc(100%-1rem)] lg:aspect-auto lg:ms-4 rounded-x-core bg-x-white overflow-hidden bg-no-repeat bg-cover bg-center border border-x-black-blur">
                 </div>
                 <div style="background: radial-gradient(var(--acent), var(--prime))"

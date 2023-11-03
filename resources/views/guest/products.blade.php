@@ -3,9 +3,8 @@
 
 @section('header')
     <div class="w-full p-4 container mx-auto">
-        <div style="background: radial-gradient(var(--acent), var(--prime))"
-            class="w-full rounded-x-core overflow-hidden border border-x-black-blur">
-            <div style="text-shadow: 0px 3px 12px #1d1d1d50, #1d1d1d25 0px 25px 20px; background-image: url({{ asset('img/bg-3.png') }})"
+        <div style="background: radial-gradient(var(--acent), var(--prime))" class="w-full rounded-x-core overflow-hidden">
+            <div style="text-shadow: 0px 3px 12px #1d1d1d50, #1d1d1d25 0px 25px 20px; background-image: url({{ asset('img/bg-3.webp') }})"
                 class="w-full min-h-[8rem] aspect-[4/1] flex items-center justify-center text-x-white font-x-core text-2xl lg:text-6xl p-4 bg-cover bg-no-repeat relative z-[0] bg-center">
                 {{ __('Products') }}
             </div>
