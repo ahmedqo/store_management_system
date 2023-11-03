@@ -41,7 +41,7 @@
 							font-weight: 900;
 							font-family: Tahoma, Verdana, Segoe, sans-serif;
 							font-size: 20px;
-							padding: 16px 40px;
+							padding: 10px 40px;
 							margin: 0 auto;
 						">
                         {{ __('Reset Password') }}
