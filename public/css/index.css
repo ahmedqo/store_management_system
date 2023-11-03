@@ -2484,6 +2484,11 @@ video {
   height: 4px;
 }
 
+.after\:w-12::after {
+  content: var(--tw-content);
+  width: 3rem;
+}
+
 .after\:w-24::after {
   content: var(--tw-content);
   width: 6rem;
