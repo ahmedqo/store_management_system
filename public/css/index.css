@@ -3171,9 +3171,9 @@ video {
     line-height: 2rem;
   }
 
-  .md\:after\:me-auto::after {
+  .md\:after\:ms-0::after {
     content: var(--tw-content);
-    margin-inline-end: auto;
+    margin-inline-start: 0px;
   }
 }
 

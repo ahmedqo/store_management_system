@@ -2,7 +2,7 @@
     <div class="container mx-auto p-4 flex flex-col md:flex-row md:flex-wrap gap-10 md:gap-4 justify-between">
         <div class="w-full md:w-max md:items-start flex items-center flex-col gap-4">
             <h2
-                class="text-x-black text-xl md:text-2xl font-x-core after:content-[''] after:block after:mx-auto md:after:me-auto after:w-12 after:h-[4px] after:bg-x-prime">
+                class="text-x-black text-xl md:text-2xl font-x-core after:content-[''] after:block after:mx-auto md:after:ms-0 after:w-12 after:h-[4px] after:bg-x-prime">
                 {{ ucwords(__('Quick links')) }}
             </h2>
             <ul class="w-full flex flex-col items-center gap-2 md:items-start">
@@ -34,7 +34,7 @@
         </div>
         <div class="w-full md:w-max md:items-start flex items-center flex-col gap-4">
             <h2
-                class="text-x-black text-xl md:text-2xl font-x-core after:content-[''] after:block after:mx-auto md:after:me-auto after:w-12 after:h-[4px] after:bg-x-prime">
+                class="text-x-black text-xl md:text-2xl font-x-core after:content-[''] after:block after:mx-auto md:after:ms-0 after:w-12 after:h-[4px] after:bg-x-prime">
                 {{ ucwords(__('Comercial details')) }}
             </h2>
             <ul class="w-full flex flex-col items-center gap-4 md:gap-2 md:items-start">
@@ -84,7 +84,7 @@
         </div>
         <div class="w-full md:w-max md:items-start flex items-center flex-col gap-4">
             <h2
-                class="text-x-black text-xl md:text-2xl font-x-core after:content-[''] after:block after:mx-auto md:after:me-auto after:w-12 after:h-[4px] after:bg-x-prime">
+                class="text-x-black text-xl md:text-2xl font-x-core after:content-[''] after:block after:mx-auto md:after:ms-0 after:w-12 after:h-[4px] after:bg-x-prime">
                 {{ ucwords(__('Support details')) }}
             </h2>
             <ul class="w-full flex flex-col items-center gap-4 md:gap-2 md:items-start">
@@ -134,7 +134,7 @@
         </div>
         <div class="w-full md:w-max md:items-start flex items-center flex-col gap-4">
             <h2
-                class="text-x-black text-xl md:text-2xl font-x-core after:content-[''] after:block after:mx-auto md:after:me-auto after:w-12 after:h-[4px] after:bg-x-prime">
+                class="text-x-black text-xl md:text-2xl font-x-core after:content-[''] after:block after:mx-auto md:after:ms-0 after:w-12 after:h-[4px] after:bg-x-prime">
                 {{ ucwords(__('Contact details')) }}
             </h2>
             <ul class="w-full flex flex-col items-center gap-4 md:gap-2 md:items-start">
