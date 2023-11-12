@@ -17,8 +17,8 @@ class CoreController extends Controller
 {
     public function index_view()
     {
-        $startDate = Carbon::now()->startOfWeek()->subDay(1);
-        $endDate = Carbon::now()->endOfWeek()->subDay(1);
+        $startDate = Carbon::now()->startOfWeek(Carbon::SUNDAY);
+        $endDate = Carbon::now()->endOfWeek(Carbon::SATURDAY);
 
         $days = [];
         $days[ucwords(__('sunday'))] = 0;
