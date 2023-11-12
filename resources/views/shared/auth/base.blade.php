@@ -13,7 +13,7 @@
 <body class="flex flex-col flex-wrap lg:flex-row bg-gray-100">
     <section id="overlay"
         class="bg-x-prime bg-opacity-80 backdrop-blur-lg fixed inset-0 z-[100] flex items-center justify-center">
-        <img title="logo-image" alt="logo-image" src="{{ asset('img/logo.svg') }}?v={{ env('APP_VERSION') }}"
+        <img title="logo-image" alt="logo-image" src="{{ asset('img/logo-black.png') }}?v={{ env('APP_VERSION') }}"
             class="block w-32 animate-bounce duration-150" />
     </section>
     <header class="w-full bg-transparent fixed top-0 left-0 right-0 z-[1] lg:z-[50]">
@@ -71,7 +71,7 @@
             <div class="p-4 flex flex-col gap-4">
                 <a href="/" class="w-max mx-auto block">
                     <img title="logo-image" alt="logo-image"
-                        src="{{ asset('img/logo.svg') }}?v={{ env('APP_VERSION') }}" class="block w-32" />
+                        src="{{ asset('img/logo-black.png') }}?v={{ env('APP_VERSION') }}" class="block w-32" />
                 </a>
                 <div class="bg-x-white p-4 rounded-x-core shadow-xl">
                     @yield('content')

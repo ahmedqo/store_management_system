@@ -70,7 +70,7 @@ class ProfileController extends Controller
             'first_name' => ['required', 'string'],
             'last_name' => ['required', 'string'],
             'identity' => ['required', 'string', 'unique:users,identity,' . $data->id],
-            'email' => ['required', 'string', 'unique:users,email,' . $data->id],
+            'email' => ['required', 'email', 'unique:users,email,' . $data->id],
             'phone' => ['required', 'string', 'unique:users,phone,' . $data->id],
         ]);
 

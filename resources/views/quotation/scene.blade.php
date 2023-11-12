@@ -147,7 +147,7 @@
     <section id="page" class="w-full container mx-auto">
         <header class="fixed top-0 left-0 right-0 w-full flex flex-wrap gap-4 items-stretch">
             <div class="flex-1 flex flex-col gap-2">
-                <img alt="logo-image" src="{{ asset('img/logo.svg') }}?v={{ env('APP_VERSION') }}"
+                <img alt="logo-image" src="{{ asset('img/logo-black.png') }}?v={{ env('APP_VERSION') }}"
                     class="block w-28 object-contain object-center" />
                 <div class="w-[calc(100%-5px)] h-4 bg-x-prime skew-x-[-20deg] ms-[5px] mt-auto"></div>
             </div>

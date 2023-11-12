@@ -19,7 +19,7 @@ class CreateQuotationsItemsTable extends Migration
             $table->unsignedBigInteger('product');
             $table->string("unit");
             $table->integer("quantity");
-            $table->float("price");
+            $table->float("price", 15, 5);
             $table->string("status");
             $table->timestamps();
 

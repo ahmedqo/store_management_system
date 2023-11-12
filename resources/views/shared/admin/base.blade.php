@@ -13,7 +13,7 @@
 <body class="flex flex-col flex-wrap lg:flex-row bg-gray-100 !overflow-hidden !h-screen">
     <section id="overlay"
         class="bg-x-prime bg-opacity-80 backdrop-blur-lg fixed inset-0 z-[100] flex items-center justify-center">
-        <img title="logo-image" alt="logo-image" src="{{ asset('img/logo.svg') }}?v={{ env('APP_VERSION') }}"
+        <img title="logo-image" alt="logo-image" src="{{ asset('img/logo-black.png') }}?v={{ env('APP_VERSION') }}"
             class="block w-32 animate-bounce duration-150" />
     </section>
     @include('shared.admin.sidebar')

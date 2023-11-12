@@ -17,7 +17,7 @@ class CreateSlidesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('type');
-            $table->string('size');
+            $table->float('size', 15, 5);
             $table->timestamps();
         });
     }

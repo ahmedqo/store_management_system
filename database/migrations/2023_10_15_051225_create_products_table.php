@@ -24,7 +24,7 @@ class CreateProductsTable extends Migration
             $table->string('name_it')->unique();
             $table->string('name_ar')->unique();
             $table->string('unit');
-            $table->float('price');
+            $table->float('price', 15, 5);
             $table->string('status');
             $table->text('details_en');
             $table->text('details_fr');

@@ -18,7 +18,7 @@ class CreateProductsFilesTable extends Migration
             $table->unsignedBigInteger('product');
             $table->string('name');
             $table->string('type');
-            $table->string('size');
+            $table->float('size', 15, 5);
             $table->timestamps();
 
             $table->foreign('product')->references('id')->on('products')->onUpdate('cascade')->onDelete('cascade');

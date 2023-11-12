@@ -14,7 +14,8 @@
         class="w-[240px] lg:w-full h-full flex flex-col bg-x-white shadow-x-core absolute top-0 left-0 rtl:right-0 rtl:left-auto overflow-hidden">
         <div class="flex flex-col h-full gap-10 m-4">
             <header class="w-full flex items-center justify-center overflow-hidden">
-                <img alt="logo-image" src="{{ asset('img/logo.svg') }}?v={{ env('APP_VERSION') }}" class="block w-40" />
+                <img alt="logo-image" src="{{ asset('img/logo-black.png') }}?v={{ env('APP_VERSION') }}"
+                    class="block w-40" />
             </header>
             <ul
                 class="flex flex-col gap-4 flex-1 overflow-y-auto overflow-x-hidden border-e lg:border-none border-x-white">

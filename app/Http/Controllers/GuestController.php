@@ -146,7 +146,7 @@ class GuestController extends Controller
     {
         $validator = Validator::make($Request->all(), [
             'name' => ['required', 'string'],
-            'email' => ['required', 'string'],
+            'email' => ['required', 'email'],
             'phone' => ['required', 'string'],
             'message' => ['required', 'string'],
         ]);

@@ -41,7 +41,7 @@
             </li>
             <li class="flex-[1] flex">
                 <a href="{{ route('views.guest.home') }}" class="w-max mx-auto">
-                    <img alt="logo-image" src="{{ asset('img/logo.svg') }}?v={{ env('APP_VERSION') }}"
+                    <img alt="logo-image" src="{{ asset('img/logo-black.png') }}?v={{ env('APP_VERSION') }}"
                         class="block w-20" />
                 </a>
             </li>

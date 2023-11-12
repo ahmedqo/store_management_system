@@ -20,7 +20,7 @@ class CreateQuotationsTable extends Migration
             $table->string('email');
             $table->string('phone');
             $table->string('reference');
-            $table->float('charge');
+            $table->float('charge', 15, 5);
             $table->string('currency');
             $table->string('note_en')->nullable();
             $table->string('note_fr')->nullable();

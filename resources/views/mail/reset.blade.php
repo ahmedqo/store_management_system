@@ -2,7 +2,7 @@
     <tr>
         <td>
             <div style="padding: 64px 16px;">
-                <img src="{{ asset('img/logo.svg') }}?v={{ env('APP_VERSION') }}" alt="logo"
+                <img src="{{ asset('img/logo-black.png') }}?v={{ env('APP_VERSION') }}" alt="logo"
                     style="display: block; width: 120px; margin: 0 auto 20px auto;" />
                 <section
                     style="

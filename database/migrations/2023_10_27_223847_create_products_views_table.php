@@ -17,7 +17,7 @@ class CreateProductsViewsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('product')->nullable();
             $table->string('remote');
-            $table->integer('count')->default(1);
+            $table->integer('count')->default(0);
             $table->timestamps();
 
             $table->foreign('product')->references('id')->on('products')->onUpdate('cascade')->onDelete('cascade');
